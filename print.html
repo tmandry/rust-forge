@@ -3284,6 +3284,13 @@ actually entirely passed CI and bors moves it to the <code>master</code> branch,
 break.</p>
 <p>For further details, see the comments in the involved files: <a href="https://github.com/rust-lang/rust/blob/master/src/ci/docker/x86_64-gnu-tools/checktools.sh"><code>checktools.sh</code></a>,
 <a href="https://github.com/rust-lang/rust/blob/master/src/tools/publish_toolstate.py"><code>publish_toolstate.py</code></a> as well as the other files mentioned there.</p>
+<h2><a class="header" href="#updating-tools" id="updating-tools">Updating tools</a></h2>
+<p>Tools can be updated by updating the submodule to the proper commit.</p>
+<p>Run <code>git submodule update --remote path/to/submodule</code>, add the updates, make
+sure the tests pass, commit, and send a pull request. The path is from the
+root of the rust repository, so for example, the reference is
+<code>src/doc/reference</code> and rustfmt is <code>src/tools/rustfmt</code>.</p>
+<p>While not required, <a href="https://github.com/ehuss/subup">subup</a> may assist you with this.</p>
 <h2><a class="header" href="#adding-a-tool" id="adding-a-tool">Adding a tool</a></h2>
 <p>To add a new tool to be tracked, the following steps must be taken:</p>
 <ol>
