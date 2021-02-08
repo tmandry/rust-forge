@@ -5071,11 +5071,22 @@ on GitHub Actions on the master branch.</p>
 </ul>
 </li>
 <li>
-<p><strong>T+5m</strong> - Tag Cargo the same way as rust-lang/rust and then run
-<code>cargo publish</code> for the tag you just created. You'll first need to comment
-out <code>cargo-test-macro</code> from Cargo.toml, then publish <code>crates-io</code> (in
-<code>crates/crates-io</code>) and finally publish <code>cargo</code> itself.</p>
-<p>To publish Cargo you may have to bump the version numbers for the crates-io and Cargo crates; there's no need to do that in a formal commit though, so your tag and the published code may differentiate in that way.</p>
+<p><strong>T+5m</strong> - Release and tag Cargo. In the rust-lang/rust repository on the
+<strong>stable branch</strong>:</p>
+<pre><code class="language-sh"># Remote &quot;rust-lang&quot; is github.com/rust-lang/rust.git
+git fetch rust-lang
+git checkout rust-lang/stable
+# Make sure submodules are at the correct revision.
+git submodule update
+cd src/tools/cargo
+# Publish to crates.io. This will publish internal dependencies first (if
+# necessary), then publish Cargo itself.
+./publish.py
+# Where YY is the Rust minor release, add one to it (Rust 1.49.0 = Cargo 0.50.0).
+CARGO_VERSION=&quot;0.YY+1.0&quot;
+git tag -u FA1BE5FE $CARGO_VERSION
+git push git@github.com:rust-lang/cargo.git $CARGO_VERSION
+</code></pre>
 </li>
 <li>
 <p><strong>T+1hr</strong> Send a PR to the beta branch to comment out <code>dev: 1</code> again and
