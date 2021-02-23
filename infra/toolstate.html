@@ -167,7 +167,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#handling-of-tools-embedded-in-the-rustc-repo-toolstate" id="handling-of-tools-embedded-in-the-rustc-repo-toolstate">Handling of tools embedded in the rustc repo (&quot;toolstate&quot;)</a></h1>
+                        <h1 id="handling-of-tools-embedded-in-the-rustc-repo-toolstate"><a class="header" href="#handling-of-tools-embedded-in-the-rustc-repo-toolstate">Handling of tools embedded in the rustc repo (&quot;toolstate&quot;)</a></h1>
 <p>The Rust repository contains several external tools and documents as git
 submodules (e.g. clippy, rls, the <a href="https://doc.rust-lang.org/book/">Book</a>, the <a href="https://doc.rust-lang.org/reference/">Reference</a>). Many of those are
 very tightly coupled to the compiler and depend on internal APIs that change all
@@ -182,7 +182,7 @@ by the toolstate system, where we run doctests) are: <code>test-pass</code>, <co
 <code>build-fail</code>.</p>
 <p>This page gives a rough overview how the toolstate system works, and what the
 rules are for when which tools are (not) allowed to break.</p>
-<h2><a class="header" href="#toolstate-rules" id="toolstate-rules">Toolstate Rules</a></h2>
+<h2 id="toolstate-rules"><a class="header" href="#toolstate-rules">Toolstate Rules</a></h2>
 <ul>
 <li>
 <p>For all tools, if a PR changes that tool (if it changes the commit used by the
@@ -203,7 +203,7 @@ happening.)</li>
 miri, embedded-book.</p>
 </li>
 </ul>
-<h2><a class="header" href="#updating-the-toolstate-repository" id="updating-the-toolstate-repository">Updating the toolstate repository</a></h2>
+<h2 id="updating-the-toolstate-repository"><a class="header" href="#updating-the-toolstate-repository">Updating the toolstate repository</a></h2>
 <p>Updating the <a href="https://github.com/rust-lang-nursery/rust-toolstate/">toolstate repository</a> happens in two steps: when CI
 runs on the <code>auto</code> branch (where bors moves a PR to test if it is good for
 integration), the &quot;tool&quot; runners for the individual platforms (at the time of
@@ -215,14 +215,14 @@ actually entirely passed CI and bors moves it to the <code>master</code> branch,
 break.</p>
 <p>For further details, see the comments in the involved files: <a href="https://github.com/rust-lang/rust/blob/master/src/ci/docker/x86_64-gnu-tools/checktools.sh"><code>checktools.sh</code></a>,
 <a href="https://github.com/rust-lang/rust/blob/master/src/tools/publish_toolstate.py"><code>publish_toolstate.py</code></a> as well as the other files mentioned there.</p>
-<h2><a class="header" href="#updating-tools" id="updating-tools">Updating tools</a></h2>
+<h2 id="updating-tools"><a class="header" href="#updating-tools">Updating tools</a></h2>
 <p>Tools can be updated by updating the submodule to the proper commit.</p>
 <p>Run <code>git submodule update --remote path/to/submodule</code>, add the updates, make
 sure the tests pass, commit, and send a pull request. The path is from the
 root of the rust repository, so for example, the reference is
 <code>src/doc/reference</code> and rustfmt is <code>src/tools/rustfmt</code>.</p>
 <p>While not required, <a href="https://github.com/ehuss/subup">subup</a> may assist you with this.</p>
-<h2><a class="header" href="#adding-a-tool" id="adding-a-tool">Adding a tool</a></h2>
+<h2 id="adding-a-tool"><a class="header" href="#adding-a-tool">Adding a tool</a></h2>
 <p>To add a new tool to be tracked, the following steps must be taken:</p>
 <ol>
 <li>Create a PR to rust-lang/rust that adds the submodule along with any

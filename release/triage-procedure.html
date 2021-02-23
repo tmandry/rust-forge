@@ -167,9 +167,9 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#triage-procedure" id="triage-procedure">Triage Procedure</a></h1>
-<h2><a class="header" href="#pull-request-triage" id="pull-request-triage">Pull Request Triage</a></h2>
-<h3><a class="header" href="#status-tags" id="status-tags">Status Tags</a></h3>
+                        <h1 id="triage-procedure"><a class="header" href="#triage-procedure">Triage Procedure</a></h1>
+<h2 id="pull-request-triage"><a class="header" href="#pull-request-triage">Pull Request Triage</a></h2>
+<h3 id="status-tags"><a class="header" href="#status-tags">Status Tags</a></h3>
 <ul>
 <li>
 <p><a href="https://github.com/rust-lang/rust/pulls?q=is%3Aopen+draft%3Afalse+is%3Apr+sort%3Aupdated-asc+label%3AS-waiting-on-author+-label%3AI-nominated+-label%3Aneeds-fcp">S-waiting-on-author</a> - Author needs to make changes to address reviewer
@@ -225,11 +225,11 @@ where highfive conked out and didn't assign a reviewer and thus didn't assign
 <a href="https://github.com/rust-lang/rust/pulls?q=is%3Aopen+draft%3Afalse+is%3Apr+sort%3Aupdated-asc+label%3AS-waiting-on-review+-label%3AI-nominated+-label%3Aneeds-fcp">S-waiting-on-review</a>. These PRs can get lost otherwise. (Note that you should
 likely <strong>not</strong> triage PRs that have <code>r? @ghost</code> since that means the author does
 not need a review yet.)</p>
-<h3><a class="header" href="#procedure" id="procedure">Procedure</a></h3>
+<h3 id="procedure"><a class="header" href="#procedure">Procedure</a></h3>
 <p>We primarily triage three status labels: S-waiting-on-review,
 S-waiting-on-author, and (once in a while) S-blocked. Here is the procedure for
 each:</p>
-<h4><a class="header" href="#s-waiting-on-review" id="s-waiting-on-review">S-waiting-on-review</a></h4>
+<h4 id="s-waiting-on-review"><a class="header" href="#s-waiting-on-review">S-waiting-on-review</a></h4>
 <p>Click <a href="https://github.com/rust-lang/rust/pulls?q=is%3Aopen+draft%3Afalse+is%3Apr+sort%3Aupdated-asc+label%3AS-waiting-on-review+-label%3AI-nominated+-label%3Aneeds-fcp">this link</a> to see all PRs with the
 S-waiting-on-review label. Only triage PRs that were last updated 15 days or
 more ago (give or take a day).</p>
@@ -243,7 +243,7 @@ change the label to S-waiting-on-author and ping the author.</p>
 <p>Add the PR to your <a href="#triage-report">report</a>.</p>
 </li>
 </ol>
-<h4><a class="header" href="#s-waiting-on-author" id="s-waiting-on-author">S-waiting-on-author</a></h4>
+<h4 id="s-waiting-on-author"><a class="header" href="#s-waiting-on-author">S-waiting-on-author</a></h4>
 <p>Click <a href="https://github.com/rust-lang/rust/pulls?q=is%3Aopen+draft%3Afalse+is%3Apr+sort%3Aupdated-asc+label%3AS-waiting-on-author+-label%3AI-nominated+-label%3Aneeds-fcp">this link</a> to see all PRs with the
 S-waiting-on-author label. Only triage PRs that were last updated 15 days or
 more ago (give or take a day).</p>
@@ -262,7 +262,7 @@ T-compiler, T-lang, T-rustdoc, etc.) then don't ping anyone.</p>
 <p>Add the PR to your <a href="#triage-report">report</a>.</p>
 </li>
 </ol>
-<h4><a class="header" href="#s-blocked" id="s-blocked">S-blocked</a></h4>
+<h4 id="s-blocked"><a class="header" href="#s-blocked">S-blocked</a></h4>
 <p>You only need to check S-blocked PRs occasionally (e.g., once a month).  Click
 <a href="https://github.com/rust-lang/rust/pulls?q=is%3Aopen+is%3Apr+label%3AS-blocked+sort%3Aupdated-asc">this link</a> to see all PRs with the S-blocked label.</p>
 <p>For each PR:</p>
@@ -276,11 +276,11 @@ status label like S-waiting-on-review if appropriate).</p>
 <p>Add the PR to your <a href="#triage-report">report</a>.</p>
 </li>
 </ol>
-<h4><a class="header" href="#triage-report" id="triage-report">Triage Report</a></h4>
+<h4 id="triage-report"><a class="header" href="#triage-report">Triage Report</a></h4>
 <p>You should record information about each PR you triage in a report. The report
 is just a small document that looks like:</p>
 <blockquote>
-<h4><a class="header" href="#s-waiting-on-review-1" id="s-waiting-on-review-1">S-waiting-on-review</a></h4>
+<h4 id="s-waiting-on-review-1"><a class="header" href="#s-waiting-on-review-1">S-waiting-on-review</a></h4>
 <p>#12345 20 days - still waiting on review - author: ferris, assignee: bors</p>
 <p>[...]</p>
 </blockquote>

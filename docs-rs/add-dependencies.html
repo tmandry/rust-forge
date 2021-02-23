@@ -167,18 +167,18 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#add-a-dependency-to-the-build-environment" id="add-a-dependency-to-the-build-environment">Add a dependency to the build environment</a></h1>
+                        <h1 id="add-a-dependency-to-the-build-environment"><a class="header" href="#add-a-dependency-to-the-build-environment">Add a dependency to the build environment</a></h1>
 <p>Rustwide internally uses <code>rustops/crates-build-env</code> as the build environment for the crate. If you want to add a system package for crates to link to, this is place you're looking for.</p>
-<h2><a class="header" href="#getting-started" id="getting-started">Getting started</a></h2>
+<h2 id="getting-started"><a class="header" href="#getting-started">Getting started</a></h2>
 <p>First, clone the crates-build-env repo:</p>
 <pre><code class="language-sh">git clone https://github.com/rust-lang/crates-build-env &amp;&amp; cd crates-build-env
 </code></pre>
 <p>Next, add the package to <code>packages.txt</code>. This should be the name of a package in the <strong>Ubuntu 18.04</strong> Repositories. See <a href="https://packages.ubuntu.com/">the package home page</a> for a full list/search bar, or use <code>apt search</code> locally.</p>
-<h2><a class="header" href="#building-the-image" id="building-the-image">Building the image</a></h2>
+<h2 id="building-the-image"><a class="header" href="#building-the-image">Building the image</a></h2>
 <p>Now build the image. This will take a very long time, probably 10-20 minutes.</p>
 <pre><code class="language-sh">docker build --tag build-env .
 </code></pre>
-<h2><a class="header" href="#testing-the-image" id="testing-the-image">Testing the image</a></h2>
+<h2 id="testing-the-image"><a class="header" href="#testing-the-image">Testing the image</a></h2>
 <p>Use the image to build your crate.</p>
 <pre><code class="language-sh">cd /path/to/docs.rs
 docker-compose build
@@ -195,7 +195,7 @@ else
   echo &quot;$YOUR_CRATE does not exist&quot;;
 fi
 </code></pre>
-<h2><a class="header" href="#making-multiple-changes" id="making-multiple-changes">Making multiple changes</a></h2>
+<h2 id="making-multiple-changes"><a class="header" href="#making-multiple-changes">Making multiple changes</a></h2>
 <p>If your build fails even after your changes, it will be annoying to rebuild the image from scratch just to add a single package. Instead, you can make changes directly to the Dockerfile so that the existing packages are cached. Be sure to move these new packages from the Dockerfile to <code>packages.txt</code> once you are sure they work.</p>
 <p>On line 7 of the Dockerfile, add this line: <code>RUN apt-get install -y your_second_package</code>.
 Rerun the build and start the container; it should take much less time now:</p>
@@ -206,9 +206,9 @@ docker-compose run -e DOCS_RS_LOCAL_DOCKER_IMAGE=build-env \
                      -v &quot;$YOUR_CRATE&quot;:/opt/rustwide/workdir \
     web build crate --local /opt/rustwide/workdir
 </code></pre>
-<h2><a class="header" href="#run-the-lint-script" id="run-the-lint-script">Run the lint script</a></h2>
+<h2 id="run-the-lint-script"><a class="header" href="#run-the-lint-script">Run the lint script</a></h2>
 <p>Before you make a PR, run the shell script <code>ci/lint.sh</code> and make sure it passes. It ensures <code>packages.txt</code> is in order and will tell you exactly what changes you need to make if not.</p>
-<h2><a class="header" href="#make-a-pull-request" id="make-a-pull-request">Make a pull request</a></h2>
+<h2 id="make-a-pull-request"><a class="header" href="#make-a-pull-request">Make a pull request</a></h2>
 <p>Once you are sure your package builds, you can make a pull request to get it adopted upstream for docs.rs and crater. Go to https://github.com/rust-lang/crates-build-env and click 'Fork' in the top right. Locally, add your fork as a remote in git and push your changes:</p>
 <pre><code class="language-sh">git remote add personal https://github.com/&lt;your_username_here&gt;/crates-build-env
 git add -u

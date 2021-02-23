@@ -167,7 +167,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#custom-github-actions-runners" id="custom-github-actions-runners">Custom GitHub Actions runners</a></h1>
+                        <h1 id="custom-github-actions-runners"><a class="header" href="#custom-github-actions-runners">Custom GitHub Actions runners</a></h1>
 <p>The Infrastructure Team manages a pool of self-hosted GitHub Actions runners,
 meant to be used by whitelisted repositories that need to run tests on
 platforms not supported by the GitHub-hosted runners. We're currently running
@@ -181,8 +181,8 @@ the following machines:</p>
 <a href="https://github.com/rust-lang/gha-self-hosted">gha-self-hosted</a> repository.</p>
 <p>Please get in touch with the Infrastructure Team if you need to run builds on
 this pool for your project in the <code>rust-lang</code> organization.</p>
-<h2><a class="header" href="#maintenance-procedures" id="maintenance-procedures">Maintenance procedures</a></h2>
-<h3><a class="header" href="#updating-the-github-actions-runner-version" id="updating-the-github-actions-runner-version">Updating the GitHub Actions runner version</a></h3>
+<h2 id="maintenance-procedures"><a class="header" href="#maintenance-procedures">Maintenance procedures</a></h2>
+<h3 id="updating-the-github-actions-runner-version"><a class="header" href="#updating-the-github-actions-runner-version">Updating the GitHub Actions runner version</a></h3>
 <p>Our self-hosted CI runs on a <a href="https://github.com/rust-lang/gha-runner">custom fork of the GitHub Actions
 runner</a>, which improves the security of the setup. The
 fork needs to be manually rebased every time a new version comes out though,
@@ -213,7 +213,7 @@ new release is out, but such updates would prevent our security mitigations.
 Because of that, one of the patches in our fork disable self-updates, but
 that means the runner just stops working until it's updated.</p>
 </div>
-<h3><a class="header" href="#changing-the-instances-configuration" id="changing-the-instances-configuration">Changing the instances configuration</a></h3>
+<h3 id="changing-the-instances-configuration"><a class="header" href="#changing-the-instances-configuration">Changing the instances configuration</a></h3>
 <p>The set of instances available in each host is configured through the
 Ansible configuration located in the <a href="https://github.com/rust-lang/simpleinfra">simpleinfra repo</a>:</p>
 <pre><code>ansible/envs/prod/host_vars/{hostname}.yml
@@ -222,7 +222,7 @@ Ansible configuration located in the <a href="https://github.com/rust-lang/simpl
 applying the changes:</p>
 <pre><code>ansible/apply prod gha-self-hosted
 </code></pre>
-<h3><a class="header" href="#forcing-an-update-of-the-source-code" id="forcing-an-update-of-the-source-code">Forcing an update of the source code</a></h3>
+<h3 id="forcing-an-update-of-the-source-code"><a class="header" href="#forcing-an-update-of-the-source-code">Forcing an update of the source code</a></h3>
 <p>The server checks for source code updates every 15 minutes, but it's possible
 to start such check in advance. You need to log into the machine you want to
 act on, and run the following command:</p>
@@ -231,19 +231,19 @@ act on, and run the following command:</p>
 <p>If the contents of the <code>images/</code> directory were changed, an image rebuild will
 also be started. The new image will be used by each VM after they finish
 processing the current job.</p>
-<h3><a class="header" href="#forcing-a-rebuild-of-the-images" id="forcing-a-rebuild-of-the-images">Forcing a rebuild of the images</a></h3>
+<h3 id="forcing-a-rebuild-of-the-images"><a class="header" href="#forcing-a-rebuild-of-the-images">Forcing a rebuild of the images</a></h3>
 <p>The server automatically rebuilds the images every week, but it's possible to
 rebuild them in advance. You need to log into the machine you want to act on,
 and run the following command:</p>
 <pre><code>sudo systemctl start gha-self-hosted-rebuild-image
 </code></pre>
-<h3><a class="header" href="#managing-the-lifecycle-of-virtual-machines" id="managing-the-lifecycle-of-virtual-machines">Managing the lifecycle of virtual machines</a></h3>
+<h3 id="managing-the-lifecycle-of-virtual-machines"><a class="header" href="#managing-the-lifecycle-of-virtual-machines">Managing the lifecycle of virtual machines</a></h3>
 <p>Each virtual machine is assigned a name and its own systemd unit, called
 <code>gha-vm-{name}.service</code>. For example, the <code>arm-1-1</code> VM is managed by the
 <code>gha-vm-arm-1-1.service</code> systemd unit. You can stop, start and restart the
 virtual machine by stopping, starting and restarting the systemd unit.</p>
 <p>Virtual machines are configured to restart after each build finishes.</p>
-<h3><a class="header" href="#logging-into-the-virtual-machines" id="logging-into-the-virtual-machines">Logging into the virtual machines</a></h3>
+<h3 id="logging-into-the-virtual-machines"><a class="header" href="#logging-into-the-virtual-machines">Logging into the virtual machines</a></h3>
 <p>It's possible to log into the virtual machines from localhost to debug builds.
 This should be used as the last resort. Each VM binds SSH on a custom port on
 the host (configured in the host Ansible configuration), and allows access to
@@ -254,7 +254,7 @@ with port <code>2201</code> you can run:</p>
 <p>Note that the VM image regenerates its own host key every time it boots, so
 you'll likely get host key mismatch errors when connecting to a freshly booted
 VM.</p>
-<h3><a class="header" href="#accessing-the-out-of-band-console-for-packet-servers" id="accessing-the-out-of-band-console-for-packet-servers">Accessing the out-of-band console for Packet servers</a></h3>
+<h3 id="accessing-the-out-of-band-console-for-packet-servers"><a class="header" href="#accessing-the-out-of-band-console-for-packet-servers">Accessing the out-of-band console for Packet servers</a></h3>
 <p>In the event that a bare metal server hosted on Packet becomes unreachable but
 is still marked as online, it's possible to access the out-of-band console over
 the serial port to get a root shell.</p>

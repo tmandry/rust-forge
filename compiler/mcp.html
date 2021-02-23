@@ -167,7 +167,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#major-change-proposals" id="major-change-proposals">Major Change Proposals</a></h1>
+                        <h1 id="major-change-proposals"><a class="header" href="#major-change-proposals">Major Change Proposals</a></h1>
 <p>Introduced in <a href="https://github.com/rust-lang/rfcs/blob/master/text/2904-compiler-major-change-process.md">RFC 2904</a>, a &quot;major change proposal&quot; is a lightweight
 form of RFC that the compiler team uses for architectural changes that
 are not end-user facing. (It can also be used for small user-facing
@@ -175,10 +175,10 @@ changes like adding new compiler flags, though in that case we also
 require an <code>rfcbot fcp</code> to get full approval from the team.) Larger
 changes or modifications to the Rust language itself require a full
 RFC (the latter fall under the lang team's purview).</p>
-<h2><a class="header" href="#motivation" id="motivation">Motivation</a></h2>
+<h2 id="motivation"><a class="header" href="#motivation">Motivation</a></h2>
 <p>As the compiler grows in complexity, it becomes harder and harder to track what's going on. We don't currently have a clear channel for people to signal their intention to make &quot;major changes&quot; that may impact other developers in a lightweight way (and potentially receive feedback).</p>
 <p>Our goal is to create a channel for signaling intentions that lies somewhere between opening a PR (and perhaps cc'ing others on that PR) and creating a compiler team design meeting proposal or RFC.</p>
-<h2><a class="header" href="#goals" id="goals">Goals</a></h2>
+<h2 id="goals"><a class="header" href="#goals">Goals</a></h2>
 <p>Our goals with the MCP are as follows:</p>
 <ul>
 <li>Encourage people making a major change to write at least a few paragraphs about what they plan to do.</li>
@@ -188,7 +188,7 @@ RFC (the latter fall under the lang team's purview).</p>
 <li>Avoid the phenomenon of large, sweeping PRs landing &quot;out of nowhere&quot; onto someone's review queue.</li>
 <li>Avoid the phenomenon of PRs living in limbo because it's not clear what level of approval is required for them to land.</li>
 </ul>
-<h2><a class="header" href="#major-change-proposals-1" id="major-change-proposals-1">Major Change Proposals</a></h2>
+<h2 id="major-change-proposals-1"><a class="header" href="#major-change-proposals-1">Major Change Proposals</a></h2>
 <p>If you would like to make a <a href="#What-constitutes-a-major-change">major change</a> to the compiler, the process is as follows:</p>
 <ul>
 <li>Open a tracking issue on the <a href="https://github.com/rust-lang/compiler-team">rust-lang/compiler-team</a> repo using the <a href="https://github.com/rust-lang/compiler-team/issues/new?assignees=&amp;labels=major-change%2C+T-compiler&amp;template=major_change.md&amp;title=%28My+major+change+proposal%29">major change template</a>.
@@ -217,9 +217,9 @@ code, then either the MCP or the PR(s) must be approved with a
 </ul>
 </li>
 </ul>
-<h2><a class="header" href="#conditional-acceptance" id="conditional-acceptance">Conditional acceptance</a></h2>
+<h2 id="conditional-acceptance"><a class="header" href="#conditional-acceptance">Conditional acceptance</a></h2>
 <p>Some major change proposals will be conditionally accepted. This indicates that we'd like to see the work land, but we'd like to re-evaluate the decision of whether to commit to the design after we've had time to gain experience. We should try to be clear about the things we'd like to evaluate, and ideally a timeline.</p>
-<h2><a class="header" href="#deferred-or-not-accepted" id="deferred-or-not-accepted">Deferred or not accepted</a></h2>
+<h2 id="deferred-or-not-accepted"><a class="header" href="#deferred-or-not-accepted">Deferred or not accepted</a></h2>
 <p>Some proposals will not be accepted. Some of the possible reasons:</p>
 <ul>
 <li>You may be asked to do some prototyping or experimentation before a final decision is reached</li>
@@ -227,16 +227,16 @@ code, then either the MCP or the PR(s) must be approved with a
 <li>The idea may be good, but it may be judged that the resulting code would be too complex to maintain, and not worth the benefits.</li>
 <li>There may be flaws in the idea or it may not sufficient benefit.</li>
 </ul>
-<h2><a class="header" href="#what-happens-if-someone-opens-a-pr-that-seems-like-a-major-change-without-doing-this-process" id="what-happens-if-someone-opens-a-pr-that-seems-like-a-major-change-without-doing-this-process">What happens if someone opens a PR that seems like a major change <em>without</em> doing this process?</a></h2>
+<h2 id="what-happens-if-someone-opens-a-pr-that-seems-like-a-major-change-without-doing-this-process"><a class="header" href="#what-happens-if-someone-opens-a-pr-that-seems-like-a-major-change-without-doing-this-process">What happens if someone opens a PR that seems like a major change <em>without</em> doing this process?</a></h2>
 <p>The PR should be closed or marked as blocked, with a request to create
 a major change proposal first.</p>
 <p>If the PR description already contains suitable text that could serve
 as an MCP, then simply copy and paste that into an MCP issue. Using an
 issue consistently helps to ensure that the tooling and process works
 smoothly.</p>
-<h2><a class="header" href="#can-i-work-on-code-experimentally-before-a-mcp-is-accepted" id="can-i-work-on-code-experimentally-before-a-mcp-is-accepted">Can I work on code experimentally before a MCP is accepted?</a></h2>
+<h2 id="can-i-work-on-code-experimentally-before-a-mcp-is-accepted"><a class="header" href="#can-i-work-on-code-experimentally-before-a-mcp-is-accepted">Can I work on code experimentally before a MCP is accepted?</a></h2>
 <p>Of course!  You are free to work on PRs or write code. But those PRs should be marked as experimental and they should not land, nor should anyone be expected to review them (unless folks want to).</p>
-<h2><a class="header" href="#what-constitutes-a-major-change" id="what-constitutes-a-major-change">What constitutes a major change?</a></h2>
+<h2 id="what-constitutes-a-major-change"><a class="header" href="#what-constitutes-a-major-change">What constitutes a major change?</a></h2>
 <p>The rough intuition is &quot;something that would require updates to the <a href="https://rustc-dev-guide.rust-lang.org">rustc-dev-guide</a> or the <a href="https://doc.rust-lang.org/rustc/index.html">rustc book</a>&quot;. In other words:</p>
 <ul>
 <li>Something that alters the architecture of some part(s) of the compiler, since this is what the rustc-dev-guide aims to document.</li>
@@ -245,7 +245,7 @@ smoothly.</p>
 </ul>
 <p>Note that, in some cases, the change may be deemed <strong>too big</strong> and a full FCP or RFC may be required to move forward. This could occur with significant public facing change or with sufficiently large changes to the architecture. The compiler team leads can make this call.</p>
 <p>Note that whether something is a major change proposal is not necessarily related to the number of lines of code that are affected. Renaming a method can affect a large number of lines, and even require edits to the rustc-dev-guide, but it may not be a major change. At the same time, changing names that are very broadly used could constitute a major change (for example, renaming from the <code>tcx</code> context in the compiler to something else would be a major change).</p>
-<h2><a class="header" href="#public-facing-changes-require-rfcbot-fcp" id="public-facing-changes-require-rfcbot-fcp">Public-facing changes require rfcbot fcp</a></h2>
+<h2 id="public-facing-changes-require-rfcbot-fcp"><a class="header" href="#public-facing-changes-require-rfcbot-fcp">Public-facing changes require rfcbot fcp</a></h2>
 <p>The MCP &quot;seconding&quot; process is only meant to be used to get agreement
 on the technical architecture we plan to use. It is not sufficient to
 stabilize new features or make public-facing changes like adding a -C
@@ -256,7 +256,7 @@ with an MCP introducing a <code>-Z</code> flag and then &quot;stabilize&quot; th
 moving it to <code>-C</code> in a PR later (which would require <code>rfcbot fcp</code>).</p>
 <p>Major change proposals are not sufficient for language changes or
 changes that affect cargo.</p>
-<h2><a class="header" href="#steps-to-open-a-mcp" id="steps-to-open-a-mcp">Steps to open a MCP</a></h2>
+<h2 id="steps-to-open-a-mcp"><a class="header" href="#steps-to-open-a-mcp">Steps to open a MCP</a></h2>
 <ul>
 <li>Open a tracking issue on the <a href="https://github.com/rust-lang/compiler-team">rust-lang/compiler-team</a> repo using the
 <a href="https://github.com/rust-lang/compiler-team/issues/new?assignees=&amp;labels=major-change%2C+T-compiler&amp;template=major_change.md&amp;title=%28My+major+change+proposal%29">major change template</a>.</li>
@@ -269,7 +269,7 @@ to the tracking issue.</li>
 </ul>
 </li>
 </ul>
-<h2><a class="header" href="#what-kinds-of-comments-should-go-on-the-tracking-issue-in-compiler-team-repo" id="what-kinds-of-comments-should-go-on-the-tracking-issue-in-compiler-team-repo">What kinds of comments should go on the tracking issue in compiler-team repo?</a></h2>
+<h2 id="what-kinds-of-comments-should-go-on-the-tracking-issue-in-compiler-team-repo"><a class="header" href="#what-kinds-of-comments-should-go-on-the-tracking-issue-in-compiler-team-repo">What kinds of comments should go on the tracking issue in compiler-team repo?</a></h2>
 <p>Please direct technical conversation to the Zulip stream.</p>
 <p>The compiler-team repo issues are intended to be low traffic and used for procedural purposes. Note that to &quot;second&quot; a design or offer to review,  you should be someone who is familiar with the code, typically but not necessarily a compiler team member or contributor. </p>
 <ul>
@@ -278,11 +278,11 @@ to the tracking issue.</li>
 <li>Noting a concern that you don't want to be overlooked.</li>
 <li>Announcing that the proposal will be entering FCP or is accepted.</li>
 </ul>
-<h2><a class="header" href="#how-does-one-register-as-reviewer-register-approval-or-raise-an-objection" id="how-does-one-register-as-reviewer-register-approval-or-raise-an-objection">How does one register as reviewer, register approval, or raise an objection?</a></h2>
+<h2 id="how-does-one-register-as-reviewer-register-approval-or-raise-an-objection"><a class="header" href="#how-does-one-register-as-reviewer-register-approval-or-raise-an-objection">How does one register as reviewer, register approval, or raise an objection?</a></h2>
 <p>These types of procedural comments can be left on the issue (it's also good to leave a message in Zulip). See the previous section.</p>
-<h2><a class="header" href="#who-decides-whether-a-concern-is-unresolved" id="who-decides-whether-a-concern-is-unresolved">Who decides whether a concern is unresolved?</a></h2>
+<h2 id="who-decides-whether-a-concern-is-unresolved"><a class="header" href="#who-decides-whether-a-concern-is-unresolved">Who decides whether a concern is unresolved?</a></h2>
 <p>Usually the experts in the given area will reach a consensus here. But if there is some need for a &quot;tie breaker&quot; vote or judgment call, the compiler-team leads make the final call.</p>
-<h2><a class="header" href="#what-are-some-examples-of-major-changes-from-the-past" id="what-are-some-examples-of-major-changes-from-the-past">What are some examples of major changes from the past?</a></h2>
+<h2 id="what-are-some-examples-of-major-changes-from-the-past"><a class="header" href="#what-are-some-examples-of-major-changes-from-the-past">What are some examples of major changes from the past?</a></h2>
 <p>Here are some examples of changes that were made in the past that would warrant the major change process:</p>
 <ul>
 <li>overhauling the way we encode crate metadata</li>
@@ -291,7 +291,7 @@ to the tracking issue.</li>
 <li>introducing cargo pipelining </li>
 <li>adding a new <code>-C</code> flag that exposes some minor variant</li>
 </ul>
-<h2><a class="header" href="#what-are-some-examples-of-things-that-are-too-big-for-the-major-change-process" id="what-are-some-examples-of-things-that-are-too-big-for-the-major-change-process">What are some examples of things that are too big for the major change process?</a></h2>
+<h2 id="what-are-some-examples-of-things-that-are-too-big-for-the-major-change-process"><a class="header" href="#what-are-some-examples-of-things-that-are-too-big-for-the-major-change-process">What are some examples of things that are too big for the major change process?</a></h2>
 <p>Here are some examples of changes that are too big for the major change process, or which at least would require auxiliary design meetings or a more fleshed out design before they can proceed:</p>
 <ul>
 <li>introducing incremental or the query system</li>
@@ -299,14 +299,14 @@ to the tracking issue.</li>
 <li>introducing parallel execution</li>
 <li>adding ThinLTO support</li>
 </ul>
-<h2><a class="header" href="#what-are-some-examples-of-things-that-are-too-small-for-the-major-change-process" id="what-are-some-examples-of-things-that-are-too-small-for-the-major-change-process">What are some examples of things that are too small for the major change process?</a></h2>
+<h2 id="what-are-some-examples-of-things-that-are-too-small-for-the-major-change-process"><a class="header" href="#what-are-some-examples-of-things-that-are-too-small-for-the-major-change-process">What are some examples of things that are too small for the major change process?</a></h2>
 <p>Here are some examples of things that don't merit any MCP:</p>
 <ul>
 <li>adding new information into metadata</li>
 <li>fixing an ICE or tweaking diagnostics</li>
 <li>renaming &quot;less widely used&quot; methods</li>
 </ul>
-<h2><a class="header" href="#when-should-major-change-proposals-be-closed" id="when-should-major-change-proposals-be-closed">When should Major Change Proposals be closed?</a></h2>
+<h2 id="when-should-major-change-proposals-be-closed"><a class="header" href="#when-should-major-change-proposals-be-closed">When should Major Change Proposals be closed?</a></h2>
 <p>Major Change Proposals can be closed:</p>
 <ul>
 <li>by the author, if they have lost interest in pursuing it.</li>

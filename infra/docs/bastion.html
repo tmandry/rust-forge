@@ -167,14 +167,14 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#bastion-server" id="bastion-server">Bastion server</a></h1>
+                        <h1 id="bastion-server"><a class="header" href="#bastion-server">Bastion server</a></h1>
 <ul>
 <li>FQDN: <code>bastion.infra.rust-lang.org</code></li>
 <li><a href="https://github.com/rust-lang/simpleinfra/blob/master/ansible/playbooks/bastion.yml">Ansible playbook</a> to deploy this server.</li>
 <li><a href="https://github.com/rust-lang/simpleinfra/tree/master/terraform/bastion">Terraform configuration</a> to create AWS resources.</li>
 <li><a href="https://grafana.rust-lang.org/d/rpXrFfKWz/instance-metrics?orgId=1&amp;var-instance=bastion.infra.rust-lang.org:9100">Instance metrics</a> (only available to infra team members).</li>
 </ul>
-<h2><a class="header" href="#logging-into-servers-through-the-bastion" id="logging-into-servers-through-the-bastion">Logging into servers through the bastion</a></h2>
+<h2 id="logging-into-servers-through-the-bastion"><a class="header" href="#logging-into-servers-through-the-bastion">Logging into servers through the bastion</a></h2>
 <p>To improve the security of our infrastructure it's not possible to connect
 directly to a production server with SSH. Instead, all connections must come
 from a small server called the &quot;bastion&quot;, which only allows connections from a
@@ -196,8 +196,8 @@ address.</p>
 repository</a>. Additionally, people with sensitive 1password access can use
 the master key stored in the vault to log into every account, provided their
 connection comes from any whitelisted IP.</p>
-<h2><a class="header" href="#common-maintenance-procedures" id="common-maintenance-procedures">Common maintenance procedures</a></h2>
-<h3><a class="header" href="#adding-a-new-user-to-the-bastion-server" id="adding-a-new-user-to-the-bastion-server">Adding a new user to the bastion server</a></h3>
+<h2 id="common-maintenance-procedures"><a class="header" href="#common-maintenance-procedures">Common maintenance procedures</a></h2>
+<h3 id="adding-a-new-user-to-the-bastion-server"><a class="header" href="#adding-a-new-user-to-the-bastion-server">Adding a new user to the bastion server</a></h3>
 <p>To add a new user to the bastion you need to add its key to a file named
 <code>&lt;username&gt;.pub</code> in <a href="https://github.com/rust-lang/simpleinfra/tree/master/ansible/roles/common/files/ssh-keys"><code>ansible/roles/common/files/ssh-keys</code></a>, and change
 the <a href="https://github.com/rust-lang/simpleinfra/blob/master/ansible/playbooks/bastion.yml">Ansible playbook</a> adding the user to the list of unprivileged
@@ -205,7 +205,7 @@ users. Please leave a comment clarifying which servers the user will have
 access to.</p>
 <p>Once that's done <a href="https://github.com/rust-lang/simpleinfra/blob/master/ansible/README.md#executing-a-playbook">apply the playbook</a> and <a href="#adding-a-whitelisted-ip">add a new whitelisted
 IP address</a>.</p>
-<h3><a class="header" href="#adding-a-whitelisted-ip" id="adding-a-whitelisted-ip">Adding a whitelisted IP</a></h3>
+<h3 id="adding-a-whitelisted-ip"><a class="header" href="#adding-a-whitelisted-ip">Adding a whitelisted IP</a></h3>
 <p>Due to privacy reasons, all the static IP addresses of team members with access
 to the bastion are stored on <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS SSM Parameter Store</a> instead of public
 git repositories. To add an IP address you can run this command (taking care of
@@ -216,7 +216,7 @@ replacing <code>USERNAME</code> and <code>IP_ADDRESS</code> with the proper valu
 <a href="https://github.com/rust-lang/simpleinfra/blob/master/terraform/bastion/firewall.tf"><code>terraform/bastion/firewall.tf</code></a> (local variable
 <code>allowed_users</code>). Once you made all the needed changes you wanted you need to
 <a href="https://github.com/rust-lang/simpleinfra/tree/master/terraform#applying-the-configuration">apply the Terraform configuration</a>.</p>
-<h3><a class="header" href="#updating-a-whitelisted-ip" id="updating-a-whitelisted-ip">Updating a whitelisted IP</a></h3>
+<h3 id="updating-a-whitelisted-ip"><a class="header" href="#updating-a-whitelisted-ip">Updating a whitelisted IP</a></h3>
 <p>Due to privacy reasons, all the static IP addresses of team members with access
 to the bastion are stored on <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS SSM Parameter Store</a> instead of public
 git repositories. To update an IP address you can run this command (taking care
@@ -225,7 +225,7 @@ of replacing <code>USERNAME</code> and <code>IP_ADDRESS</code> with the proper v
 </code></pre>
 <p>Once you made all the needed changes you wanted you need to <a href="https://github.com/rust-lang/simpleinfra/tree/master/terraform#applying-the-configuration">apply the
 Terraform configuration</a>.</p>
-<h3><a class="header" href="#removing-a-whitelisted-ip" id="removing-a-whitelisted-ip">Removing a whitelisted IP</a></h3>
+<h3 id="removing-a-whitelisted-ip"><a class="header" href="#removing-a-whitelisted-ip">Removing a whitelisted IP</a></h3>
 <p>Due to privacy reasons, all the static IP addresses of team members with access
 to the bastion are stored on <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS SSM Parameter Store</a> instead of public
 git repositories. To remove an IP address you can run this command (taking care

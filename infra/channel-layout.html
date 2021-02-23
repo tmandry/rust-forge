@@ -167,7 +167,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#the-rust-release-channel-layout" id="the-rust-release-channel-layout">The Rust Release Channel Layout</a></h1>
+                        <h1 id="the-rust-release-channel-layout"><a class="header" href="#the-rust-release-channel-layout">The Rust Release Channel Layout</a></h1>
 <p><strong>NOTE</strong> This document should be considered incomplete and descriptive rather
 than normative. Do not rely on anything described herein to be fully correct or
 a definition of how things <em>should</em> be done.</p>
@@ -176,7 +176,7 @@ a definition of how things <em>should</em> be done.</p>
 <p>Rust releases are deployed onto <code>static.rust-lang.org</code> where they are served via
 <code>https</code>. There are several parts to a release channel (<code>stable</code>, <code>beta</code>,
 <code>nightly</code>) but they all key off a manifest file and then go from there.</p>
-<h2><a class="header" href="#channel-manifests" id="channel-manifests">Channel manifests</a></h2>
+<h2 id="channel-manifests"><a class="header" href="#channel-manifests">Channel manifests</a></h2>
 <p>There is a top level directory <code>/dist/</code> which contains the channel manifests.
 The manifests are named <code>channel-rust-[channelname].toml</code>. Each channel manifest
 is accompanied by a <code>.sha256</code> file which is a checksum of the manifest file and
@@ -192,7 +192,7 @@ its associated <code>.sha256</code> and <code>.asc</code> files.</p>
 that day. So, for example, if you installed <code>nightly-2019-02-16</code> then the
 channel file would be
 <a href="https://static.rust-lang.org/dist/2019-02-16/channel-rust-nightly.toml">https://static.rust-lang.org/dist/2019-02-16/channel-rust-nightly.toml</a>.</p>
-<h3><a class="header" href="#content-of-channel-manifests" id="content-of-channel-manifests">Content of channel manifests</a></h3>
+<h3 id="content-of-channel-manifests"><a class="header" href="#content-of-channel-manifests">Content of channel manifests</a></h3>
 <p>Channel manifests are <code>toml</code> files. These are known as <em>v2</em> manifests. The <em>v1</em>
 manifests are simply lists of the files associated with a release and are not
 generated for every channel all of the time. Currently it is recommended to work
@@ -236,7 +236,7 @@ standard library source (<code>rust-src</code>), <code>miri</code>, <code>lldb</
 <code>rust-analysis</code>.</p>
 </li>
 </ul>
-<h3><a class="header" href="#package-entries-in-the-channel-manifest" id="package-entries-in-the-channel-manifest">Package entries in the channel manifest</a></h3>
+<h3 id="package-entries-in-the-channel-manifest"><a class="header" href="#package-entries-in-the-channel-manifest">Package entries in the channel manifest</a></h3>
 <p>As stated above, packages list their components and extensions (mostly just the
 <code>rust</code> package) and they can provide per-target tarball and sha256 data.</p>
 <p>For example, a package might be:</p>
@@ -261,7 +261,7 @@ version = &quot;0.36.0 (6f3e9c367 2019-04-04)&quot;
 </code></pre>
 <p>Here <code>version</code> will be effectively the <code>$tool --version</code> output, minus the
 tool's name.</p>
-<h2><a class="header" href="#targets" id="targets">Targets</a></h2>
+<h2 id="targets"><a class="header" href="#targets">Targets</a></h2>
 <p>Targets are the same triples you might use when building something with
 <code>cargo build --target=$target</code> and you can add them to your installation using
 <code>rustup target add $target</code>. When you do that, what <code>rustup</code> actually does is to

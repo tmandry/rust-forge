@@ -167,10 +167,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#prioritization-wg---procedure" id="prioritization-wg---procedure">Prioritization WG - Procedure</a></h1>
+                        <h1 id="prioritization-wg---procedure"><a class="header" href="#prioritization-wg---procedure">Prioritization WG - Procedure</a></h1>
 <p>This document details the procedure the WG-prioritization follows to fill the agenda for the weekly meeting of <code>T-compiler</code>.
 The working group focuses mainly on triaging <code>T-compiler</code> and <code>T-libs-impl</code> bugs, deciding if bugs are critical (potential release blockers) or not and building the agenda for the most important things <code>T-compiler</code> needs to discuss.</p>
-<h2><a class="header" href="#general-issues-review-process" id="general-issues-review-process">General issues review process</a></h2>
+<h2 id="general-issues-review-process"><a class="header" href="#general-issues-review-process">General issues review process</a></h2>
 <ul>
 <li>Check the status of the issue</li>
 <li>Try moving it forward if possible (ex. stimulate further comments from the issue author or a reviewer)</li>
@@ -182,7 +182,7 @@ The working group focuses mainly on triaging <code>T-compiler</code> and <code>T
 <li>Assign if possible</li>
 <li>Nominate the issue if it needs to be discussed</li>
 </ul>
-<h2><a class="header" href="#the-procedure-in-detail" id="the-procedure-in-detail">The procedure in detail</a></h2>
+<h2 id="the-procedure-in-detail"><a class="header" href="#the-procedure-in-detail">The procedure in detail</a></h2>
 <p>High level overview:</p>
 <ul>
 <li><a href="#follow-ups-from-previous-meeting">Follow ups from previous meeting</a>
@@ -227,7 +227,7 @@ The working group focuses mainly on triaging <code>T-compiler</code> and <code>T
 </ul>
 </li>
 </ul>
-<h3><a class="header" href="#follow-ups-from-previous-meeting" id="follow-ups-from-previous-meeting">Follow ups from previous meeting</a></h3>
+<h3 id="follow-ups-from-previous-meeting"><a class="header" href="#follow-ups-from-previous-meeting">Follow ups from previous meeting</a></h3>
 <ul>
 <li>Remove <a href="https://github.com/rust-lang/compiler-team/issues?q=is%3Aall+label%3Amajor-change+label%3Ato-announce"><code>to-announce</code> MCPs</a>, only the ones that we've added to the agenda and not the ones that may have showed up between we've built the agenda and we execute this step.</li>
 <li>Remove <code>to-announce</code> FCPs from <a href="https://github.com/rust-lang/rust/issues?q=is%3Aall+label%3Afinished-final-comment-period+label%3Ato-announce">rust repo</a>, <a href="https://github.com/rust-lang/compiler-team/issues?q=is%3Aall+label%3Afinished-final-comment-period+label%3Ato-announce">compiler-team repo</a> and <a href="https://github.com/rust-lang/rust-forge/issues?q=is%3Aall+label%3Afinished-final-comment-period+label%3Ato-announce">forge repo</a>, only the ones that we've added to the agenda and not the ones that may have showed up between we've built the agenda and we execute this step.</li>
@@ -239,8 +239,8 @@ The working group focuses mainly on triaging <code>T-compiler</code> and <code>T
 <li>Notify WG leads about <a href="https://rust-lang.github.io/compiler-team/about/triage-meeting/">next week's
 checkins</a></li>
 </ul>
-<h3><a class="header" href="#prepare-agenda-content" id="prepare-agenda-content">Prepare agenda content</a></h3>
-<h4><a class="header" href="#add-t-compiler-and-t-libs-impl-labels" id="add-t-compiler-and-t-libs-impl-labels">Add <code>T-compiler</code> and <code>T-libs-impl</code> labels</a></h4>
+<h3 id="prepare-agenda-content"><a class="header" href="#prepare-agenda-content">Prepare agenda content</a></h3>
+<h4 id="add-t-compiler-and-t-libs-impl-labels"><a class="header" href="#add-t-compiler-and-t-libs-impl-labels">Add <code>T-compiler</code> and <code>T-libs-impl</code> labels</a></h4>
 <p>Add <code>T-compiler</code> and <code>T-libs-impl</code> labels to corresponding issues that are missing these labels.</p>
 <ul>
 <li><a href="https://github.com/rust-lang/rust/issues?q=is%3Aopen+is%3Aissue+-label%3AP-critical+-label%3AP-high+-label%3AP-medium+-label%3AP-low+label%3AI-prioritize+-label%3AT-compiler+-label%3AT-cargo+-label%3AT-core+-label%3AT-doc+-label%3AT-infra+-label%3AT-lang+-label%3AT-libs+-label%3AT-libs-impl+-label%3AT-release+-label%3AT-rustdoc">No team assigned unprioritized I-prioritize</a></li>
@@ -249,7 +249,7 @@ checkins</a></li>
 <li><a href="https://github.com/rust-lang/rust/issues?q=is%3Aopen+label%3AI-nominated+-label%3AT-compiler+-label%3AT-cargo+-label%3AT-core+-label%3AT-doc+-label%3AT-infra+-label%3AT-lang+-label%3AT-libs+-label%3AT-libs-impl+-label%3AT-release+-label%3AT-rustdoc">No team assigned I-nominated</a></li>
 <li><a href="https://github.com/rust-lang/rust/issues?q=is%3Aopen+label%3AS-waiting-on-team+-label%3AT-compiler+-label%3AT-cargo+-label%3AT-core+-label%3AT-doc+-label%3AT-infra+-label%3AT-lang+-label%3AT-libs+-label%3AT-libs-impl+-label%3AT-release+-label%3AT-rustdoc">No team assigned PR's waiting on team</a></li>
 </ul>
-<h4><a class="header" href="#assign-priority-to-unprioritized-issues-with-i-prioritize-label" id="assign-priority-to-unprioritized-issues-with-i-prioritize-label">Assign priority to unprioritized issues with <code>I-prioritize</code> label</a></h4>
+<h4 id="assign-priority-to-unprioritized-issues-with-i-prioritize-label"><a class="header" href="#assign-priority-to-unprioritized-issues-with-i-prioritize-label">Assign priority to unprioritized issues with <code>I-prioritize</code> label</a></h4>
 <p>We need all <a href="https://github.com/rust-lang/rust/issues?q=is%3Aopen+is%3Aissue+label%3AT-compiler+-label%3AP-critical+-label%3AP-high+-label%3AP-medium+-label%3AP-low+label%3AI-prioritize"><code>I-prioritize T-compiler</code></a> and all <a href="https://github.com/rust-lang/rust/issues?q=is%3Aopen+is%3Aissue+label%3AT-libs-impl+-label%3AP-critical+-label%3AP-high+-label%3AP-medium+-label%3AP-low+label%3AI-prioritize"><code>I-prioritize T-libs-impl</code></a> to be actually prioritized. To do so, we add one of the <code>P-critical</code>, <code>P-high</code>, <code>P-medium</code> or <code>P-low</code> labels and remove <code>I-prioritize</code> and also add a text such as:</p>
 <blockquote>
 <p>Assigning <code>P-XXX</code> as <a href="link_to_zulip_conversation">discussed as part of the Prioritization Working Group procedure</a> and removing <code>I-prioritize</code>.</p>
@@ -258,11 +258,11 @@ checkins</a></li>
 <p>Note: triagebot automatically creates a topic and notify @<em>WG-prioritization</em> members once an issue is labelled with <code>I-prioritize</code></p>
 <p>Note #2: These lists should typically be empty when we are close to the meeting.</p>
 <p>Note #3: we should not have unprioritized regressions (<a href="https://github.com/rust-lang/rust/issues?q=is%3Aopen+label%3Aregression-from-stable-to-stable+-label%3AP-critical+-label%3AP-high+-label%3AP-medium+-label%3AP-low+-label%3AT-infra+-label%3AT-libs+-label%3AT-release+-label%3AT-rustdoc">stable</a>, <a href="https://github.com/rust-lang/rust/issues?q=is%3Aopen+label%3Aregression-from-stable-to-beta+-label%3AP-critical+-label%3AP-high+-label%3AP-medium+-label%3AP-low+-label%3AT-infra+-label%3AT-libs+-label%3AT-release+-label%3AT-rustdoc">beta</a> and <a href="https://github.com/rust-lang/rust/issues?q=is%3Aopen+label%3Aregression-from-stable-to-nightly+-label%3AP-critical+-label%3AP-high+-label%3AP-medium+-label%3AP-low+-label%3AT-infra+-label%3AT-libs+-label%3AT-release+-label%3AT-rustdoc">nightly</a>) and ideally regressions should have an assignee.</p>
-<h4><a class="header" href="#accept-mcps" id="accept-mcps">Accept MCPs</a></h4>
+<h4 id="accept-mcps"><a class="header" href="#accept-mcps">Accept MCPs</a></h4>
 <p>Accept all <a href="https://github.com/rust-lang/compiler-team/issues?q=is%3Aissue+is%3Aopen+label%3Amajor-change+label%3Afinal-comment-period">MCPs that have been on <code>final-comment-period</code></a> for 10 or more days. Basically check that <code>final-comment-period</code> label was added more than 10 days ago.
 To accept, remove <code>final-comment-period</code>, add <code>major-change-accepted</code> and close the issue.</p>
-<h3><a class="header" href="#generate-agenda" id="generate-agenda">Generate Agenda</a></h3>
-<h4><a class="header" href="#run-cli-to-generate-agenda" id="run-cli-to-generate-agenda">Run cli to generate agenda</a></h4>
+<h3 id="generate-agenda"><a class="header" href="#generate-agenda">Generate Agenda</a></h3>
+<h4 id="run-cli-to-generate-agenda"><a class="header" href="#run-cli-to-generate-agenda">Run cli to generate agenda</a></h4>
 <p>Run triagebot's prioritization cli to generate the agenda.
 For that you need to clone https://github.com/rust-lang/triagebot if you haven't done so already.
 You need to export your <code>GITHUB_API_TOKEN</code> on Linux that's typically done by adding</p>
@@ -272,11 +272,11 @@ You need to export your <code>GITHUB_API_TOKEN</code> on Linux that's typically 
 <pre><code>$ cargo run --bin prioritization-agenda
 </code></pre>
 <p>Copy the content of the generated agenda into the agenda on HackMD.</p>
-<h4><a class="header" href="#fill-agenda-announcements" id="fill-agenda-announcements">Fill agenda announcements</a></h4>
+<h4 id="fill-agenda-announcements"><a class="header" href="#fill-agenda-announcements">Fill agenda announcements</a></h4>
 <p>Check the compiler calendar to see if there's an outstanding event to announce and add it to the agenda.</p>
-<h4><a class="header" href="#add-performance-logs" id="add-performance-logs">Add performance logs</a></h4>
+<h4 id="add-performance-logs"><a class="header" href="#add-performance-logs">Add performance logs</a></h4>
 <p>Add <a href="https://github.com/rust-lang/rustc-perf/tree/master/triage#triage-logs">Triage Logs</a> to the agenda.</p>
-<h3><a class="header" href="#notify-the-team-about-the-meeting" id="notify-the-team-about-the-meeting">Notify the team about the meeting</a></h3>
+<h3 id="notify-the-team-about-the-meeting"><a class="header" href="#notify-the-team-about-the-meeting">Notify the team about the meeting</a></h3>
 <p>Create <code>[weekly meeting] YYYY-MM-DD #54818</code> topic in <code>#t-compiler/meetings</code> Zulip's stream and send the following messages:</p>
 <pre><code class="language-text">Hi @*T-compiler/meeting*; the triage meeting will happen tomorrow at &lt;time:YYYY-MM-DDT14:00:00+00:00&gt;
 *WG-prioritization* has done pre-triage in #**t-compiler/wg-prioritization/alerts**
@@ -285,8 +285,8 @@ We will have checkins from *WG-X* and *WG-Y*
 @**person1** do you have something you want to share about @*WG-X*?
 @**person2** do you have something you want to share about @*WG-Y*?
 </code></pre>
-<h3><a class="header" href="#add-details-to-the-agenda" id="add-details-to-the-agenda">Add details to the Agenda</a></h3>
-<h4><a class="header" href="#summarize-stablebeta-nominations" id="summarize-stablebeta-nominations">Summarize stable/beta nominations</a></h4>
+<h3 id="add-details-to-the-agenda"><a class="header" href="#add-details-to-the-agenda">Add details to the Agenda</a></h3>
+<h4 id="summarize-stablebeta-nominations"><a class="header" href="#summarize-stablebeta-nominations">Summarize stable/beta nominations</a></h4>
 <ul>
 <li>Add them to the agenda explaining:
 <ul>
@@ -299,7 +299,7 @@ We will have checkins from *WG-X* and *WG-Y*
 </li>
 </ul>
 <p>Note: triagebot automatically creates a topic and notify @<em>WG-prioritization</em> members requesting addition to the agenda.</p>
-<h4><a class="header" href="#summarize-prs-waiting-on-team" id="summarize-prs-waiting-on-team">Summarize PR's waiting on team</a></h4>
+<h4 id="summarize-prs-waiting-on-team"><a class="header" href="#summarize-prs-waiting-on-team">Summarize PR's waiting on team</a></h4>
 <p>These are PRs waiting for some decision by our team (<code>T-compiler</code> or <code>T-libs-impl</code>).</p>
 <p>Try to follow the <a href="#general-issues-review-process">General issues review process</a>.</p>
 <p>We should:</p>
@@ -315,7 +315,7 @@ We will have checkins from *WG-X* and *WG-Y*
 <li>Explicitly nominate any issue that can be <em>quickly</em> resolved in a triage meeting.</li>
 </ul>
 <p>Note: triagebot automatically creates a topic and notify @<em>WG-prioritization</em> members requesting addition to the agenda.</p>
-<h4><a class="header" href="#summarize-p-critical-and-unassigned-p-high-regressions" id="summarize-p-critical-and-unassigned-p-high-regressions">Summarize <code>P-critical</code> and unassigned <code>P-high</code> regressions</a></h4>
+<h4 id="summarize-p-critical-and-unassigned-p-high-regressions"><a class="header" href="#summarize-p-critical-and-unassigned-p-high-regressions">Summarize <code>P-critical</code> and unassigned <code>P-high</code> regressions</a></h4>
 <p>Try to follow the <a href="#general-issues-review-process">General issues review process</a>.</p>
 <p>We should:</p>
 <ul>
@@ -340,7 +340,7 @@ We will have checkins from *WG-X* and *WG-Y*
 </li>
 </ul>
 <p>Note: triagebot automatically creates a topic and notify @<em>WG-prioritization</em> members requesting addition to the agenda.</p>
-<h4><a class="header" href="#summarize-i-nominated-issues" id="summarize-i-nominated-issues">Summarize I-nominated issues</a></h4>
+<h4 id="summarize-i-nominated-issues"><a class="header" href="#summarize-i-nominated-issues">Summarize I-nominated issues</a></h4>
 <p>Issues labeled with <code>I-nominated</code> are important issues that we decide deserve discussion during the weekly meeting.</p>
 <p>Try to follow the <a href="#general-issues-review-process">General issues review process</a>.</p>
 <p>We should:</p>
@@ -357,15 +357,15 @@ We will have checkins from *WG-X* and *WG-Y*
 </li>
 </ul>
 <p>Note: triagebot automatically creates a topic and notify @<em>WG-prioritization</em> members requesting addition to the agenda.</p>
-<h3><a class="header" href="#final-reviews" id="final-reviews">Final reviews</a></h3>
-<h4><a class="header" href="#nominate-more-issues-if-needed" id="nominate-more-issues-if-needed">Nominate more issues if needed</a></h4>
+<h3 id="final-reviews"><a class="header" href="#final-reviews">Final reviews</a></h3>
+<h4 id="nominate-more-issues-if-needed"><a class="header" href="#nominate-more-issues-if-needed">Nominate more issues if needed</a></h4>
 <p>Check how packed the agenda looks like and if there's room for more nominations.</p>
 <ul>
 <li><a href="https://github.com/rust-lang/rust/issues?q=is%3Aopen+is%3Aissue+label%3AP-critical+-label%3AT-compiler+-label%3AT-libs-impl">Other team's P-critical</a></li>
 <li><a href="https://github.com/rust-lang/rust/issues?utf8=%E2%9C%93&amp;q=is%3Aopen+is%3Aissue+label%3AT-compiler+label%3AP-high+">T-compiler P-high</a></li>
 <li><a href="https://github.com/rust-lang/rust/issues?utf8=%E2%9C%93&amp;q=is%3Aopen+is%3Aissue+label%3AT-libs-impl+label%3AP-high+">T-libs-impl P-high</a></li>
 </ul>
-<h4><a class="header" href="#re-sync-and-check-the-agenda-right-before-the-meeting" id="re-sync-and-check-the-agenda-right-before-the-meeting">Re-sync and check the agenda right before the meeting</a></h4>
+<h4 id="re-sync-and-check-the-agenda-right-before-the-meeting"><a class="header" href="#re-sync-and-check-the-agenda-right-before-the-meeting">Re-sync and check the agenda right before the meeting</a></h4>
 <p>Re-run the script and re-synchronize contents of the agenda with new information.</p>
 
                     </main>

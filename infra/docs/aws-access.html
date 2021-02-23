@@ -167,7 +167,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#aws-access-for-team-members" id="aws-access-for-team-members">AWS access for team members</a></h1>
+                        <h1 id="aws-access-for-team-members"><a class="header" href="#aws-access-for-team-members">AWS access for team members</a></h1>
 <p>Selected members of the Rust Team have access to the AWS account of the
 project. This includes both members of the Infrastructure Team and members of
 teams with services hosted on AWS.</p>
@@ -175,7 +175,7 @@ teams with services hosted on AWS.</p>
 it. If you're a infrastructure team member and you need to setup or revoke
 access for another person, read the <a href="./aws-access-management.html">&quot;AWS access
 management&quot;</a> page.</p>
-<h2><a class="header" href="#setting-up-your-user-after-receiving-the-credentials" id="setting-up-your-user-after-receiving-the-credentials">Setting up your user after receiving the credentials</a></h2>
+<h2 id="setting-up-your-user-after-receiving-the-credentials"><a class="header" href="#setting-up-your-user-after-receiving-the-credentials">Setting up your user after receiving the credentials</a></h2>
 <p>The first thing you need to do after receiving your credentials is changing the
 password and enabling 2-factor authentication: until you do these things,
 access will be restricted automatically to just the permissions needed to
@@ -192,20 +192,20 @@ resources you're authorized to use.</p>
 <p>Do not choose &quot;U2F security key&quot;, even if you own one: due to limitations of
 the AWS API, that would prevent you from using the CLI, restricting your access
 to the console alone.</p>
-<h2><a class="header" href="#using-the-aws-console" id="using-the-aws-console">Using the AWS console</a></h2>
+<h2 id="using-the-aws-console"><a class="header" href="#using-the-aws-console">Using the AWS console</a></h2>
 <p>The AWS console provides a visual interface to most of the resources in our AWS
 account.</p>
 <center>
 <p><a href="https://rust-lang.signin.aws.amazon.com/console">Sign into the console.</a></p>
 </center>
-<h2><a class="header" href="#using-the-aws-cli" id="using-the-aws-cli">Using the AWS CLI</a></h2>
+<h2 id="using-the-aws-cli"><a class="header" href="#using-the-aws-cli">Using the AWS CLI</a></h2>
 <p>The <a href="https://aws.amazon.com/cli/">AWS CLI</a> allows you to interact with our AWS
 account from a terminal or a script. To set it up the first time, follow
 Amazon's documentation to <a href="https://docs.aws.amazon.com/cli/latest/userguide/install-cliv1.html">install it</a> and <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html">configure your
 credentials</a>. The CLI doesn't use your console password to
 authenticate: you'll need to create an access key from the &quot;My Security
 Credentials&quot; page on the console.</p>
-<h3><a class="header" href="#2-factor-authentication" id="2-factor-authentication">2-factor authentication</a></h3>
+<h3 id="2-factor-authentication"><a class="header" href="#2-factor-authentication">2-factor authentication</a></h3>
 <p>To ensure the security of our AWS account, 2-factor authentication is required
 to interact with the CLI. The Infrastructure Team developed <a href="https://github.com/rust-lang/simpleinfra/blob/master/aws-creds.py">a
 script</a> that eases the authentication process by creating a
@@ -220,7 +220,7 @@ your shell:</p>
 environment variables in the current shell with the temporary credentials.
 You'll need to run the command again after 12 hours, or if you want the
 credentials on another shell.</p>
-<h3><a class="header" href="#plaintext-credentials" id="plaintext-credentials">Plaintext credentials</a></h3>
+<h3 id="plaintext-credentials"><a class="header" href="#plaintext-credentials">Plaintext credentials</a></h3>
 <p>By default, AWS CLI stores your credentials (including the secret key) in the
 <code>~/.aws/credentials</code> file, without any kind of encryption. While the danger of
 having plaintext credentials stored in your home directory is partially

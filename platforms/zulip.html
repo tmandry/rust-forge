@@ -167,18 +167,18 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#zulip" id="zulip">Zulip</a></h1>
+                        <h1 id="zulip"><a class="header" href="#zulip">Zulip</a></h1>
 <p><a href="https://rust-lang.zulipchat.com">Rust's Zulip</a> is used by a number of teams, notably
 the compiler, language, and library teams, along with their working groups.</p>
 <p>Zulip can be an unintuitive platform to get started with. To get started, take a
 look at the <a href="https://zulipchat.com/help/getting-started-with-zulip">getting started
 guide</a>. For more detail,
 examine the <a href="https://zulipchat.com/help/">Zulip user documentation</a>!</p>
-<h2><a class="header" href="#where-to-go-for-help-with-using-zulip" id="where-to-go-for-help-with-using-zulip">Where to go for help with using Zulip</a></h2>
+<h2 id="where-to-go-for-help-with-using-zulip"><a class="header" href="#where-to-go-for-help-with-using-zulip">Where to go for help with using Zulip</a></h2>
 <p>If you're testing a feature, or want to get help, the <code>#zulip</code> stream is the
 place to go. Like elsewhere, the best thing to do is to create a new topic
 for each question.</p>
-<h2><a class="header" href="#getting-started" id="getting-started">Getting started</a></h2>
+<h2 id="getting-started"><a class="header" href="#getting-started">Getting started</a></h2>
 <p>It is recommended to first look at the official <a href="https://zulipchat.com/help/getting-started-with-zulip">getting started
 guide</a>. Like Rust itself,
 Zulip is a bit special and reading the documentation before digging can be
@@ -190,7 +190,7 @@ to being &quot;in&quot; an IRC channel, except that logs are available for all s
 regardless of subscription status.</p>
 <p>It's not necessary to introduce yourself, but feel free to say hello in the
 <code>#new members</code> stream.</p>
-<h2><a class="header" href="#user-groups" id="user-groups">User groups</a></h2>
+<h2 id="user-groups"><a class="header" href="#user-groups">User groups</a></h2>
 <p>User groups can be pinged by anyone with the <code>@&lt;group&gt;</code> notation, same as
 pinging another user. Groups can be created by anyone, and anyone can join a
 group.</p>
@@ -200,14 +200,14 @@ expected that this is somewhat rare. You should name your group similar to how
 you would name a stream for the same purpose, though groups can be more
 fine-grained (or less). For example, <code>@T-compiler/meeting</code> currently does not
 have a dedicated stream.</p>
-<h2><a class="header" href="#appropriate-conversation" id="appropriate-conversation">Appropriate conversation</a></h2>
+<h2 id="appropriate-conversation"><a class="header" href="#appropriate-conversation">Appropriate conversation</a></h2>
 <p>In most streams, you should try to keep conversations related to team business.
 The <code>#general</code> stream is a bit broader, but even there, discussions should be
 closely related to Rust (though may not relate to projects of any particular
 team). All channels are expected to be used for discussions related to the Rust
 project, though; discussions of (for example) wildlife or sightseeing are not
 appropriate.</p>
-<h2><a class="header" href="#streams" id="streams">Streams</a></h2>
+<h2 id="streams"><a class="header" href="#streams">Streams</a></h2>
 <p>These are similar to &quot;channels&quot; on other platforms (i.e., there should not be
 too many). On the other hand, you can choose which streams you subscribe to, so
 there can be more than channels on other platforms. Read <a href="https://zulipchat.com/help/about-streams-and-topics">Zulip's
@@ -216,7 +216,7 @@ details.</p>
 <p>Streams are appropriate for any Rust official group. For example, working
 groups, project groups, teams are all examples of official groups. These should
 ideally also be represented in the <a href="../infra/team-maintenance.html">team repository</a>.</p>
-<h3><a class="header" href="#default-streams" id="default-streams">Default streams</a></h3>
+<h3 id="default-streams"><a class="header" href="#default-streams">Default streams</a></h3>
 <p><strong>This section is still under debate, and it is not yet clear which direction we
 will go. It is non-normative, and should not be used yet for modifications to
 the Zulip instance.</strong></p>
@@ -251,7 +251,7 @@ visible. Specifically, no stream that contains a <code>/</code> will be enabled 
 </ul>
 <p>as the default set, which would push people into customizing their default set when
 starting out.</p>
-<h3><a class="header" href="#stream-naming" id="stream-naming">Stream naming</a></h3>
+<h3 id="stream-naming"><a class="header" href="#stream-naming">Stream naming</a></h3>
 <p>A stream should be named such as <code>#t-{team}/{group name}</code>. For example,
 <code>#t-compiler/wg-parallel-rustc</code>. More levels of nesting are fine, e.g., a
 working group might want &quot;subgroups&quot; as well, though you may want to omit the
@@ -268,7 +268,7 @@ affiliated with the Rust organization; if they wish to use Zulip, it is <a href=
 for open source</a>.</p>
 <p>When a new stream is created, you should announce it in <code>#announce</code>. This is
 generally done automatically by Zulip.</p>
-<h2><a class="header" href="#topics" id="topics">Topics</a></h2>
+<h2 id="topics"><a class="header" href="#topics">Topics</a></h2>
 <p>A topic is attached to every message within a given stream (these are the
 subdivisions within streams). Topics are generally transient, and live for as
 long as there is active discussion on a topic. Thinking of topics like email
@@ -284,14 +284,14 @@ can be done with the tail of another topic (if accidentally you diverge into
 another area of discussion).</p>
 <p>To fork from an existing topic, see Zulip's documentation
 <a href="https://zulipchat.com/help/rename-a-topic">here</a>.</p>
-<h2><a class="header" href="#messages" id="messages">Messages</a></h2>
+<h2 id="messages"><a class="header" href="#messages">Messages</a></h2>
 <p>Zulip is a unique platform which combines synchronous and
 asynchronous communication in one location. You should not generally expect that
 your messages will receive a response quickly, and unlike (for example) Discord,
 there is likely not much reason to &quot;re-ping&quot; on a particular issue every few
 hours as your message is unlikely to vanish into history, being isolated to a
 specific topic.</p>
-<h3><a class="header" href="#linkifiers" id="linkifiers">Linkifiers</a></h3>
+<h3 id="linkifiers"><a class="header" href="#linkifiers">Linkifiers</a></h3>
 <p>Our Zulip supports a lot of helpful linkifiers, and we're generally happy to add
 more on request. See <a href="https://rust-lang.zulipchat.com/help/add-a-custom-linkification-filter">the
 documentation</a>
@@ -319,7 +319,7 @@ list gives a few more &quot;special cased&quot; repositories.</p>
 <ul>
 <li>rust-lang/rust with 40-character long SHAs, e.g., <a href="https://github.com/rust-lang/rust/commit/25434f898b499876203a3b95c1b38bad5ed2cc5d"><code>25434f898b499876203a3b95c1b38bad5ed2cc5d</code></a></li>
 </ul>
-<h2><a class="header" href="#read-only-view" id="read-only-view">Read-only view</a></h2>
+<h2 id="read-only-view"><a class="header" href="#read-only-view">Read-only view</a></h2>
 <p>Zulip by default requires an account for interaction, though this &quot;bug&quot; is being
 actively worked on by the Zulip developers. We currently maintain a read-only
 view of the Zulip at <a href="https://zulip-archive.rust-lang.org">https://zulip-archive.rust-lang.org</a>; this has relatively

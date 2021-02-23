@@ -167,7 +167,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#triagebot" id="triagebot">Triagebot</a></h1>
+                        <h1 id="triagebot"><a class="header" href="#triagebot">Triagebot</a></h1>
 <p>Triaging on the rust-lang repository is an important step to take care of issues. The triagebot is the tool that allows <em>anyone</em> to help by assigning, self-assigning or labeling issues without being a member of the rust-lang organization.</p>
 <p>To enable triagebot on a particular repository (currently only in the rust-lang organization), add a <code>triagebot.toml</code> file in the repository root. It should have a section per &quot;feature&quot;. Please read this page to learn how to enable each feature and the options supported; if you spot something missing please let us know <a href="https://github.com/rust-lang/rust-forge/issues">by filing an issue</a>, thanks!</p>
 <ul>
@@ -182,7 +182,7 @@
 <li><a href="#notify-zulip">Notify Zulip</a></li>
 <li><a href="#major-changes">Major Changes</a></li>
 </ul>
-<h2><a class="header" href="#issue-assignment" id="issue-assignment">Issue assignment</a></h2>
+<h2 id="issue-assignment"><a class="header" href="#issue-assignment">Issue assignment</a></h2>
 <p>Any user belonging to the rust-lang organization can claim an issue via <code>@rustbot claim</code> or if the user is not part of the rust-lang organization <code>rustbot</code> will assign the issue to itself; then it will add a &quot;claimed&quot; message in the top-level comment, to signal who the current assignee is. It is possible to override someone else's claim (no warning/error is given).</p>
 <p>You can drop your claim to the issue via <code>@rustbot release-assignment</code>; Rust team members can do the same if they want to release someone else's assignment.</p>
 <p><code>@rustbot assign @user</code> can be used only by Rust team members and will assign that user to the issue (with same rules as before -- either directly or indirectly).</p>
@@ -190,7 +190,7 @@
 <p>To enable on a repository, add the following to a <code>triagebot.toml</code> file in the repository root.</p>
 <pre><code class="language-toml">[assign]
 </code></pre>
-<h2><a class="header" href="#issue-notifications" id="issue-notifications">Issue notifications</a></h2>
+<h2 id="issue-notifications"><a class="header" href="#issue-notifications">Issue notifications</a></h2>
 <p>Each registered team member has a notifications page at:</p>
 <p><code>https://triage.rust-lang.org/notifications?user=&lt;github-username&gt;</code></p>
 <p>This page is populated from direct mentions (@user) and team mentions (@rust-lang/libs) across the rust-lang organization.</p>
@@ -221,12 +221,12 @@
 <li><code>as &lt;github username&gt; &lt;command...&gt;</code></li>
 </ul>
 <p>This executes any of the above commands as if you were the other GH user.</p>
-<h2><a class="header" href="#ping-a-team" id="ping-a-team">Ping a team</a></h2>
+<h2 id="ping-a-team"><a class="header" href="#ping-a-team">Ping a team</a></h2>
 <p>The bot can be used to &quot;ping&quot; teams of people that do not have corresponding Github teams. This is useful because sometimes we want to keep groups of people that we can notify but we don't want to add all the members in those groups to the Github org, as that would imply that they are members of the Rust team (for example, Github would decorate their names with &quot;member&quot; and so forth). The compiler team uses this feature to reach the <a href="https://rustc-dev-guide.rust-lang.org/notification-groups/about.html">notification groups</a>.</p>
 <p>When a team is pinged, we will both post a message to the issue and add a label. The message will include a <code>cc</code> line that <code>@</code>-mentions all members of the team.</p>
-<h3><a class="header" href="#teams-that-can-be-pinged" id="teams-that-can-be-pinged">Teams that can be pinged</a></h3>
+<h3 id="teams-that-can-be-pinged"><a class="header" href="#teams-that-can-be-pinged">Teams that can be pinged</a></h3>
 <p>To be pinged, teams have to be created in the <a href="https://github.com/rust-lang/team">Rust team repository</a>. Frequently those teams will be marked as <code>marker-team</code>, meaning that they do not appear on the website. The <a href="https://github.com/rust-lang/team/blob/master/teams/icebreakers-llvm.toml#L2">LLVM team</a> is an example.</p>
-<h3><a class="header" href="#configuration" id="configuration">Configuration</a></h3>
+<h3 id="configuration"><a class="header" href="#configuration">Configuration</a></h3>
 <p>To enable the team (e.g. <code>TeamName</code>) to be pinged, you have to add section to the <code>triagebot.toml</code> file at the root of a repository, like so:</p>
 <pre><code class="language-toml">[ping.TeamName]
 message = &quot;&quot;&quot;\
@@ -249,19 +249,19 @@ message content...
 ...
 </code></pre>
 <p>Check out <a href="https://github.com/rust-lang/rust/blob/master/triagebot.toml">the rust-lang/rust configuration</a> for an up-to-date examples.</p>
-<h3><a class="header" href="#pinging-teams" id="pinging-teams">Pinging teams</a></h3>
+<h3 id="pinging-teams"><a class="header" href="#pinging-teams">Pinging teams</a></h3>
 <p>To ping the team <code>XXX</code>, simply leave a comment with the command:</p>
 <pre><code class="language-text">@rustbot ping XXX
 </code></pre>
-<h3><a class="header" href="#related-issues" id="related-issues">Related issues</a></h3>
+<h3 id="related-issues"><a class="header" href="#related-issues">Related issues</a></h3>
 <ul>
 <li>Requested in <a href="https://github.com/rust-lang/triagebot/issues/169">https://github.com/rust-lang/triagebot/issues/169</a></li>
 </ul>
-<h2><a class="header" href="#glacier" id="glacier">Glacier</a></h2>
+<h2 id="glacier"><a class="header" href="#glacier">Glacier</a></h2>
 <p>This adds the option to track ICEs (Internal Compiler Errors). Do note that the GitHub Gist must be from a <a href="https://play.rust-lang.org">Rust Playground</a> link. The link must also be in quotes (<code>&quot;&quot;</code>), example:</p>
 <p><code>@rustbot glacier &quot;https://gist.github.com/rust-play/xxx&quot;</code></p>
 <p>where <code>xxx</code> is the SHA1 hash of the GitHub gist generated by the Playground &quot;share&quot; button.</p>
-<h2><a class="header" href="#triage" id="triage">Triage</a></h2>
+<h2 id="triage"><a class="header" href="#triage">Triage</a></h2>
 <p>This command can be used by people in charge of prioritizing issues, to assign either low or high priorities to issues. This is mostly done by the Compiler Prioritization WG for compiler bugs.</p>
 <p><code>@rustbot triage {high,medium,low}</code></p>
 <p>The configuration for this feature is:</p>
@@ -271,7 +271,7 @@ high = &quot;P-high&quot;
 medium = &quot;P-medium&quot;
 low = &quot;P-low&quot;
 </code></pre>
-<h2><a class="header" href="#apply-labels-to-issues" id="apply-labels-to-issues">Apply labels to issues</a></h2>
+<h2 id="apply-labels-to-issues"><a class="header" href="#apply-labels-to-issues">Apply labels to issues</a></h2>
 <p>This command lets anyone apply labels to issues. This is most useful when opening an issue. In general, labels get applied to issues by the Triage WG. If you are interested in helping triaging issues, see the <a href="../../release/triage-procedure.html">Triage WG procedure</a>.</p>
 <p>The specific grammar can be found <a href="https://github.com/rust-lang/triagebot/blob/master/parser/src/command/relabel.rs">here</a>, but some examples are listed below. The grammar is intended to be fairly intuitive for people, to prevent needing to reach for documentation when using the bot.</p>
 <pre><code class="language-text">@rustbot modify labels to +T-lang, -T-compiler
@@ -283,9 +283,9 @@ low = &quot;P-low&quot;
 @rustbot modify labels to +T-lang -T-compiler
 </code></pre>
 <p>Note that the command can either terminate with a <code>.</code> or a newline, otherwise the bot will not parse the command successfully.</p>
-<h3><a class="header" href="#errors" id="errors">Errors</a></h3>
+<h3 id="errors"><a class="header" href="#errors">Errors</a></h3>
 <p>The bot currently restricts the labels that can be applied by people outside the Rust teams. For example, they can't add the I-unsound label. Most of the time, you shouldn't hit this. Feel free to ping the release team if you feel that a label should be added to the set of allowed labels!</p>
-<h3><a class="header" href="#enabling" id="enabling">Enabling</a></h3>
+<h3 id="enabling"><a class="header" href="#enabling">Enabling</a></h3>
 <pre><code class="language-toml">[relabel]
 # any label is allowed to be set by team members (anyone on a team in rust-lang/team)
 # but these can be set by anyone in the world
@@ -295,20 +295,20 @@ allow-unauthenticated = [
     &quot;!C-bug&quot;, # but not C-bug (order does not matter)
 ]
 </code></pre>
-<h2><a class="header" href="#request-prioritization" id="request-prioritization">Request prioritization</a></h2>
+<h2 id="request-prioritization"><a class="header" href="#request-prioritization">Request prioritization</a></h2>
 <p>Users can request an issue to be prioritized by the Prioritization WG.</p>
 <p>To do so, you can invoke the following command:</p>
 <pre><code class="language-text">@rustbot prioritize
 </code></pre>
 <p>This will simply add the <code>I-prioritize</code> label to the issue.</p>
-<h3><a class="header" href="#errors-1" id="errors-1">Errors</a></h3>
+<h3 id="errors-1"><a class="header" href="#errors-1">Errors</a></h3>
 <p>The command fails if the issue has already been requested for prioritization (i.e. already has the <code>I-prioritize</code> label).</p>
-<h3><a class="header" href="#enabling-1" id="enabling-1">Enabling</a></h3>
+<h3 id="enabling-1"><a class="header" href="#enabling-1">Enabling</a></h3>
 <pre><code class="language-toml">[prioritize]
 # Name of the label used for requesting prioritization on issues
 label = &quot;I-prioritize&quot;
 </code></pre>
-<h2><a class="header" href="#autolabel-an-issue" id="autolabel-an-issue">Autolabel an issue</a></h2>
+<h2 id="autolabel-an-issue"><a class="header" href="#autolabel-an-issue">Autolabel an issue</a></h2>
 <p>When certain labels are added to an issue, this command will trigger adding a set of additional prioritization labels to the issue. In the following example adding the &quot;I-prioritize&quot; label will automatically add the labels in <code>trigger_labels</code> but only if the issue is not already labeled with those in <code>exclude_labels</code> (this is to avoid applying unrelated labels to issues).</p>
 <pre><code class="language-toml">[autolabel.&quot;I-prioritize&quot;]
 trigger_labels = [
@@ -322,7 +322,7 @@ exclude_labels = [
     &quot;T-release&quot;
 ]
 </code></pre>
-<h2><a class="header" href="#notify-zulip" id="notify-zulip">Notify Zulip</a></h2>
+<h2 id="notify-zulip"><a class="header" href="#notify-zulip">Notify Zulip</a></h2>
 <p>When a prioritization label is added to an issue, this command will create a new topic on Zulip, in the designated stream (&quot;245100&quot; in the following example), replacing <code>{number}</code> and <code>{title}</code> with the issue GitHub ID and title:</p>
 <pre><code class="language-toml">[notify-zulip.&quot;I-prioritize&quot;]
 zulip_stream = 245100 # t-compiler/wg-prioritization/alerts
@@ -331,7 +331,7 @@ message_on_add = &quot;@**WG-prioritization** issue #{number} has been requested
 message_on_remove = &quot;Issue #{number}'s prioritization request has been removed.&quot;
 </code></pre>
 <p>The subscribers of that Zulip stream will receive a notification and can discuss the prioritization of the issue.</p>
-<h2><a class="header" href="#major-changes" id="major-changes">Major Changes</a></h2>
+<h2 id="major-changes"><a class="header" href="#major-changes">Major Changes</a></h2>
 <p>A major change is an issue that will have a big impact on users. See <a href="../../compiler/mcp.html">this page on the MCP process</a> for detailed explanations.</p>
 <p>The compiler team uses the major change process, which requires:</p>
 <ul>

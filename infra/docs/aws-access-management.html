@@ -167,12 +167,12 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#aws-access-management" id="aws-access-management">AWS access management</a></h1>
+                        <h1 id="aws-access-management"><a class="header" href="#aws-access-management">AWS access management</a></h1>
 <p>This document explains how to setup and manage AWS access for Rust team
 members. If you're a team member and you need to access AWS with your existing
 credentials, or you have received your credentials for the first time, check
 out the <a href="./aws-access.html">&quot;AWS access for team members&quot;</a> page.</p>
-<h2><a class="header" href="#granting-access" id="granting-access">Granting access</a></h2>
+<h2 id="granting-access"><a class="header" href="#granting-access">Granting access</a></h2>
 <p>To grant access to a person, go to <a href="https://github.com/rust-lang/simpleinfra/blob/master/terraform/team-members-access/_users.tf"><code>team-members-access/_users.tf</code></a> in the
 Terraform configuration and add the new user to it, specifying which teams they
 should be a member of. The user will be created as soon as you apply the
@@ -185,7 +185,7 @@ login.</p>
 <p>Finally communicate to the user that they can join with the generated password,
 and to follow the <a href="./aws-access.html">&quot;AWS access for team members&quot;</a> page to
 learn how to enable 2FA and gain access to their account.</p>
-<h2><a class="header" href="#revoking-access" id="revoking-access">Revoking access</a></h2>
+<h2 id="revoking-access"><a class="header" href="#revoking-access">Revoking access</a></h2>
 <p>To revoke access from a person, log into the <a href="https://console.aws.amazon.com/iam/home#/users">IAM console</a>,
 open the security credentials page of the user you want to delete, and:</p>
 <ul>

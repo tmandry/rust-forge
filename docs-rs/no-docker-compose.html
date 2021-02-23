@@ -167,11 +167,11 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#developing-locally-without-docker-compose" id="developing-locally-without-docker-compose">Developing locally without docker-compose</a></h1>
+                        <h1 id="developing-locally-without-docker-compose"><a class="header" href="#developing-locally-without-docker-compose">Developing locally without docker-compose</a></h1>
 <p>These are instructions for developing docs.rs locally. For deploying in a production environment, see <a href="self-hosting.html">Self-hosting a docs.rs instance</a>.</p>
 <p>While the docker-compose allows for easier setup of the required dependencies and environment, here is a breakdown of how to use the service without an outer docker container. This is useful e.g. for quickly iterating during development.</p>
 <p>Note that this does not remove the docker dependency altogether, since docs.rs uses docker at runtime for sandboxing. This just allows you to run commands more quickly since you are building in debug mode instead of release and are also caching more of the build.</p>
-<h2><a class="header" href="#requirements" id="requirements">Requirements</a></h2>
+<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
 <p>The commands and package names on this page will assume a Debian-like machine with <code>apt</code> installed, but most dependencies should be relatively easy to find on Linux. Do note however that this requires the host to be <code>x86_64-unknown-linux-gnu</code>.</p>
 <p>Docs.rs has a few basic requirements:</p>
 <ul>
@@ -185,13 +185,13 @@
 $ sudo -u postgres psql -c &quot;CREATE USER cratesfyi WITH PASSWORD 'password';&quot;
 $ sudo -u postgres psql -c &quot;CREATE DATABASE cratesfyi OWNER cratesfyi;&quot;
 </code></pre>
-<h2><a class="header" href="#building-the-site" id="building-the-site">Building the site</a></h2>
+<h2 id="building-the-site"><a class="header" href="#building-the-site">Building the site</a></h2>
 <p>Be warned - this builds over 350 crates! Depending on your computer, this may
 take upwards of 10 minutes.</p>
 <pre><code class="language-console">$ git clone https://github.com/rust-lang/docs.rs &amp;&amp; cd docs.rs
 $ cargo build
 </code></pre>
-<h2><a class="header" href="#the-prefix-directory" id="the-prefix-directory">The &quot;prefix&quot; directory</a></h2>
+<h2 id="the-prefix-directory"><a class="header" href="#the-prefix-directory">The &quot;prefix&quot; directory</a></h2>
 <p>docs.rs stores several files in a &quot;prefix&quot; directory. This can be anywhere, but if you put it in the doc.rs repo, it should go under the ./ignored/ directory so that it is not seen by git or the docker daemon.</p>
 <pre><code class="language-console">$ mkdir -p ignored/cratesfyi-prefix
 $ cd ignored/cratesfyi-prefix
@@ -200,13 +200,13 @@ $ git clone https://github.com/rust-lang/crates.io-index &amp;&amp; cd crates.io
 $ git branch crates-index-diff_last-seen
 </code></pre>
 <p>(That last command is used to set up the <code>crates-index-diff</code> crate, so we can start monitoring new crate releases.)</p>
-<h2><a class="header" href="#docker-group" id="docker-group">Docker group</a></h2>
+<h2 id="docker-group"><a class="header" href="#docker-group">Docker group</a></h2>
 <p>docs.rs needs to run docker containers for sandboxing. Therefore, you need to be in the 'docker' group to build crates. If you are already in the docker group, you can skip this step (you can check with <code>groups</code>).</p>
 <pre><code class="language-console"># usermod -a -G docker &quot;$USER&quot;
 $ # now logout and back in to your shell
 $ cd /path/to/docs.rs/ignored/cratesfyi-prefix
 </code></pre>
-<h2><a class="header" href="#environment-for-the-server" id="environment-for-the-server">Environment for the server</a></h2>
+<h2 id="environment-for-the-server"><a class="header" href="#environment-for-the-server">Environment for the server</a></h2>
 <p>To ensure that the docs.rs server is configured properly, we need to set a few environment variables. This is most easily done by making a shell script.</p>
 <pre><code class="language-sh">$ cd ..
 $ echo '
@@ -230,9 +230,9 @@ $ cargo run database update-release-activity
 # As a workaround, you can run `docker pull rustops/crates-build-env` in a separate terminal.
 $ cargo run build crate rand 0.5.5
 </code></pre>
-<h2><a class="header" href="#building-on-platforms-other-than-linux" id="building-on-platforms-other-than-linux">Building on platforms other than Linux</a></h2>
+<h2 id="building-on-platforms-other-than-linux"><a class="header" href="#building-on-platforms-other-than-linux">Building on platforms other than Linux</a></h2>
 <p>This is not currently possible. We assume in several places that the rustup toolchain is x86_64-unknown-linux-gnu. As a result, the only way to build on Mac or Alpine is to use the docker-compose file.</p>
-<h2><a class="header" href="#resetting-the-database" id="resetting-the-database">Resetting the database</a></h2>
+<h2 id="resetting-the-database"><a class="header" href="#resetting-the-database">Resetting the database</a></h2>
 <p>Occasionally, if you make changes to the migrations in a PR, those migrations will be saved in the database but will not be in the code when you switch back to the master branch. In this case, there is no way to undo the migration without knowing exactly which version of the code made the change (<code>cargo migrate</code> will have no effect). Here is a convenient shell script to reset the database so you don't have to remember how to undo your changes.</p>
 <p>NOTE: DO NOT RUN THIS IN PRODUCTION.</p>
 <pre><code class="language-sh">#!/bin/sh

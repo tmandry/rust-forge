@@ -167,8 +167,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#rollup-procedure" id="rollup-procedure">Rollup Procedure</a></h1>
-<h2><a class="header" href="#background" id="background">Background</a></h2>
+                        <h1 id="rollup-procedure"><a class="header" href="#rollup-procedure">Rollup Procedure</a></h1>
+<h2 id="background"><a class="header" href="#background">Background</a></h2>
 <p>The Rust project has a policy that every pull request must be tested after merge
 before it can be pushed to master. As PR volume increases this can scale poorly,
 especially given the long (~3.5hr) current CI duration for Rust.</p>
@@ -184,7 +184,7 @@ statuses mean.</p>
 listed at the bottom of the 'approved' queue with a priority of 'rollup' meaning
 they will not be merged by themselves until everything in front of them in the
 queue has been merged.</p>
-<h2><a class="header" href="#making-a-rollup" id="making-a-rollup">Making a Rollup</a></h2>
+<h2 id="making-a-rollup"><a class="header" href="#making-a-rollup">Making a Rollup</a></h2>
 <ol>
 <li>
 <p>Using the interface on <a href="https://bors.rust-lang.org/queue/rust">Homu queue</a>, select a few pull requests and then use
@@ -206,7 +206,7 @@ then let <code>rollup=never</code> and toolstate PRs progress).</p>
 <p>Recreate the rollup without the offending PR starting again from <strong>1.</strong></p>
 </li>
 </ol>
-<h2><a class="header" href="#selecting-pull-requests" id="selecting-pull-requests">Selecting Pull Requests</a></h2>
+<h2 id="selecting-pull-requests"><a class="header" href="#selecting-pull-requests">Selecting Pull Requests</a></h2>
 <p>This is something you will learn to improve over time. Some basic tips include
 (from obvious to less):</p>
 <ol>
@@ -222,7 +222,7 @@ interest of time you can do so sometimes after you've made the rollup PR.</li>
 <li>Do not include toolstate PRs like those fixing Miri, Clippy, etc.</li>
 <li>Do include docs PRs (they should hopefully be marked as green).</li>
 </ol>
-<h2><a class="header" href="#failed-rollups" id="failed-rollups">Failed rollups</a></h2>
+<h2 id="failed-rollups"><a class="header" href="#failed-rollups">Failed rollups</a></h2>
 <p>If the rollup has failed, run the <code>@bors retry</code> command if the
 failure was spurious (e.g. due to a network problem or a timeout). If it wasn't spurious,
 find the offending PR and throw it out by copying a link to the rust-highfive comment,

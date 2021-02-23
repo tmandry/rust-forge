@@ -167,13 +167,13 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#rust-bots" id="rust-bots">rust-bots</a></h1>
+                        <h1 id="rust-bots"><a class="header" href="#rust-bots">rust-bots</a></h1>
 <ul>
 <li>FQDN: <code>bots.infra.rust-lang.org</code> (behind the bastion -- <a href="https://github.com/rust-lang/infra-team/blob/master/docs/hosts/bastion.md#logging-into-servers-through-the-bastion">how to connect</a>)</li>
 <li><a href="https://grafana.rust-lang.org/d/rpXrFfKWz/instance-metrics?orgId=1&amp;var-instance=bots.infra.rust-lang.org:9100">Instance metrics</a> (only available to infra team members).</li>
 </ul>
-<h2><a class="header" href="#common-maintenance-procedures" id="common-maintenance-procedures">Common maintenance procedures</a></h2>
-<h3><a class="header" href="#adding-a-new-domain" id="adding-a-new-domain">Adding a new domain</a></h3>
+<h2 id="common-maintenance-procedures"><a class="header" href="#common-maintenance-procedures">Common maintenance procedures</a></h2>
+<h3 id="adding-a-new-domain"><a class="header" href="#adding-a-new-domain">Adding a new domain</a></h3>
 <p>First, edit <code>sudo vim /etc/nginx/nginx.conf</code> to edit the nginx configuration to add the domain.</p>
 <pre><code>server {
     listen 443 ssl;

@@ -167,14 +167,14 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#governance" id="governance">Governance</a></h1>
+                        <h1 id="governance"><a class="header" href="#governance">Governance</a></h1>
 <p style="background: #f8d7da; color: #721c24; padding: 5px">
 <strong>IMPORTANT</strong> This document is adapted from
 <a href="https://rust-lang.github.io/rfcs/1068-rust-governance.html">RFC 1068</a>
 and is currently being actively worked on, however there may be large parts of
 Rust's governance that are missing, incomplete, or out of date.
 </p>
-<h2><a class="header" href="#core-team" id="core-team">Core team</a></h2>
+<h2 id="core-team"><a class="header" href="#core-team">Core team</a></h2>
 <p><strong>The core team serves as leadership for the Rust project as a whole</strong>. In
 particular, it:</p>
 <ul>
@@ -214,7 +214,7 @@ are reasonable.</p>
 set of other stakeholders that are both actively involved in the Rust community,
 and can speak to the needs of major Rust constituencies, to ensure that the
 project is addressing real-world needs.</p>
-<h2><a class="header" href="#subteams" id="subteams">Subteams</a></h2>
+<h2 id="subteams"><a class="header" href="#subteams">Subteams</a></h2>
 <p><strong>The primary roles of each subteam are</strong>:</p>
 <ul>
 <li>
@@ -322,8 +322,8 @@ related to their area. Ideally, this would be done in part via a dashboard
 like <a href="http://buildbot.rust-lang.org/homu/queue/rust">the Homu queue</a>.</p>
 </li>
 </ul>
-<h2><a class="header" href="#decision-making" id="decision-making">Decision-making</a></h2>
-<h3><a class="header" href="#consensus" id="consensus">Consensus</a></h3>
+<h2 id="decision-making"><a class="header" href="#decision-making">Decision-making</a></h2>
+<h3 id="consensus"><a class="header" href="#consensus">Consensus</a></h3>
 <p>Rust has long used a form of <a href="https://en.wikipedia.org/wiki/Consensus_decision-making">consensus decision-making</a>. In a
 nutshell the premise is that a successful outcome is not where one side of a
 debate has &quot;won&quot;, but rather where concerns from <em>all</em> sides have been addressed
@@ -356,7 +356,7 @@ members of the subteam should be the norm for most decisions.</strong> If the co
 has done its job of communicating the values and priorities, it should be
 possible to fit the debate about the RFC into that framework and reach a fairly
 clear outcome.</p>
-<h3><a class="header" href="#lack-of-consensus" id="lack-of-consensus">Lack of consensus</a></h3>
+<h3 id="lack-of-consensus"><a class="header" href="#lack-of-consensus">Lack of consensus</a></h3>
 <p>In some cases, though, consensus cannot be reached. These cases tend to split
 into two very different camps:</p>
 <ul>
@@ -380,7 +380,7 @@ make an executive decision.</p>
 but should consult with the rest of the core team before doing so.</p>
 </li>
 </ul>
-<h3><a class="header" href="#how-and-when-rfc-decisions-are-made-and-the-final-comment-period" id="how-and-when-rfc-decisions-are-made-and-the-final-comment-period">How and when RFC decisions are made, and the &quot;final comment period&quot;</a></h3>
+<h3 id="how-and-when-rfc-decisions-are-made-and-the-final-comment-period"><a class="header" href="#how-and-when-rfc-decisions-are-made-and-the-final-comment-period">How and when RFC decisions are made, and the &quot;final comment period&quot;</a></h3>
 <p>Each RFC has a shepherd drawn from the relevant subteam. The shepherd is
 responsible for driving the consensus process -- working with both the RFC
 author and the broader community to dig out problems, alternatives, and improved
@@ -410,12 +410,12 @@ responsible for setting, globally). In the end, these decisions are about how to
 weight tradeoffs. The decision should be communicated in these terms, pointing
 out the tradeoffs that were raised and explaining how they were weighted, and
 <strong>never introducing new arguments</strong>.</p>
-<h2><a class="header" href="#keeping-things-lightweight" id="keeping-things-lightweight">Keeping things lightweight</a></h2>
+<h2 id="keeping-things-lightweight"><a class="header" href="#keeping-things-lightweight">Keeping things lightweight</a></h2>
 <p>In addition to the &quot;final comment period&quot; proposed above, this RFC proposes some
 further adjustments to the RFC process to keep it lightweight.</p>
 <p>A key observation is that, thanks to the stability system and nightly/stable
 distinction, <strong>it's easy to experiment with features without commitment</strong>.</p>
-<h3><a class="header" href="#clarifying-what-needs-an-rfc" id="clarifying-what-needs-an-rfc">Clarifying what needs an RFC</a></h3>
+<h3 id="clarifying-what-needs-an-rfc"><a class="header" href="#clarifying-what-needs-an-rfc">Clarifying what needs an RFC</a></h3>
 <p>Over time, we've been drifting toward requiring an RFC for essentially any
 user-facing change, which sometimes means that very minor changes get stuck
 awaiting an RFC decision. While subteams + final comment period should help keep
@@ -431,7 +431,7 @@ subteam should set an explicit policy about:</p>
 <li>What the non-RFC review process is.</li>
 </ol>
 <p>These guidelines should try to keep the process lightweight for minor changes.</p>
-<h3><a class="header" href="#clarifying-the-finality-of-rfcs" id="clarifying-the-finality-of-rfcs">Clarifying the &quot;finality&quot; of RFCs</a></h3>
+<h3 id="clarifying-the-finality-of-rfcs"><a class="header" href="#clarifying-the-finality-of-rfcs">Clarifying the &quot;finality&quot; of RFCs</a></h3>
 <p>While RFCs are very important, they do not represent the final state of a
 design. Often new issues or improvements arise during implementation, or after
 gaining some experience with a feature. <strong>The nightly/stable distinction exists
@@ -441,7 +441,7 @@ on major points, the minor details can be left to implementation and revision.</
 <p>Later, if an implementation differs from the RFC in <em>substantial</em> ways, the
 subteam should be alerted, and may ask for an explicit amendment RFC. Otherwise,
 the changes should just be explained in the commit/PR.</p>
-<h2><a class="header" href="#the-teams" id="the-teams">The teams</a></h2>
+<h2 id="the-teams"><a class="header" href="#the-teams">The teams</a></h2>
 <p>With all of that out of the way, what subteams should we start with? This RFC
 proposes the following initial set:</p>
 <ul>
@@ -454,7 +454,7 @@ proposes the following initial set:</p>
 <p>In the long run, we will likely also want teams for documentation and for
 community events, but these can be spun up once there is a more clear need (and
 available resources).</p>
-<h3><a class="header" href="#language-design-team" id="language-design-team">Language design team</a></h3>
+<h3 id="language-design-team"><a class="header" href="#language-design-team">Language design team</a></h3>
 <p>Focuses on the <em>design</em> of language-level features; not all team members need to
 have extensive implementation experience.</p>
 <p>Some example RFCs that fall into this area:</p>
@@ -467,7 +467,7 @@ have extensive implementation experience.</p>
 overlap with the library subteam)</li>
 <li><a href="https://github.com/rust-lang/rfcs/pull/769">Sound generic drop</a></li>
 </ul>
-<h3><a class="header" href="#library-team" id="library-team">Library team</a></h3>
+<h3 id="library-team"><a class="header" href="#library-team">Library team</a></h3>
 <p>Oversees both <code>std</code> and, ultimately, other crates in the <code>rust-lang</code> github
 organization. The focus up to this point has been the standard library, but we
 will want &quot;official&quot; libraries that aren't quite <code>std</code> territory but are still
@@ -482,7 +482,7 @@ API conventions.</p>
 <li><a href="https://github.com/rust-lang/rfcs/pull/823">Simplifying std::hash</a></li>
 <li><a href="https://github.com/rust-lang/rfcs/pull/199">Conventions for ownership variants</a></li>
 </ul>
-<h3><a class="header" href="#compiler-team" id="compiler-team">Compiler team</a></h3>
+<h3 id="compiler-team"><a class="header" href="#compiler-team">Compiler team</a></h3>
 <p>Focuses on compiler internals, including implementation of language
 features. This broad category includes work in codegen, factoring of compiler
 data structures, type inference, borrowck, and so on.</p>
@@ -493,7 +493,7 @@ haven't generally required RFCs for this kind of internals work, but here are tw
 has high overlap with language design)</li>
 <li><a href="https://github.com/rust-lang/rfcs/pull/594">Incremental compilation</a></li>
 </ul>
-<h3><a class="header" href="#tooling-and-infrastructure-team" id="tooling-and-infrastructure-team">Tooling and infrastructure team</a></h3>
+<h3 id="tooling-and-infrastructure-team"><a class="header" href="#tooling-and-infrastructure-team">Tooling and infrastructure team</a></h3>
 <p>Even more broad is the &quot;tooling&quot; subteam, which at inception is planned to
 encompass every &quot;official&quot; (rust-lang managed) non-<code>rustc</code> tool:</p>
 <ul>
@@ -509,7 +509,7 @@ encompass every &quot;official&quot; (rust-lang managed) non-<code>rustc</code> 
 </ul>
 <p>It's not presently clear exactly what tools will end up under this umbrella, nor
 which should be prioritized.</p>
-<h3><a class="header" href="#moderation-team" id="moderation-team">Moderation team</a></h3>
+<h3 id="moderation-team"><a class="header" href="#moderation-team">Moderation team</a></h3>
 <p>Finally, the moderation team is responsible for dealing with CoC violations.</p>
 <p>One key difference from the other subteams is that the moderation team does not
 have a leader. Its members are chosen directly by the core team, and should be
@@ -519,7 +519,7 @@ include any core team members</strong>. However, the subteam is free to consult 
 the core team as it deems appropriate.</p>
 <p>The moderation team will have a public email address that can be used to raise
 complaints about CoC violations (forwards to all active moderators).</p>
-<h4><a class="header" href="#initial-plan-for-moderation" id="initial-plan-for-moderation">Initial plan for moderation</a></h4>
+<h4 id="initial-plan-for-moderation"><a class="header" href="#initial-plan-for-moderation">Initial plan for moderation</a></h4>
 <p>What follows is an initial proposal for the mechanics of moderation. The
 moderation subteam may choose to revise this proposal by drafting an RFC, which
 will be approved by the core team.</p>

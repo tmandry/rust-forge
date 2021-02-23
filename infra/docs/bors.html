@@ -167,20 +167,20 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#bors" id="bors">Bors</a></h1>
+                        <h1 id="bors"><a class="header" href="#bors">Bors</a></h1>
 <p>The infrastructure team manages an instance of <a href="https://github.com/rust-lang/homu">Homu</a> called &quot;Bors&quot;, to be used
 by repositories inside the <code>rust-lang</code> organization. The instance is available
 at <a href="https://bors.rust-lang.org">bors.rust-lang.org</a>, and is backed by the <a href="https://github.com/bors">@bors</a> GitHub account.</p>
 <p>The service is configured <a href="https://github.com/rust-lang/simpleinfra/tree/master/terraform/bors/">with Terraform</a>, and it's automatically deployed
 from the <a href="https://github.com/rust-lang/homu">rust-lang/homu</a> repository onto our <a href="./ecs-service.html">ECS cluster</a>.</p>
-<h2><a class="header" href="#maintenance-procedures" id="maintenance-procedures">Maintenance procedures</a></h2>
-<h3><a class="header" href="#fixing-inconsistencies-in-the-queue" id="fixing-inconsistencies-in-the-queue">Fixing inconsistencies in the queue</a></h3>
+<h2 id="maintenance-procedures"><a class="header" href="#maintenance-procedures">Maintenance procedures</a></h2>
+<h3 id="fixing-inconsistencies-in-the-queue"><a class="header" href="#fixing-inconsistencies-in-the-queue">Fixing inconsistencies in the queue</a></h3>
 <p>Homu is quite buggy, and it might happen that the queue doesn't reflect the
 actual state in the repositories. This can be fixed by pressing the
 &quot;Synchronize&quot; button in the queue page. Note that the synchronization process
 itself is a bit buggy, and it might happen that PRs which were approved but
 failed are re-approved again on their own.</p>
-<h3><a class="header" href="#adding-a-new-repository-to-bors" id="adding-a-new-repository-to-bors">Adding a new repository to bors</a></h3>
+<h3 id="adding-a-new-repository-to-bors"><a class="header" href="#adding-a-new-repository-to-bors">Adding a new repository to bors</a></h3>
 <p>There are multiple steps needed to add a repository to our Bors instance:</p>
 <ol>
 <li>

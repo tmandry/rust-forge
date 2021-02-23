@@ -167,17 +167,17 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#migrating-from-a-local-database-to-s3" id="migrating-from-a-local-database-to-s3">Migrating from a local database to S3</a></h1>
+                        <h1 id="migrating-from-a-local-database-to-s3"><a class="header" href="#migrating-from-a-local-database-to-s3">Migrating from a local database to S3</a></h1>
 <p>If you're running your own instance of docs.rs for personal development, and you'd like to test out the S3 integration, there are a couple steps involved. It's mostly straightforward, but there's at least one major caveat that should be taken into account.</p>
-<h2><a class="header" href="#requirements" id="requirements">Requirements</a></h2>
+<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
 <p>Since docs.rs uses a fixed bucket name to upload files, you'll need to set up an independent server that implements the Amazon S3 API. <a href="https://min.io/">Minio</a> is an example of a server you can set up. Instructions for installing and configuring Minio (or any S3-compliant provider) are beyond the scope of this article.</p>
-<h2><a class="header" href="#configuring-your-docsrs-instance" id="configuring-your-docsrs-instance">Configuring your docs.rs instance</a></h2>
+<h2 id="configuring-your-docsrs-instance"><a class="header" href="#configuring-your-docsrs-instance">Configuring your docs.rs instance</a></h2>
 <p>Once you have your server and credentials set up, you need to tell the docs.rs server to use it. You'll need to add some extra environment variables to the environment file you use to configure docs.rs. It uses the <code>S3_ENDPOINT</code> variable to determine where to call, and the other variables to configure its access privileges. The available environment variables are documented in <code>rusoto</code>'s <a href="https://docs.rs/rusoto_credential/0.40.0/rusoto_credential/struct.EnvironmentProvider.html"><code>EnvironmentProvider</code></a>.</p>
 <pre><code class="language-text">AWS_ACCESS_KEY_ID=&lt;access key&gt;
 AWS_SECRET_ACCESS_KEY=&lt;access secret&gt;
 S3_ENDPOINT=&lt;endpoint url&gt;
 </code></pre>
-<h2><a class="header" href="#migrating-files-out-of-the-database" id="migrating-files-out-of-the-database">Migrating files out of the database</a></h2>
+<h2 id="migrating-files-out-of-the-database"><a class="header" href="#migrating-files-out-of-the-database">Migrating files out of the database</a></h2>
 <p>Before you restart the process to load the new credentials, the files that are currently in the local database need to be migrated out to S3. Once docs.rs sees that it has AWS credentials in its environment, it will stop reading from the <code>files</code> table entirely. Therefore, to properly transition to using the new file storage, you need to run an extra command to upload them. It's helpful to lock the build queue while this is happening, so that no new files will sneak in while the migration happens.</p>
 <pre><code class="language-sh">cratesfyi build lock
 # edit the environment file with the above variables if you haven't already

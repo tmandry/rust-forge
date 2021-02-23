@@ -167,7 +167,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#domain-names-and-dns" id="domain-names-and-dns">Domain names and DNS</a></h1>
+                        <h1 id="domain-names-and-dns"><a class="header" href="#domain-names-and-dns">Domain names and DNS</a></h1>
 <p>All the DNS records of the domains owned by the Rust Infrastructure team are
 hosted on <a href="https://aws.amazon.com/route53/">AWS Route 53</a>, and can be tweaked by members of the team. This
 document contains instructions for them on how to make changes.</p>
@@ -177,7 +177,7 @@ document contains instructions for them on how to make changes.</p>
 <li><a href="#adding-subdomain-redirects">Adding subdomain redirects</a></li>
 <li><a href="#transferring-domain-names-to-rust">Transferring domain names to Rust</a></li>
 </ul>
-<h2><a class="header" href="#changing-dns-records-of-a-domain-managed-with-terraform" id="changing-dns-records-of-a-domain-managed-with-terraform">Changing DNS records of a domain managed with Terraform</a></h2>
+<h2 id="changing-dns-records-of-a-domain-managed-with-terraform"><a class="header" href="#changing-dns-records-of-a-domain-managed-with-terraform">Changing DNS records of a domain managed with Terraform</a></h2>
 <blockquote>
 <p><strong>Warning:</strong> not all domain names are yet managed with Terraform. In the
 <a href="https://console.aws.amazon.com/route53/home#hosted-zones:">console</a>, if a zone's comment doesn't start with <code>[terraform]</code>
@@ -214,7 +214,7 @@ record values.</p>
 <p>Once you made all the changes you can apply them with:</p>
 <pre><code>terraform apply
 </code></pre>
-<h2><a class="header" href="#managing-dns-for-a-new-domain-with-terraform" id="managing-dns-for-a-new-domain-with-terraform">Managing DNS for a new domain with Terraform</a></h2>
+<h2 id="managing-dns-for-a-new-domain-with-terraform"><a class="header" href="#managing-dns-for-a-new-domain-with-terraform">Managing DNS for a new domain with Terraform</a></h2>
 <p>Setting up Terraform to manage the DNS records of a new domain name involves a
 few steps. First of all you need to decide the identifier used inside
 Terraform for that domain. By convention, the identifier is the domain name
@@ -244,7 +244,7 @@ output &quot;zone_&lt;IDENTIFIER&gt;&quot; {
 <pre><code>terraform init
 terraform apply
 </code></pre>
-<h2><a class="header" href="#adding-subdomain-redirects" id="adding-subdomain-redirects">Adding subdomain redirects</a></h2>
+<h2 id="adding-subdomain-redirects"><a class="header" href="#adding-subdomain-redirects">Adding subdomain redirects</a></h2>
 <p>Our Terraform configuration supports creating redirects from an arbitrary
 number of subdomains we control to an URL. Redirects are created with these
 pieces of infrastructure:</p>
@@ -296,7 +296,7 @@ terraform apply
 CloudFront distribution changes are really slow to propagate. Also, it's normal
 to see a bunch of resources being recreated when a domain is added or removed
 from an existing redirect, as the ACM certificate will need to be regenerated.</p>
-<h2><a class="header" href="#transferring-domain-names-to-rust" id="transferring-domain-names-to-rust">Transferring domain names to Rust</a></h2>
+<h2 id="transferring-domain-names-to-rust"><a class="header" href="#transferring-domain-names-to-rust">Transferring domain names to Rust</a></h2>
 <p>These are the steps a member of the infrastructure team needs to take to
 transfer a domain name to the Rust project's registrar:</p>
 <ol>
@@ -334,7 +334,7 @@ ask to click on a link to confirm the domain name transfer.</p>
 email telling the domain has been transferred you’re done! 🎉🎉🎉</p>
 </li>
 </ol>
-<h3><a class="header" href="#transferring-dns" id="transferring-dns">Transferring DNS</a></h3>
+<h3 id="transferring-dns"><a class="header" href="#transferring-dns">Transferring DNS</a></h3>
 <p>Most domain names use their registrar as the DNS server, but that means that
 once the domain is transferred away the old registrar also stops serving DNS
 traffic. Because of that we need to ensure all the DNS records are correctly

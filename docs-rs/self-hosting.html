@@ -167,11 +167,11 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#self-hosting-a-docsrs-instance" id="self-hosting-a-docsrs-instance">Self hosting a docs.rs instance</a></h1>
+                        <h1 id="self-hosting-a-docsrs-instance"><a class="header" href="#self-hosting-a-docsrs-instance">Self hosting a docs.rs instance</a></h1>
 <p>These are instructions for deploying the server in a production environment. For instructions on developing locally without docker-compose, see <a href="no-docker-compose.html">Developing without docker-compose</a>.</p>
 <p>Here is a breakdown of what it takes to turn a regular server into its own version of docs.rs.</p>
 <p>Beware: This process is rather rough! Attempts at cleaning it up, automating setup components, etc, would be greatly appreciated!</p>
-<h2><a class="header" href="#requirements" id="requirements">Requirements</a></h2>
+<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
 <p>The commands and package names on this page will assume an Ubuntu server running systemd, but hopefully the explanatory text should give enough information to adapt to other systems. Note that docs.rs depends on the host being <code>x86_64-unknown-linux-gnu</code>.</p>
 <p>Docs.rs has a few basic requirements:</p>
 <ul>
@@ -186,13 +186,13 @@
 $ source $HOME/.cargo/env
 # apt install build-essential git curl cmake gcc g++ pkg-config libmagic-dev libssl-dev zlib1g-dev postgresql lxc-utils
 </code></pre>
-<h2><a class="header" href="#the-cratesfyi-user" id="the-cratesfyi-user">The <code>cratesfyi</code> user</a></h2>
+<h2 id="the-cratesfyi-user"><a class="header" href="#the-cratesfyi-user">The <code>cratesfyi</code> user</a></h2>
 <p>To help things out later on, we can create a new unprivileged user that will run the server process. This user will own all the files required by the docs.rs process. This user will need to be able to run <code>lxc-attach</code> through <code>sudo</code> to be able to run docs builds, so give it a sudoers file at the same time:</p>
 <pre><code class="language-console"># adduser --disabled-login --disabled-password --gecos &quot;&quot; cratesfyi
 # echo 'cratesfyi  ALL=(ALL) NOPASSWD: /usr/bin/lxc-attach' &gt; /etc/sudoers.d/cratesfyi
 </code></pre>
 <p>(The name <code>cratesfyi</code> is a historical one: Before the site was called &quot;docs.rs&quot;, it was called &quot;crates.fyi&quot; instead. If you want to update the name of the user, feel free! Just be aware that the name <code>cratesfyi</code> will be used throughout this document.)</p>
-<h2><a class="header" href="#the-prefix-directory" id="the-prefix-directory">The &quot;prefix&quot; directory</a></h2>
+<h2 id="the-prefix-directory"><a class="header" href="#the-prefix-directory">The &quot;prefix&quot; directory</a></h2>
 <p>In addition to the LXC container, docs.rs also stores several related files in a &quot;prefix&quot; directory. This directory can be stored anywhere, but the <code>cratesfyi</code> user needs to be able to access it:</p>
 <pre><code class="language-console"># mkdir /cratesfyi-prefix
 # chown cratesfyi:cratesfyi /cratesfyi-prefix
@@ -203,7 +203,7 @@ $ sudo -u cratesfyi git clone https://github.com/rust-lang/crates.io-index.git /
 $ sudo -u cratesfyi git --git-dir=/cratesfyi-prefix/crates.io-index/.git branch crates-index-diff_last-seen
 </code></pre>
 <p>(That last command is used to set up the <code>crates-index-diff</code> crate, so we can start monitoring new crate releases.)</p>
-<h2><a class="header" href="#lxc-container" id="lxc-container">LXC container</a></h2>
+<h2 id="lxc-container"><a class="header" href="#lxc-container">LXC container</a></h2>
 <p>To help contain what crates' build scripts can access, documentation builds run inside an LXC container. To create one inside the prefix directory:</p>
 <pre><code class="language-console"># LANG=C lxc-create -n cratesfyi-container -P /cratesfyi-prefix -t download -- --dist ubuntu --release bionic --arch amd64
 # ln -s /cratesfyi-prefix/cratesfyi-container /var/lib/lxc
@@ -248,7 +248,7 @@ lxc-attach -n cratesfyi-container -- su - cratesfyi -c 'rustup target add x86_64
 <p>Now that we have Rust installed inside the container, we can use a trick to give the <code>cratesfyi</code> user on the <em>host</em> the same Rust compiler as the <em>container</em>. By symlinking the following directories into its user directory, we don't need to track a <em>third</em> toolchain.</p>
 <pre><code class="language-console">for directory in .cargo .rustup .multirust; do  [[ -h /home/cratesfyi/$directory ]] || sudo -u cratesfyi ln -vs /var/lib/lxc/cratesfyi-container/rootfs/home/cratesfyi/$directory /home/cratesfyi/; done
 </code></pre>
-<h2><a class="header" href="#environment-for-the-cratesfyi-user" id="environment-for-the-cratesfyi-user">Environment for the <code>cratesfyi</code> user</a></h2>
+<h2 id="environment-for-the-cratesfyi-user"><a class="header" href="#environment-for-the-cratesfyi-user">Environment for the <code>cratesfyi</code> user</a></h2>
 <p>To ensure that the docs.rs server is configured properly, we need to set a few environment variables. The primary ones are going into a separate environment file, so we can load them into the systemd service that will manage the server.</p>
 <p>Write the following into <code>/home/cratesfyi/.cratesfyi.env</code>. If you have a GitHub access token that the site can use to collect repository information, add it here, but otherwise leave it blank. The variables need to exist, but they can be blank to skip that collection.</p>
 <pre><code>CRATESFYI_PREFIX=/cratesfyi-prefix
@@ -263,13 +263,13 @@ RUST_LOG=cratesfyi
 export PATH=&quot;$HOME/.cargo/bin:$PATH&quot;
 export PATH=&quot;$PATH:$HOME/docs.rs/target/release&quot;
 </code></pre>
-<h2><a class="header" href="#docsrs-build" id="docsrs-build">Docs.rs build</a></h2>
+<h2 id="docsrs-build"><a class="header" href="#docsrs-build">Docs.rs build</a></h2>
 <p>Now we can actually clone and build the docs.rs source! The location of it doesn't matter much, but again, we want it to be owned by <code>cratesfyi</code> so it can build and run the final executable. In addition, we copy the built <code>cratesfyi</code> binary into the container so that it can be used to arrange builds on the inside.</p>
 <pre><code class="language-console">sudo -u cratesfyi git clone https://github.com/rust-lang-nursery/docs.rs.git ~cratesfyi/docs.rs
 sudo su - cratesfyi -c 'cd ~/docs.rs &amp;&amp; cargo build --release'
 cp -v /home/cratesfyi/docs.rs/target/release/cratesfyi /var/lib/lxc/cratesfyi-container/rootfs/usr/local/bin
 </code></pre>
-<h2><a class="header" href="#postgresql" id="postgresql">PostgreSQL</a></h2>
+<h2 id="postgresql"><a class="header" href="#postgresql">PostgreSQL</a></h2>
 <p>Now that we have the repository built, we can use it to set up the database. Docs.rs uses a Postgres database to store information about crates and their documentation. To set one up, we first need to ask Postgres to create the database, and then run the docs.rs command to create the initial tables and content:</p>
 <pre><code class="language-console">sudo -u postgres sh -c &quot;psql -c \&quot;CREATE USER cratesfyi WITH PASSWORD 'password';\&quot;&quot;
 sudo -u postgres sh -c &quot;psql -c \&quot;CREATE DATABASE cratesfyi OWNER cratesfyi;\&quot;&quot;
@@ -279,7 +279,7 @@ sudo su - cratesfyi -c &quot;cd ~/docs.rs &amp;&amp; cargo run --release -- buil
 sudo su - cratesfyi -c &quot;cd ~/docs.rs &amp;&amp; cargo run --release -- database update-search-index&quot;
 sudo su - cratesfyi -c &quot;cd ~/docs.rs &amp;&amp; cargo run --release -- database update-release-activity&quot;
 </code></pre>
-<h2><a class="header" href="#server-configuration" id="server-configuration">Server configuration</a></h2>
+<h2 id="server-configuration"><a class="header" href="#server-configuration">Server configuration</a></h2>
 <p>We're almost there! At this point, we've got all the pieces in place to run the site. Now we can set up a systemd service that will run the daemon that will collect crate information, orchestrate builds, and serve the website. The following systemd service file can be placed in <code>/etc/systemd/system/cratesfyi.service</code>:</p>
 <pre><code class="language-systemd">[Unit]
 Description=Cratesfyi daemon
@@ -298,7 +298,7 @@ WorkingDirectory=/home/cratesfyi/docs.rs
 WantedBy=multi-user.target
 </code></pre>
 <p>Enabling and running that will serve the website on <code>http://localhost:3000</code>, so if you want to route public traffic to it, you'll need to set up something like nginx to proxy the connections to it.</p>
-<h2><a class="header" href="#updating-rust" id="updating-rust">Updating Rust</a></h2>
+<h2 id="updating-rust"><a class="header" href="#updating-rust">Updating Rust</a></h2>
 <p>If you want to update the Rust compiler used to build crates (and the Rustdoc that comes with it), you need to make sure you don't interrupt any existing crate builds. The daemon waits for 60 seconds between checking for new crates, so you need to make sure you catch it during that window. Since we hooked the daemon into systemd, the logs will be available in its journal. Running <code>journalctl -efu cratesfyi</code> (it may need to be run as root if nothing appears) will show the latest log output and show new entries as they appear. You're looking for a message like &quot;Finished building new crates, going back to sleep&quot; or &quot;Queue is empty, going back to sleep&quot;, which indicates that the crate-building thread is waiting.</p>
 <p>To prevent the queue from building more crates, run the following:</p>
 <pre><code class="language-console">sudo su - cratesfyi -c &quot;cd ~/docs.rs &amp;&amp; cargo run --release -- build lock&quot;
@@ -311,7 +311,7 @@ sudo su - cratesfyi -c &quot;cd ~/docs.rs &amp;&amp; cargo run --release -- buil
 <pre><code class="language-console">sudo su - cratesfyi -c &quot;cd ~/docs.rs &amp;&amp; cargo run --release -- build unlock&quot;
 </code></pre>
 <p>And we're done! New crates will start being built with the new rustc. If you want to rebuild any existing docs with the new rustdoc, you need to manually build them - there's no automated way to rebuild failed docs or docs from a certain rust version yet.</p>
-<h2><a class="header" href="#updating-docsrs" id="updating-docsrs">Updating docs.rs</a></h2>
+<h2 id="updating-docsrs"><a class="header" href="#updating-docsrs">Updating docs.rs</a></h2>
 <p>To update the code for docs.rs itself, you can follow a similar approach. First, watch the logs so you can stop the daemon from building more crates. (You can replace the lock command with a <code>systemctl stop cratesfyi</code> if you don't mind the web server being down while you build.)</p>
 <pre><code class="language-console"># journalctl -efu cratesfyi
 (wait for build daemon to sleep)

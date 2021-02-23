@@ -167,11 +167,11 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#beta-backporting" id="beta-backporting">Beta Backporting</a></h1>
+                        <h1 id="beta-backporting"><a class="header" href="#beta-backporting">Beta Backporting</a></h1>
 <p>There's a steady trickle of patches that need to be ported to the beta branch.
 Only a few people are even aware of the process, but this is actually something
 anybody can do.</p>
-<h2><a class="header" href="#backporting-in-rust-langrust" id="backporting-in-rust-langrust">Backporting in <code>rust-lang/rust</code></a></h2>
+<h2 id="backporting-in-rust-langrust"><a class="header" href="#backporting-in-rust-langrust">Backporting in <code>rust-lang/rust</code></a></h2>
 <p>When somebody identifies a PR that should be backported to beta they tag it
 <a href="https://github.com/rust-lang/rust/pulls?q=is%3Apr+is%3Aclosed+label%3Abeta-nominated"><code>beta-nominated</code></a>.
 That means they want one of the teams to evaluate whether the patch should be
@@ -195,7 +195,7 @@ need to follow the links to the original PRs and <em>remove the <code>beta-nomin
 tag</em> (people forget to do this a lot). This last step indicates that the
 backport has been completed, so the <code>beta-nominated</code> and <code>beta-accepted</code> tags
 have three states.</p>
-<h2><a class="header" href="#backporting-in-rust-langcargo" id="backporting-in-rust-langcargo">Backporting in <code>rust-lang/cargo</code></a></h2>
+<h2 id="backporting-in-rust-langcargo"><a class="header" href="#backporting-in-rust-langcargo">Backporting in <code>rust-lang/cargo</code></a></h2>
 <p>The procedure for backporting fixes to Cargo is similar but slightly more
 extended than the <code>rust-lang/rust</code> repo's procedure. Currently there aren't
 backport tags in the Cargo repository, but you'll initiate the backport process

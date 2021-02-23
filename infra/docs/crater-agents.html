@@ -167,7 +167,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#crater-agents" id="crater-agents">Crater agents</a></h1>
+                        <h1 id="crater-agents"><a class="header" href="#crater-agents">Crater agents</a></h1>
 <ul>
 <li>Source code: <a href="https://github.com/rust-lang/docs.rs">rust-lang/crater</a></li>
 <li>Hosted on:
@@ -185,13 +185,13 @@
 </ul>
 </li>
 </ul>
-<h2><a class="header" href="#service-configuration" id="service-configuration">Service configuration</a></h2>
+<h2 id="service-configuration"><a class="header" href="#service-configuration">Service configuration</a></h2>
 <p>Crater agents are servers with our standard configuration running a Docker
 container hosting the agent. A timer checks for updates every 5 minutes, and if
 a newer Docker image is present the container will automatically be updated and
 restarted. This service is <a href="https://github.com/rust-lang/simpleinfra/blob/master/ansible/playbooks/crater.yml">managed with Ansible</a>.</p>
-<h2><a class="header" href="#common-maintenance-procedures" id="common-maintenance-procedures">Common maintenance procedures</a></h2>
-<h3><a class="header" href="#starting-and-stopping-the-agent" id="starting-and-stopping-the-agent">Starting and stopping the agent</a></h3>
+<h2 id="common-maintenance-procedures"><a class="header" href="#common-maintenance-procedures">Common maintenance procedures</a></h2>
+<h3 id="starting-and-stopping-the-agent"><a class="header" href="#starting-and-stopping-the-agent">Starting and stopping the agent</a></h3>
 <p>The agent is managed by the <code>container-crater-agent.service</code> systemd unit. That
 means it's possible to start, stop and restart it with the usual systemctl
 commands:</p>
@@ -199,12 +199,12 @@ commands:</p>
 systemctl start container-crater-agent.service
 systemctl restart container-crater-agent.service
 </code></pre>
-<h3><a class="header" href="#inspecting-the-logs-of-the-agent" id="inspecting-the-logs-of-the-agent">Inspecting the logs of the agent</a></h3>
+<h3 id="inspecting-the-logs-of-the-agent"><a class="header" href="#inspecting-the-logs-of-the-agent">Inspecting the logs of the agent</a></h3>
 <p>Logs of the agents are forwarded and collected by journald. To see them you can
 use journalctl:</p>
 <pre><code>journalctl -u container-crater-agent.service
 </code></pre>
-<h3><a class="header" href="#manually-updating-the-container-image" id="manually-updating-the-container-image">Manually updating the container image</a></h3>
+<h3 id="manually-updating-the-container-image"><a class="header" href="#manually-updating-the-container-image">Manually updating the container image</a></h3>
 <p>The container is updated automatically every 5 minutes (provided a newer image
 is present). If you need to update them sooner you can manually start the
 updater service by running this command:</p>

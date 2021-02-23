@@ -167,8 +167,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#how-the-rust-ci-works" id="how-the-rust-ci-works">How the Rust CI works</a></h1>
-<h2><a class="header" href="#which-jobs-we-run" id="which-jobs-we-run">Which jobs we run</a></h2>
+                        <h1 id="how-the-rust-ci-works"><a class="header" href="#how-the-rust-ci-works">How the Rust CI works</a></h1>
+<h2 id="which-jobs-we-run"><a class="header" href="#which-jobs-we-run">Which jobs we run</a></h2>
 <p>The <code>rust-lang/rust</code> repository uses Azure Pipelines to test <a href="https://doc.rust-lang.org/nightly/rustc/platform-support.html">all the other
 platforms</a> we support. We currently have two kinds of jobs running
 for each commit we want to merge to master:</p>
@@ -206,7 +206,7 @@ time thanks to Docker image caching.</li>
 platforms) on Azure Pipelines. Since those platforms are not x86 we either run
 everything inside QEMU or just cross-compile if we don’t want to run the tests
 for that platform.</p>
-<h2><a class="header" href="#merging-prs-serially-with-bors" id="merging-prs-serially-with-bors">Merging PRs serially with bors</a></h2>
+<h2 id="merging-prs-serially-with-bors"><a class="header" href="#merging-prs-serially-with-bors">Merging PRs serially with bors</a></h2>
 <p>CI services usually test the last commit of a branch merged with the last
 commit in master, and while that’s great to check if the feature works in
 isolation it doesn’t provide any guarantee the code is going to work once it’s
@@ -228,7 +228,7 @@ merge commit.</p>
 hours for a full run), means we can’t merge too many PRs in a single day, and a
 single failure greatly impacts our throughput for the day. The maximum number
 of PRs we can merge in a day is 7.</p>
-<h3><a class="header" href="#rollups" id="rollups">Rollups</a></h3>
+<h3 id="rollups"><a class="header" href="#rollups">Rollups</a></h3>
 <p>Some PRs don’t need the full test suite to be executed: trivial changes like
 typo fixes or README improvements <em>shouldn’t</em> break the build, and testing
 every single one of them for 2 to 3 hours is a big waste of time. To solve this
@@ -236,18 +236,18 @@ we do a &quot;rollup&quot;, a PR where we merge all the trivial PRs so they can 
 together. Rollups are created manually by a team member who uses their
 judgement to decide if a PR is risky or not, and are the best tool we have at
 the moment to keep the queue in a manageable state.</p>
-<h3><a class="header" href="#try-builds" id="try-builds">Try builds</a></h3>
+<h3 id="try-builds"><a class="header" href="#try-builds">Try builds</a></h3>
 <p>Sometimes we need a working compiler build before approving a PR, usually for
 <a href="https://perf.rust-lang.org">benchmarking</a> or <a href="https://github.com/rust-lang/crater">checking the impact of the PR across the
 ecosystem</a>. Bors supports creating them by pushing the merge commit on
 a separate branch (<code>try</code>), and they basically work the same as normal builds,
 without the actual merge at the end. Any number of try builds can happen at the
 same time, even if there is a normal PR in progress.</p>
-<h2><a class="header" href="#which-branches-we-test" id="which-branches-we-test">Which branches we test</a></h2>
+<h2 id="which-branches-we-test"><a class="header" href="#which-branches-we-test">Which branches we test</a></h2>
 <p>Our builders are defined in <code>src/ci/azure-pipelines/</code>, and they depend on the
 branch used for the build. Each job is configured in one of the top <code>.yml</code>
 files.</p>
-<h3><a class="header" href="#pr-builds" id="pr-builds">PR builds</a></h3>
+<h3 id="pr-builds"><a class="header" href="#pr-builds">PR builds</a></h3>
 <p>All the commits pushed in a PR run a limited set of tests: a job containing a
 bunch of lints plus a cross-compile check build to Windows mingw (without
 producing any artifacts) and the <code>x86_64-gnu-llvm-6.0</code> non-dist builder. Those
@@ -256,7 +256,7 @@ but they don’t cover other platforms at all. Unfortunately it would take too
 many resources to run the full test suite for each commit on every PR.</p>
 <p>Additionally, if the PR changes submodules the <code>x86_64-gnu-tools</code> non-dist
 builder is run.</p>
-<h3><a class="header" href="#the-try-branch" id="the-try-branch">The <code>try</code> branch</a></h3>
+<h3 id="the-try-branch"><a class="header" href="#the-try-branch">The <code>try</code> branch</a></h3>
 <p>On the main rust repo try builds produce just a Linux toolchain. Builds on
 those branches run a job containing the lint builder and both the dist and
 non-dist builders for <code>linux-x86_64</code>. Usually we don’t need <code>try</code> builds for
@@ -264,25 +264,25 @@ other platforms, but on the rare cases when this is needed we just add a
 temporary commit that changes the <code>src/ci/azure-pipelines/try.yml</code> file to
 enable the builders we need on that platform (disabling Linux to avoid wasting
 CI resources).</p>
-<h3><a class="header" href="#the-auto-branch" id="the-auto-branch">The <code>auto</code> branch</a></h3>
+<h3 id="the-auto-branch"><a class="header" href="#the-auto-branch">The <code>auto</code> branch</a></h3>
 <p>This branch is used by bors to run all the tests on a PR before merging it, so
 all the builders are enabled for it. bors will repeatedly force-push on it
 (every time a new commit is tested).</p>
-<h3><a class="header" href="#the-master-branch" id="the-master-branch">The <code>master</code> branch</a></h3>
+<h3 id="the-master-branch"><a class="header" href="#the-master-branch">The <code>master</code> branch</a></h3>
 <p>Since all the commits to <code>master</code> are fast-forwarded from the <code>auto</code> branch (if
 they pass all the tests there) we don’t need to build or test anything. A quick
 job is executed on each push to update toolstate (see the toolstate description
 below).</p>
-<h3><a class="header" href="#other-branches" id="other-branches">Other branches</a></h3>
+<h3 id="other-branches"><a class="header" href="#other-branches">Other branches</a></h3>
 <p>Other branches are just disabled and don’t run any kind of builds, since all
 the in-progress branches will eventually be tested in a PR. We try to encourage
 contributors to create branches on their own fork, but there is no way for us
 to disable that.</p>
-<h2><a class="header" href="#caching" id="caching">Caching</a></h2>
+<h2 id="caching"><a class="header" href="#caching">Caching</a></h2>
 <p>The main rust repository doesn’t use the native Azure Pipelines caching tools.
 All our caching is uploaded to an S3 bucket we control
 (<code>rust-lang-ci-sccache2</code>), and it’s used mainly for two things:</p>
-<h3><a class="header" href="#docker-images-caching" id="docker-images-caching">Docker images caching</a></h3>
+<h3 id="docker-images-caching"><a class="header" href="#docker-images-caching">Docker images caching</a></h3>
 <p>The Docker images we use to run most of the Linux-based builders take a <em>long</em>
 time to fully build: every time we need to build them (for example when the CI
 scripts change) we consistently reach the build timeout, forcing us to retry
@@ -293,21 +293,21 @@ can’t rely on a single cache for the images, otherwise builds on a branch woul
 override the cache for the others. Instead we store the images identifying them
 with a custom hash, made from the host’s Docker version and the contents of all
 the Dockerfiles and related scripts.</p>
-<h3><a class="header" href="#llvm-caching-with-sccache" id="llvm-caching-with-sccache">LLVM caching with sccache</a></h3>
+<h3 id="llvm-caching-with-sccache"><a class="header" href="#llvm-caching-with-sccache">LLVM caching with sccache</a></h3>
 <p>We build some C/C++ stuff during the build and we rely on <a href="https://github.com/mozilla/sccache">sccache</a> to cache
 intermediate LLVM artifacts. Sccache is a distributed ccache developed by
 Mozilla, and it can use an object storage bucket as the storage backend, like
 we do with our S3 bucket.</p>
-<h2><a class="header" href="#custom-tooling-around-ci" id="custom-tooling-around-ci">Custom tooling around CI</a></h2>
+<h2 id="custom-tooling-around-ci"><a class="header" href="#custom-tooling-around-ci">Custom tooling around CI</a></h2>
 <p>During the years we developed some custom tooling to improve our CI experience.</p>
-<h3><a class="header" href="#cancelbot-to-keep-the-queue-short" id="cancelbot-to-keep-the-queue-short">Cancelbot to keep the queue short</a></h3>
+<h3 id="cancelbot-to-keep-the-queue-short"><a class="header" href="#cancelbot-to-keep-the-queue-short">Cancelbot to keep the queue short</a></h3>
 <p>We have limited CI capacity on Azure Pipelines, and while that’s enough for a
 single build we can’t run more than one at the time. Unfortunately when a job
 fails the other jobs on the same build will continue to run, limiting the
 available capacity. To avoid the issue we have a tool called <a href="https://github.com/rust-lang/rust-central-station/tree/master/cancelbot">cancelbot</a> that
 runs in cron every 2 minutes and kills all the jobs not related to a running
 build through the API.</p>
-<h3><a class="header" href="#rust-log-analyzer-to-show-the-error-message-in-prs" id="rust-log-analyzer-to-show-the-error-message-in-prs">Rust Log Analyzer to show the error message in PRs</a></h3>
+<h3 id="rust-log-analyzer-to-show-the-error-message-in-prs"><a class="header" href="#rust-log-analyzer-to-show-the-error-message-in-prs">Rust Log Analyzer to show the error message in PRs</a></h3>
 <p>The build logs for <code>rust-lang/rust</code> are huge, and it’s not practical to find
 what caused the build to fail by looking at the logs. To improve the
 developers’ experience we developed a bot called <a href="https://github.com/rust-lang/rust-log-analyzer">Rust Log Analyzer</a> (RLA)
@@ -318,7 +318,7 @@ bunch of build failures to recognize which lines are common between builds and
 which are not. While the generated snippets can be weird sometimes, the bot is
 pretty good at identifying the relevant lines even if it’s an error we never
 saw before.</p>
-<h3><a class="header" href="#toolstate-to-support-allowed-failures" id="toolstate-to-support-allowed-failures">Toolstate to support allowed failures</a></h3>
+<h3 id="toolstate-to-support-allowed-failures"><a class="header" href="#toolstate-to-support-allowed-failures">Toolstate to support allowed failures</a></h3>
 <p>The <code>rust-lang/rust</code> repo doesn’t only test the compiler on its CI, but also
 all the tools distributed through rustup (like rls, rustfmt, clippy…). Since
 those tools rely on the compiler internals (which don’t have any kind of

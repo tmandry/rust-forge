@@ -167,11 +167,11 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#policy-on-broken-nightlies" id="policy-on-broken-nightlies">Policy on broken nightlies</a></h1>
+                        <h1 id="policy-on-broken-nightlies"><a class="header" href="#policy-on-broken-nightlies">Policy on broken nightlies</a></h1>
 <p>Sometimes the nightlies released automatically by our CI ends up being broken
 for some people or even everyone. This policy defines what the infra team
 response will be in those cases.</p>
-<h2><a class="header" href="#which-nightly-will-be-rolled-back" id="which-nightly-will-be-rolled-back">Which nightly will be rolled back</a></h2>
+<h2 id="which-nightly-will-be-rolled-back"><a class="header" href="#which-nightly-will-be-rolled-back">Which nightly will be rolled back</a></h2>
 <p>A nightly can only be rolled back in the following cases:</p>
 <ul>
 <li>If it contains destructive code, for example if the included compiler deletes
@@ -185,7 +185,7 @@ platforms anyway.</li>
 bug: those bugs are supposed to be caught by CI, and nightly can have compiler
 regressions anyway. There are no exceptions, even if big projects are broken
 because of this.</p>
-<h2><a class="header" href="#what-are-we-going-to-fix" id="what-are-we-going-to-fix">What are we going to fix</a></h2>
+<h2 id="what-are-we-going-to-fix"><a class="header" href="#what-are-we-going-to-fix">What are we going to fix</a></h2>
 <p>Once any member of the infra team decides to roll back a nightly under this
 policy we will roll back to the most recent working nightly. The roll back has
 to fix installing the nightly with rustup:</p>
