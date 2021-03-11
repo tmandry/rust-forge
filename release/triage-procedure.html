@@ -252,11 +252,9 @@ more ago (give or take a day).</p>
 <li>
 <p>If the author did what the PR was waiting on them for then update the
 label to S-waiting-on-review.</p>
-</li>
-<li>
-<p>If the author is a member of a Rust team (not working groups — teams like
-T-compiler, T-lang, T-rustdoc, etc.) then don't ping anyone.</p>
-<p>Otherwise, ping the author.</p>
+<p>Otherwise, if the author still needs to do something, then ping the author if
+they are <strong>not</strong> a member of a Rust team (does not include working groups —
+only teams like <code>T-compiler</code>, <code>T-lang</code>, <code>T-rustdoc</code>, etc.).</p>
 </li>
 <li>
 <p>Add the PR to your <a href="#triage-report">report</a>.</p>
