@@ -2798,8 +2798,9 @@ might one <em>not</em> want to install using those instructions?</p>
 demand. If you need to install Rust without access to the internet, <code>rustup</code>
 is not suitable.</li>
 <li>Preference for the system package manager. On Linux in particular, but also on
-macOS with <a href="http://brew.sh/">Homebrew</a>, and Windows with <a href="http://chocolatey.org/">Chocolatey</a> or <a href="https://scoop.sh/">Scoop</a>, developers sometimes
-prefer to install Rust with their platform's package manager.</li>
+macOS with <a href="http://brew.sh/">Homebrew</a>, <a href="https://www.macports.org/">MacPorts</a> or <a href="https://pkgsrc.joyent.com/install-on-osx/">pkgsrc</a>, and Windows with <a href="http://chocolatey.org/">Chocolatey</a>
+or <a href="https://scoop.sh/">Scoop</a>, developers sometimes prefer to install Rust with their platform's
+package manager.</li>
 <li>Preference against <code>curl | sh</code>. On Unix, we usually install <code>rustup</code> by
 running a shell script via <code>curl</code>. Some have concerns about the security of
 this arrangement and would prefer to download and run the installer
