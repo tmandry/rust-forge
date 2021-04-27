@@ -1885,10 +1885,10 @@ whether we have to comply with it.</p>
 <ul>
 <li>
 <p>Remove it from the database:</p>
-<pre><code>heroku run -a crates-io -- target/release/delete-crate [crate-name]
+<pre><code>heroku run -a crates-io -- target/release/crates-admin delete-crate [crate-name]
 </code></pre>
 <p>or</p>
-<pre><code>heroku run -a crates-io -- target/release/delete-version [crate-name] [version-number]
+<pre><code>heroku run -a crates-io -- target/release/crates-admin delete-version [crate-name] [version-number]
 </code></pre>
 </li>
 <li>
