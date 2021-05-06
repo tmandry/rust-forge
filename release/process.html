@@ -241,15 +241,32 @@ build was uploaded</li>
 <h2 id="master-bootstrap-update-t-1-day-wednesday"><a class="header" href="#master-bootstrap-update-t-1-day-wednesday">Master bootstrap update (T-1 day, Wednesday)</a></h2>
 <p>Send a PR to the master branch to:</p>
 <ul>
-<li>modify src/stage0.txt to bootstrap from yesterday's beta</li>
-<li>Remove <code>cfg(stage0)</code> annotated items</li>
-<li>Replace <code>cfg(not(stage0))</code> with nothing</li>
+<li>
+<p>Update <code>src/stage0.txt</code> to change <code>date</code> to &quot;YYYY-MM-DD&quot; where the date is
+the archive date when the beta build was uploaded.</p>
+</li>
+<li>
+<p>Remove references to the <code>bootstrap</code> and <code>not(bootstrap)</code> conditional
+compilation attributes. You can find all of them by installing <a href="https://github.com/burntsushi/ripgrep">ripgrep</a> and
+running this command:</p>
+<pre><code>rg '#!?\[.*\(bootstrap' -t rust
+</code></pre>
+<p>The general guidelines (both for <code>#[]</code> and <code>#![]</code>) are:</p>
+<ul>
+<li>Remove any item annotated with <code>#[cfg(bootstrap)]</code>.</li>
+<li>Remove any <code>#[cfg(not(bootstrap))]</code> attribute while keeping the item.</li>
+<li>Remove any <code>#[cfg_attr(bootstrap, $attr)]</code> attribute while keeping the item.</li>
+<li>Replace any <code>#[cfg_attr(not(bootstrap), doc=&quot;$doc&quot;)]</code> with <code>$doc</code> in the
+relevant documentation block (or in a new documentation block).</li>
+<li>Replace any <code>#[cfg_attr(not(bootstrap), $attr)]</code> with <code>#[$attr]</code>.</li>
+</ul>
+</li>
 </ul>
 <h2 id="release-day-thursday"><a class="header" href="#release-day-thursday">Release day (Thursday)</a></h2>
 <p>Decide on a time to do the release, T.</p>
 <ul>
 <li>
-<p><strong>T-30m</strong> - Run the following command in a shell with <a href="/infra/docs/aws-access.html#using-the-aws-cli">AWS
+<p><strong>T-50m</strong> - Run the following command in a shell with <a href="/infra/docs/aws-access.html#using-the-aws-cli">AWS
 credentials</a> in the <a href="https://github.com/rust-lang/simpleinfra">simpleinfra</a> repository:</p>
 <pre><code>./start-release.py prod stable
 </code></pre>
@@ -268,14 +285,12 @@ $ git push rust-lang 1.3.0
 on GitHub Actions on the master branch.</p>
 </li>
 <li>
-<p><strong>T-5m</strong> - Merge blog post.</p>
+<p><strong>T-2m</strong> - Merge blog post.</p>
 </li>
 <li>
 <p><strong>T</strong> - Tweet and post everything!</p>
 <ul>
 <li>Twitter <a href="https://twitter.com/rustlang">@rustlang</a></li>
-<li>Reddit <a href="https://www.reddit.com/r/rust/">/r/rust</a></li>
-<li><a href="https://news.ycombinator.com/">Hacker News</a></li>
 <li><a href="https://users.rust-lang.org/">Users forum</a></li>
 </ul>
 </li>
