@@ -4982,7 +4982,7 @@ $ git checkout origin/master -- RELEASES.md
 <p>Re-enable branch protection for the <code>stable</code> branch. Send a PR to rust-lang/rust
 on the stable branch making the following changes:</p>
 <ul>
-<li>Update <code>src/ci/run.sh</code> to pass <code>channel=stable</code>, not <code>channel=beta</code>.</li>
+<li>Update <code>src/ci/channel</code> to <code>stable</code></li>
 </ul>
 <p>Once the PR is sent, r+ it and give it a high <code>p=1000</code>.</p>
 <p>After the PR is merged you'll need to start a <strong>dev</strong> release. <a href="release//infra/docs/aws-access.html#using-the-aws-cli">Obtain AWS CLI
@@ -4996,34 +4996,24 @@ https://dev-static.rust-lang.org/dist/YYYY-MM-DD/index.html.</p>
 <pre><code class="language-sh">RUSTUP_DIST_SERVER=https://dev-static.rust-lang.org rustup update stable
 </code></pre>
 <h2 id="promote-master-to-beta-t-2-days-tuesday"><a class="header" href="#promote-master-to-beta-t-2-days-tuesday">Promote master to beta (T-2 days, Tuesday)</a></h2>
-<p>We need to find out the parent commit in which the PR opened last Monday merged.</p>
-<p>Go to that PR, and find the &quot;bors merged commit $SHA into rust-lang:master at the bottom.</p>
-<p>Locally, run <code>export BRANCH_POINT=`git rev-parse $SHA^`</code> in the rust-lang/rust
-checkout. This should be bors-authored merge into master of the PR before the
-version bump merged.</p>
-<p>Create a new branch on <code>rust-lang/cargo</code> for the new beta. Here, <code>rust-lang</code> is
-the remote for https://github.com/rust-lang/rust.git. Replace <code>YY</code> with the
-minor version of master. First determine the branch point for cargo in
-<code>rust-lang/rust</code>, and then create a new branch:</p>
-<pre><code class="language-sh">cd rust
-git fetch rust-lang
+<p>Gather the relevant information and push the new Cargo branch:</p>
+<pre><code class="language-sh">git fetch git@github.com:rust-lang/rust
+BRANCH_POINT=`git log --merges --first-parent --format=&quot;%P&quot; -1 master -- src/version | awk '{print($1)}'`
 NEW_BETA_VERSION=`git show $BRANCH_POINT:src/version`
 CARGO_SHA=`git rev-parse $BRANCH_POINT:src/tools/cargo`
+
 cd src/tools/cargo
 git branch rust-$NEW_BETA_VERSION $CARGO_SHA
-git push origin rust-$NEW_BETA_VERSION
+git push git@github.com:rust-lang/cargo rust-$NEW_BETA_VERSION
 </code></pre>
-<p>You'll need to temporarily disable branch protection on GitHub to push the new
-branch.</p>
 <p>Temporarily disable banch protection on GitHub for the <code>beta</code> branch of the Rust
 repo. Promote rust-lang/rust's master branch to beta as with yesterday:</p>
-<pre><code class="language-sh">$ git fetch rust-lang
-$ git push rust-lang $BRANCH_POINT:beta -f
+<pre><code class="language-sh">git push git@github.com:rust-lang/rust $BRANCH_POINT:beta -f
 </code></pre>
 <p>Re-enable branch protection on GitHub. Send a PR to the freshly created beta
 branch of rust-lang/rust which:</p>
 <ul>
-<li>Update src/stage0.txt
+<li>Update <code>src/stage0.txt</code>
 <ul>
 <li>Change <code>date</code> to &quot;YYYY-MM-DD&quot; where the date is the archive date the stable
 build was uploaded</li>
@@ -5032,7 +5022,7 @@ build was uploaded</li>
 <li>Uncomment <code>dev: 1</code></li>
 </ul>
 </li>
-<li>Update src/ci/run.sh to pass &quot;--release-channel=beta&quot;.</li>
+<li>Update <code>src/ci/channel</code> to <code>beta</code></li>
 </ul>
 <h2 id="master-bootstrap-update-t-1-day-wednesday"><a class="header" href="#master-bootstrap-update-t-1-day-wednesday">Master bootstrap update (T-1 day, Wednesday)</a></h2>
 <p>Send a PR to the master branch to:</p>
