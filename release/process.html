@@ -154,7 +154,10 @@ PR.</p>
 <p>Mark it as <code>rollup=never</code>, because if it lands in a rollup as <em>not</em> the first
 PR then other pull requests in that rollup will be incorrectly associated with
 the prior release.</p>
-<h2 id="promote-beta-to-stable-t-3-days-monday"><a class="header" href="#promote-beta-to-stable-t-3-days-monday">Promote beta to stable (T-3 days, Monday)</a></h2>
+<h2 id="promote-branches-t-3-days-monday"><a class="header" href="#promote-branches-t-3-days-monday">Promote branches (T-3 days, Monday)</a></h2>
+<p>Both promotions should happen on Monday. You can open both PRs at the same
+time, but make sure the stable promotion lands first.</p>
+<h3 id="beta-to-stable"><a class="header" href="#beta-to-stable">Beta to stable</a></h3>
 <p>Temporarily turn off GitHub branch protection for the <code>stable</code> branch in
 rust-lang/rust repo. In your local Rust repo:</p>
 <pre><code class="language-sh">$ git fetch origin
@@ -178,7 +181,7 @@ https://dev-static.rust-lang.org/dist/YYYY-MM-DD/index.html.</p>
 <p>Test rustup with:</p>
 <pre><code class="language-sh">RUSTUP_DIST_SERVER=https://dev-static.rust-lang.org rustup update stable
 </code></pre>
-<h2 id="promote-master-to-beta-t-2-days-tuesday"><a class="header" href="#promote-master-to-beta-t-2-days-tuesday">Promote master to beta (T-2 days, Tuesday)</a></h2>
+<h3 id="master-to-beta"><a class="header" href="#master-to-beta">Master to beta</a></h3>
 <p>Gather the relevant information and push the new Cargo branch:</p>
 <pre><code class="language-sh">git fetch git@github.com:rust-lang/rust
 BRANCH_POINT=`git log --merges --first-parent --format=&quot;%P&quot; -1 master -- src/version | awk '{print($1)}'`
@@ -190,29 +193,17 @@ git branch rust-$NEW_BETA_VERSION $CARGO_SHA
 git push git@github.com:rust-lang/cargo rust-$NEW_BETA_VERSION
 </code></pre>
 <p>Temporarily disable banch protection on GitHub for the <code>beta</code> branch of the Rust
-repo. Promote rust-lang/rust's master branch to beta as with yesterday:</p>
+repo. Promote rust-lang/rust's master branch to beta as you did for stable:</p>
 <pre><code class="language-sh">git push git@github.com:rust-lang/rust $BRANCH_POINT:beta -f
 </code></pre>
 <p>Re-enable branch protection on GitHub. Send a PR to the freshly created beta
-branch of rust-lang/rust which:</p>
-<ul>
-<li>Update <code>src/stage0.txt</code>
-<ul>
-<li>Change <code>date</code> to &quot;YYYY-MM-DD&quot; where the date is the archive date the stable
-build was uploaded</li>
-<li>Change <code>rustc</code> to &quot;X.Y.Z&quot; where that's the version of rustc you just build</li>
-<li>Comment <code>rustfmt: nightly-YYYY-MM-DD</code></li>
-<li>Uncomment <code>dev: 1</code></li>
-</ul>
-</li>
-<li>Update <code>src/ci/channel</code> to <code>beta</code></li>
-</ul>
-<h2 id="master-bootstrap-update-t-1-day-wednesday"><a class="header" href="#master-bootstrap-update-t-1-day-wednesday">Master bootstrap update (T-1 day, Wednesday)</a></h2>
+branch of rust-lang/rust which updates <code>src/ci/channel</code> to <code>beta</code>.</p>
+<h2 id="master-bootstrap-update-t-2-day-tuesday"><a class="header" href="#master-bootstrap-update-t-2-day-tuesday">Master bootstrap update (T-2 day, Tuesday)</a></h2>
 <p>Send a PR to the master branch to:</p>
 <ul>
 <li>
-<p>Update <code>src/stage0.txt</code> to change <code>date</code> to &quot;YYYY-MM-DD&quot; where the date is
-the archive date when the beta build was uploaded.</p>
+<p>Run <code>./x.py run src/tools/bump-stage0</code> to update the bootstrap compiler to
+the beta you created yesterday.</p>
 </li>
 <li>
 <p>Remove references to the <code>bootstrap</code> and <code>not(bootstrap)</code> conditional
@@ -282,8 +273,8 @@ git push git@github.com:rust-lang/cargo.git $CARGO_VERSION
 </code></pre>
 </li>
 <li>
-<p><strong>T+1hr</strong> Send a PR to the beta branch to comment out <code>dev: 1</code> again and
-update the date to download from (modifying <code>src/stage0.txt</code>).</p>
+<p><strong>T+1hr</strong> Send a PR to the beta branch running <code>./x.py run src/tools/bump-stage0</code> to bump the boostrap compiler to the stable you
+just released.</p>
 </li>
 </ul>
 <p>Bask in your success.</p>
