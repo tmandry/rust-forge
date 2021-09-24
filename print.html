@@ -4288,7 +4288,7 @@ platform’s custom Docker container. This has a lot of advantages for us:</p>
 underlying image (switching from the trusty image to xenial was painless for
 us).</li>
 <li>We can use ancient build environments to ensure maximum binary compatibility,
-for example <a href="https://github.com/rust-lang/rust/blob/master/src/ci/docker/dist-x86_64-linux/Dockerfile">using CentOS 5</a> on our Linux builders.</li>
+for example <a href="https://github.com/rust-lang/rust/blob/master/src/ci/docker/host-x86_64/dist-x86_64-linux/Dockerfile">using CentOS 5</a> on our Linux builders.</li>
 <li>We can avoid reinstalling tools (like QEMU or the Android emulator) every
 time thanks to Docker image caching.</li>
 <li>Users can run the same tests in the same environment locally by just running
