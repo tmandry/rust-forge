@@ -3702,11 +3702,22 @@ end-failure:
 </code></pre>
 <p>Make sure to replace <code>[ALL, OTHER, JOBS]</code> with a list of all the jobs you
 want to gate on.</p>
+<p>These jobs need to run on specific branches (<code>auto</code> and <code>try</code>) so it's necessary
+to add those branches to the list of branches tested by the CI provider. For GitHub
+Actions that looks like this:</p>
+<pre><code class="language-yaml">on:
+   push:
+       branches: [ 
+         auto,   # Added for bors
+         try     # Added for bors
+      ]
+</code></pre>
 </li>
 <li>
-<p>Add the repository name to the <code>permissions!</code> macro in the <a href="https://github.com/rust-lang/team/blob/master/src/permissions.rs">team
+<p>Add the repository name to the bors permissions array in the <a href="https://github.com/rust-lang/team/blob/52b4370214e1c8eabe483f3a26f22733d94b326f/config.toml#L18-L37">team
 repository</a>, and grant the <code>bors.REPOSITORY.review</code>
-permission to the right people.</p>
+permission to the right teams or people. You can see an example of adding
+bors permissions to a team <a href="https://github.com/rust-lang/team/blob/a1532ec2b08c9d40c0a2c7643ffe72de9671e265/teams/wg-compiler-performance.toml#L25-L26">here</a>.</p>
 </li>
 <li>
 <p>Add the repository to the <code>repositories</code> map in <a href="https://github.com/rust-lang/simpleinfra/blob/master/terraform/bors/_config.auto.tfvars">the Terraform configuration
@@ -3715,7 +3726,12 @@ bors execution environment.</p>
 </li>
 <li>
 <p>Add the repository to the <a href="https://github.com/rust-lang/homu/blob/master/cfg.production.toml">Bors configuration</a>, taking
-inspiration from other repositories.</p>
+inspiration from other repositories. Note that the environment variables used
+in that config will be set automatically as long as you completed step 3 above.</p>
+</li>
+<li>
+<p>Give it a test by commenting <code>@bors ping</code> in any PR. If you get a response back,
+you can then try to approve the PR with <code>@bors r+</code>.</p>
 </li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="crater-agents"><a class="header" href="#crater-agents">Crater agents</a></h1>
