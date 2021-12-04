@@ -141,32 +141,65 @@
 <p>There's a steady trickle of patches that need to be ported to the beta and stable branch.
 Only a few people are even aware of the process, but this is actually something anybody can do.</p>
 <h2 id="beta-backporting-in-rust-langrust"><a class="header" href="#beta-backporting-in-rust-langrust">Beta backporting in <code>rust-lang/rust</code></a></h2>
-<p>When somebody identifies a PR that should be backported to beta they tag it
-<a href="https://github.com/rust-lang/rust/pulls?q=is%3Apr+is%3Aclosed+label%3Abeta-nominated"><code>beta-nominated</code></a>.
-That means they want one of the teams to evaluate whether the patch should be
-backported. Also consider applying the <code>T-*</code> tag for a specific team, and the
-<code>I-*-nominated</code> tag for that team; that'll <em>really</em> get their attention.
-Anybody with triage access is free to make these tags. Backports are mostly
-done to fix regressions. If the team thinks it should be backported they'll
-then additionally tag it
-<a href="https://github.com/rust-lang/rust/pulls?q=is%3Apr+is%3Aclosed+label%3Abeta-accepted"><code>beta-accepted</code></a>.</p>
-<p>At that point the PR is ready to be backported. So the list of patches ready for
-a backport is those tagged
-<a href="https://github.com/rust-lang/rust/pulls?q=is%3Apr+label%3Abeta-accepted+is%3Aclosed+label%3Abeta-nominated">both <code>beta-nominated</code> and <code>beta-accepted</code></a>.</p>
-<p>So now somebody needs to go through those PR's and cherry-pick their commits to
-the beta branch. Those cherry-picks are then submitted as a PR <em>against the
-beta branch</em>, with a title started with <code>[beta]</code> (so reviewers can see its
-specialness). The OP of that PR should contain links to all the PRs being
-backported. <a href="https://github.com/rust-lang/rust/pull/64097">Here's an example</a>.
-Anybody can make these PRs!</p>
-<p>After that a reviewer needs to verify that the backport looks correct, that it's
-submitted to the beta branch, and then approve via <code>@bors: r+</code>. Finally, they
-need to follow the links to the original PRs and <em>remove the <code>beta-nominated</code>
-tag</em> (people forget to do this a lot). This last step indicates that the
-backport has been completed, so the <code>beta-nominated</code> and <code>beta-accepted</code> tags
-have three states.</p>
-<p>If, on the other hand, a backport is declined the <code>beta-nominated</code> label is
-removed, closing the procedure.</p>
+<p>Backports of PRs to the beta branch are usually only done to fix regressions.
+Getting a PR backported to the beta branch involves the following process:</p>
+<ol>
+<li>
+<p>Add the label <a href="https://github.com/rust-lang/rust/pulls?q=is%3Apr+label%3Abeta-nominated+-label%3Abeta-accepted"><code>beta-nominated</code></a> to the PR to be backported.
+This marks the PR as in the state that it needs attention from the appropriate team to decide if it should be backported.
+Anybody with triage access is free to add this label.</p>
+</li>
+<li>
+<p>If the team thinks it should be backported, then they should add the <a href="https://github.com/rust-lang/rust/pulls?q=is%3Apr+label%3Abeta-accepted"><code>beta-accepted</code></a> label.
+Otherwise they should remove the nominated label.</p>
+</li>
+<li>
+<p>Occasionally someone will make a beta rollup PR.
+This is often done by the release team, but it can be done by anyone.
+The process here is:</p>
+<ol>
+<li>
+<p>Create a local branch off the <code>beta</code> branch.</p>
+</li>
+<li>
+<p>Cherry-pick all of the PRs that have both <a href="https://github.com/rust-lang/rust/pulls?q=is%3Apr+is%3Aclosed+label%3Abeta-accepted+label%3Abeta-nominated"><code>beta-nominated</code> and <code>beta-accepted</code></a> labels.
+It is usually preferred to not include PRs that have not been merged in case there are any last minute changes, or it fails when running the full CI tests.</p>
+</li>
+<li>
+<p>(Recommended) Run some tests locally.
+It is not uncommon that the backports may not apply cleanly, or the UI tests need to be re-blessed if there are differences in the output.</p>
+</li>
+<li>
+<p>Open a PR <strong>against the beta branch</strong> with a title that starts with <code>[beta]</code> (so reviewers can see its specialness).</p>
+</li>
+<li>
+<p>List all of the PRs being backported in the PR description.
+<a href="https://github.com/rust-lang/rust/pull/64097">Here's an example</a>.</p>
+</li>
+<li>
+<p>Go through all of the PRs being backported and:</p>
+<ul>
+<li>Change the milestone to the correct value for the beta release.</li>
+<li>Remove the <code>beta-nominated</code> label.
+This indicates that the backport has been completed.</li>
+</ul>
+<p>If there are a lot of PRs, this can be done quickly by opening the <a href="https://github.com/rust-lang/rust/pulls?q=is%3Apr+is%3Aclosed+label%3Abeta-accepted+label%3Abeta-nominated">nominated + accepted</a> query, check all the PRs being backported, and use the &quot;Milestones&quot; and &quot;Label&quot; drop-downs to modify multiple PRs in bulk.</p>
+<p>This last step can be done before or after the beta PR has been merged, though it can be easy to forget if you wait for it to be merged.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>A reviewer (typically from the release team) needs to verify that the backport looks correct and that it's submitted to the beta branch.
+They will then approve with <code>@bors r+ rollup=never</code> (to avoid it being rolled up on accident).
+If the author of the PR has r+ rights, and has not made significant changes while backporting, they can also self-approve the PR.</p>
+</li>
+</ol>
+<p>In summary, there are three states that a PR can go through:</p>
+<ol>
+<li><code>beta-nominated</code>: Needs the team's attention.</li>
+<li><code>beta-nominated</code> + <code>beta-accepted</code>: Waiting to be backported.</li>
+<li><code>beta-accepted</code>: Backport complete.</li>
+</ol>
 <h2 id="stable-backporting-in-rust-langrust"><a class="header" href="#stable-backporting-in-rust-langrust">Stable backporting in <code>rust-lang/rust</code></a></h2>
 <p>Backports to the stable branch work exactly the same as beta ones, labels have
 just a slightly different name: <code>stable-nominated</code> identifies a PR to be
