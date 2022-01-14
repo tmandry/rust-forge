@@ -173,22 +173,14 @@ https://dev-static.rust-lang.org/dist/YYYY-MM-DD/index.html.</p>
 <pre><code class="language-sh">RUSTUP_DIST_SERVER=https://dev-static.rust-lang.org rustup update stable
 </code></pre>
 <h3 id="master-to-beta"><a class="header" href="#master-to-beta">Master to beta</a></h3>
-<p>Gather the relevant information and push the new Cargo branch:</p>
-<pre><code class="language-sh">git fetch git@github.com:rust-lang/rust
-BRANCH_POINT=`git log --merges --first-parent --format=&quot;%P&quot; -1 master -- src/version | awk '{print($1)}'`
-NEW_BETA_VERSION=`git show $BRANCH_POINT:src/version`
-CARGO_SHA=`git rev-parse $BRANCH_POINT:src/tools/cargo`
-
-cd src/tools/cargo
-git branch rust-$NEW_BETA_VERSION $CARGO_SHA
-git push git@github.com:rust-lang/cargo rust-$NEW_BETA_VERSION
+<p>Run this command in the <a href="https://github.com/rust-lang/simpleinfra">simpleinfra</a> repository, while in a rust-lang/rust
+checkout (branch doesn't matter):</p>
+<pre><code class="language-sh">../simpleinfra/release-scripts/master-to-beta.sh
 </code></pre>
-<p>Temporarily disable banch protection on GitHub for the <code>beta</code> branch of the Rust
-repo. Promote rust-lang/rust's master branch to beta as you did for stable:</p>
-<pre><code class="language-sh">git push git@github.com:rust-lang/rust $BRANCH_POINT:beta -f
-</code></pre>
-<p>Re-enable branch protection on GitHub. Send a PR to the freshly created beta
-branch of rust-lang/rust which updates <code>src/ci/channel</code> to <code>beta</code>.</p>
+<p>This script sets up the new rust-lang/cargo branch and force pushes the appropriate
+commit to rust-lang/rust's beta branch.</p>
+<p>Once that's done, send a PR to the freshly created beta branch of rust-lang/rust
+which updates <code>src/ci/channel</code> to <code>beta</code>.</p>
 <h2 id="master-bootstrap-update-t-2-day-tuesday"><a class="header" href="#master-bootstrap-update-t-2-day-tuesday">Master bootstrap update (T-2 day, Tuesday)</a></h2>
 <p>Send a PR to the master branch to:</p>
 <ul>
@@ -246,20 +238,10 @@ on GitHub Actions on the master branch.</p>
 </ul>
 </li>
 <li>
-<p><strong>T+5m</strong> - Release and tag Cargo. In the rust-lang/rust repository on the
-<strong>stable branch</strong>:</p>
-<pre><code class="language-sh"># Remote &quot;rust-lang&quot; is github.com/rust-lang/rust.git
-git fetch rust-lang
-git checkout rust-lang/stable
-# Make sure submodules are at the correct revision.
-git submodule update
-cd src/tools/cargo
-# Publish to crates.io. This will publish internal dependencies first (if
-# necessary), then publish Cargo itself.
-./publish.py
-CARGO_VERSION=$(cargo read-manifest | jq -r .version)
-git tag -u FA1BE5FE $CARGO_VERSION
-git push git@github.com:rust-lang/cargo.git $CARGO_VERSION
+<p><strong>T+5m</strong> - Release and tag Cargo. From a rust-lang/rust checkout (script will
+checkout the stable branch automatically), run the following script from
+<a href="https://github.com/rust-lang/simpleinfra">simpleinfra</a>.</p>
+<pre><code class="language-sh">../simpleinfra/release-scripts/tag-cargo.sh
 </code></pre>
 </li>
 <li>
