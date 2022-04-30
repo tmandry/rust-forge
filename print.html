@@ -161,7 +161,7 @@ are generated.
 Avoid changing the "Current Release Versions" without also updating the selector
 in `js/index.js`.
 -->
-<table><thead><tr><th>Channel</th><th>Version</th><th>Release Date</th></tr></thead><tbody>
+<table><thead><tr><th>Channel</th><th>Version</th><th>Will be stable on</th></tr></thead><tbody>
 <tr><td>Stable</td><td><span id="stable-version"></span></td><td><span id="stable-release-date"></span></td></tr>
 <tr><td>Beta</td><td><span id="beta-version"></span></td><td><span id="beta-release-date"></span></td></tr>
 <tr><td>Nightly</td><td><span id="nightly-version"></span></td><td><span id="nightly-release-date"></span></td></tr>
@@ -851,7 +851,7 @@ request review from someone else. This will also reassign the PR.</p>
 <h2 id="bors"><a class="header" href="#bors">bors</a></h2>
 <p>We never merge PRs directly. Instead, we use bors. A qualified
 reviewer with bors privileges (e.g., a <a href="compiler/./membership.html">compiler
-contributor</a> will leave a comment like <code>@bors r+</code>.
+contributor</a>) will leave a comment like <code>@bors r+</code>.
 This indicates that they approve the PR.</p>
 <p>People with bors privileges may also leave a <code>@bors r=username</code>
 command. This indicates that the PR was already approved by
@@ -929,7 +929,7 @@ fairness with other PRs.</p>
 <li>P-high issue fixes</li>
 <li>Toolstate fixes</li>
 <li>Beta-nominated PRs</li>
-<li>Submodule updates</li>
+<li>Submodule/Subtree updates</li>
 </ul>
 </li>
 <li>5+
