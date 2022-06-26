@@ -143,7 +143,7 @@ documentation useful for members of <a href="https://rust-lang.org">The Rust Pro
 you find any mistakes, typos, or want to add to the Rust Forge, feel free to
 file an issue or PR on the <a href="https://github.com/rust-lang/rust-forge">Rust Forge GitHub</a>.</p>
 <h3 id="help-wanted"><a class="header" href="#help-wanted">Help Wanted</a></h3>
-<p>Want to contribute to Rust, but don't know where to start? Here's a list of 
+<p>Want to contribute to Rust, but don't know where to start? Here's a list of
 <code>rust-lang</code> projects that have marked issues that need help and issues that are
 good first issues.</p>
 <table><thead><tr><th>Repository</th><th>Description</th></tr></thead><tbody>
@@ -160,12 +160,14 @@ are generated.
 Avoid changing the "Current Release Versions" without also updating the selector
 in `js/index.js`.
 -->
-<table><thead><tr><th>Channel</th><th>Version</th><th>Will be stable on</th></tr></thead><tbody>
-<tr><td>Stable</td><td><span id="stable-version"></span></td><td><span id="stable-release-date"></span></td></tr>
-<tr><td>Beta</td><td><span id="beta-version"></span></td><td><span id="beta-release-date"></span></td></tr>
-<tr><td>Nightly</td><td><span id="nightly-version"></span></td><td><span id="nightly-release-date"></span></td></tr>
-<tr><td>Nightly +1</td><td><span id="next-version"></span></td><td><span id="next-release-date"></span></td></tr>
+<table><thead><tr><th>Channel</th><th>Version</th><th>Will be stable on</th><th>Will branch from master on</th></tr></thead><tbody>
+<tr><td>Stable</td><td><span id="stable-version"></span></td><td><span id="stable-release-date"></span></td><td><span id="stable-branch-date"></span></td></tr>
+<tr><td>Beta</td><td><span id="beta-version"></span></td><td><span id="beta-release-date"></span></td><td><span id="beta-branch-date"></span></td></tr>
+<tr><td>Nightly</td><td><span id="nightly-version"></span></td><td><span id="nightly-release-date"></span></td><td><span id="nightly-branch-date"></span></td></tr>
+<tr><td>Nightly +1</td><td><span id="next-version"></span></td><td><span id="next-release-date"></span></td><td><span id="next-branch-date"></span></td></tr>
 </tbody></table>
+<p>See the <a href="./release/process.html">release process</a> documentation for details on
+what happens in the days leading up to a release.</p>
 <h3 id="no-tools-breakage-week"><a class="header" href="#no-tools-breakage-week">No Tools Breakage Week</a></h3>
 <p>To ensure the beta release includes all the tools, no <a href="./infra/toolstate.html">tool breakages</a> are
 allowed in the week before the beta cutoff (except for nightly-only tools).</p>
