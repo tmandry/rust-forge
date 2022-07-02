@@ -200,15 +200,13 @@
 <p>A lot of PRs to the standard library are adding new impls for already stable traits, which can break consumers in many weird and wonderful ways. The following sections gives some examples of breakage from new trait impls that may not be obvious just from the change made to the standard library.</p>
 <h4 id="inference-breaks-when-a-second-generic-impl-is-introduced"><a class="header" href="#inference-breaks-when-a-second-generic-impl-is-introduced">Inference breaks when a second generic impl is introduced</a></h4>
 <p>Rust will use the fact that there's only a single impl for a generic trait during inference. This breaks once a second impl makes the type of that generic ambiguous. Say we have:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// in `std`
 impl From&lt;&amp;str&gt; for Arc&lt;str&gt; { .. }
 <span class="boring">}
 </span></code></pre></pre>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// in an external `lib`
 let b = Arc::from(&quot;a&quot;);
@@ -219,8 +217,7 @@ let b = Arc::from(&quot;a&quot;);
 + impl From&lt;&amp;str&gt; for Arc&lt;String&gt; { .. }
 </code></pre>
 <p>then</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let b = Arc::from(&quot;a&quot;);
 <span class="boring">}
@@ -229,8 +226,7 @@ let b = Arc::from(&quot;a&quot;);
 <p>This kind of breakage can be ok, but a <a href="https://github.com/rust-lang/crater"><code>crater</code></a> run should estimate the scope.</p>
 <h4 id="deref-coercion-breaks-when-a-new-impl-is-introduced"><a class="header" href="#deref-coercion-breaks-when-a-new-impl-is-introduced">Deref coercion breaks when a new impl is introduced</a></h4>
 <p>Rust will use deref coercion to find a valid trait impl if the arguments don't type check directly. This only seems to occur if there's a single impl so introducing a new one may break consumers relying on deref coercion. Say we have:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// in `std`
 impl Add&lt;&amp;str&gt; for String { .. }
@@ -238,8 +234,7 @@ impl Add&lt;&amp;str&gt; for String { .. }
 impl Deref for String { type Target = str; .. }
 <span class="boring">}
 </span></code></pre></pre>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// in an external `lib`
 let a = String::from(&quot;a&quot;);
@@ -253,8 +248,7 @@ let c = a + &amp;b;
 + impl Add&lt;char&gt; for String { .. }
 </code></pre>
 <p>then</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let c = a + &amp;b;
 <span class="boring">}
@@ -275,8 +269,7 @@ let c = a + &amp;b;
 <p>Specialization is currently unstable. You can track its progress <a href="https://github.com/rust-lang/rust/issues/31844">here</a>.</p>
 <p>We try to avoid leaning on specialization too heavily, limiting its use to optimizing specific implementations. These specialized optimizations use a private trait to find the correct implementation, rather than specializing the public method itself. Any use of specialization that changes how methods are dispatched for external callers should be carefully considered.</p>
 <p>As an example of how to use specialization in the standard library, consider the case of creating an <code>Rc&lt;[T]&gt;</code> from a <code>&amp;[T]</code>:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>impl&lt;T: Clone&gt; From&lt;&amp;[T]&gt; for Rc&lt;[T]&gt; {
     #[inline]
@@ -287,8 +280,7 @@ let c = a + &amp;b;
 <span class="boring">}
 </span></code></pre></pre>
 <p>It would be nice to have an optimized implementation for the case where <code>T: Copy</code>:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>impl&lt;T: Copy&gt; From&lt;&amp;[T]&gt; for Rc&lt;[T]&gt; {
     #[inline]
@@ -299,8 +291,7 @@ let c = a + &amp;b;
 <span class="boring">}
 </span></code></pre></pre>
 <p>Unfortunately we couldn't have both of these impls normally, because they'd overlap. This is where private specialization can be used to choose the right implementation internally. In this case, we use a trait called <code>RcFromSlice</code> that switches the implementation:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>impl&lt;T: Clone&gt; From&lt;&amp;[T]&gt; for Rc&lt;[T]&gt; {
     #[inline]
@@ -341,8 +332,7 @@ impl&lt;T: Copy&gt; RcFromSlice&lt;T&gt; for Rc&lt;[T]&gt; {
 <p>A generic <code>Type&lt;T&gt;</code> that manually implements <code>Drop</code> should consider whether a <code>#[may_dangle]</code> attribute is appropriate on <code>T</code>. The <a href="https://doc.rust-lang.org/nomicon/dropck.html">Nomicon</a> has some details on what <code>#[may_dangle]</code> is all about.</p>
 <p>If a generic <code>Type&lt;T&gt;</code> has a manual drop implementation that may also involve dropping <code>T</code> then dropck needs to know about it. If <code>Type&lt;T&gt;</code>'s ownership of <code>T</code> is expressed through types that don't drop <code>T</code> themselves such as <code>ManuallyDrop&lt;T&gt;</code>, <code>*mut T</code>, or <code>MaybeUninit&lt;T&gt;</code> then <code>Type&lt;T&gt;</code> also <a href="https://github.com/rust-lang/rfcs/blob/master/text/0769-sound-generic-drop.md#phantom-data">needs a <code>PhantomData&lt;T&gt;</code> field</a> to tell dropck that <code>T</code> may be dropped. Types in the standard library that use the internal <code>Unique&lt;T&gt;</code> pointer type don't need a <code>PhantomData&lt;T&gt;</code> marker field. That's taken care of for them by <code>Unique&lt;T&gt;</code>.</p>
 <p>As a real-world example of where this can go wrong, consider an <code>OptionCell&lt;T&gt;</code> that looks something like this:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>struct OptionCell&lt;T&gt; {
     is_init: bool,

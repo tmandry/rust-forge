@@ -147,12 +147,13 @@ file an issue or PR on the <a href="https://github.com/rust-lang/rust-forge">Rus
 <p>Want to contribute to Rust, but don't know where to start? Here's a list of
 <code>rust-lang</code> projects that have marked issues that need help and issues that are
 good first issues.</p>
-<table><thead><tr><th>Repository</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Repository</th><th>Description</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/rust-lang/rust/issues?q=is%3Aopen+is%3Aissue+label%3AE-help-wanted+no%3Aassignee">rust</a></td><td>The Rust Language &amp; Compiler</td></tr>
 <tr><td><a href="https://github.com/rust-lang/cargo/issues?q=is%3Aopen+is%3Aissue+label%3AE-help-wanted+no%3Aassignee">cargo</a></td><td>The Rust package manager</td></tr>
 <tr><td><a href="https://github.com/rust-lang/crates.io/issues?q=is%3Aopen+is%3Aissue+label%3AE-help-wanted+no%3Aassignee">crates.io</a></td><td>Source code for <a href="https://crates.io">crates.io</a></td></tr>
 <tr><td><a href="https://github.com/rust-lang/www.rust-lang.org/issues?q=is%3Aopen+label%3A%22good+first+issue%22+no%3Aassignee">www.rust-lang.org</a></td><td>The Rust website</td></tr>
 </tbody></table>
+</div>
 <h3 id="current-release-versions"><a class="header" href="#current-release-versions">Current Release Versions</a></h3>
 <!-- All `<span id="..."></span>` elements are filled at run time when a reader
 visits the website. Please refer to `js/index.js` for how these values
@@ -161,21 +162,23 @@ are generated.
 Avoid changing the "Current Release Versions" without also updating the selector
 in `js/index.js`.
 -->
-<table><thead><tr><th>Channel</th><th>Version</th><th>Will be stable on</th><th>Will branch from master on</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Channel</th><th>Version</th><th>Will be stable on</th><th>Will branch from master on</th></tr></thead><tbody>
 <tr><td>Stable</td><td><span id="stable-version"></span></td><td><span id="stable-release-date"></span></td><td><span id="stable-branch-date"></span></td></tr>
 <tr><td>Beta</td><td><span id="beta-version"></span></td><td><span id="beta-release-date"></span></td><td><span id="beta-branch-date"></span></td></tr>
 <tr><td>Nightly</td><td><span id="nightly-version"></span></td><td><span id="nightly-release-date"></span></td><td><span id="nightly-branch-date"></span></td></tr>
 <tr><td>Nightly +1</td><td><span id="next-version"></span></td><td><span id="next-release-date"></span></td><td><span id="next-branch-date"></span></td></tr>
 </tbody></table>
+</div>
 <p>See the <a href="./release/process.html">release process</a> documentation for details on
 what happens in the days leading up to a release.</p>
 <h3 id="no-tools-breakage-week"><a class="header" href="#no-tools-breakage-week">No Tools Breakage Week</a></h3>
 <p>To ensure the beta release includes all the tools, no <a href="./infra/toolstate.html">tool breakages</a> are
 allowed in the week before the beta cutoff (except for nightly-only tools).</p>
-<table><thead><tr><th>Beta Cut</th><th>No Breakage Week</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Beta Cut</th><th>No Breakage Week</th></tr></thead><tbody>
 <tr><td><span id="nightly-cycle"></span></td><td><span id="nightly-timespan"></span></td></tr>
 <tr><td><span id="next-cycle"></span></td><td><span id="next-timespan"></span></td></tr>
 </tbody></table>
+</div>
 <h3 id="external-links"><a class="header" href="#external-links">External Links</a></h3>
 <ul>
 <li><a href="https://rustc-dev-guide.rust-lang.org/appendix/bibliography.html">Bibliography</a> of research papers and other projects that influenced Rust.</li>
@@ -3037,7 +3040,7 @@ tables below, the <code>.asc</code> files are the signatures.</p>
 <!-- FIXME: Show this sentence again once we've found a quick way to display the archives.
 Past releases can be found in [the archives].
 -->
-<table><thead><tr><th>platform</th><th>stable (1.62.0)</th><th>beta</th><th>nightly</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>platform</th><th>stable (1.62.0)</th><th>beta</th><th>nightly</th></tr></thead><tbody>
 <tr><td><code>aarch64-apple-darwin</code></td><td><a href="https://static.rust-lang.org/dist/rust-1.62.0-aarch64-apple-darwin.pkg">pkg</a> <br> <a href="https://static.rust-lang.org/dist/rust-1.62.0-aarch64-apple-darwin.pkg.asc">pkg.asc</a></td><td><a href="https://static.rust-lang.org/dist/rust-beta-aarch64-apple-darwin.pkg">pkg</a> <br> <a href="https://static.rust-lang.org/dist/rust-beta-aarch64-apple-darwin.pkg.asc">pkg.asc</a></td><td><a href="https://static.rust-lang.org/dist/rust-nightly-aarch64-apple-darwin.pkg">pkg</a> <br> <a href="https://static.rust-lang.org/dist/rust-nightly-aarch64-apple-darwin.pkg.asc">pkg.asc</a></td></tr>
 <tr><td><code>aarch64-pc-windows-msvc</code></td><td><a href="https://static.rust-lang.org/dist/rust-1.62.0-aarch64-pc-windows-msvc.msi">msi</a> <br> <a href="https://static.rust-lang.org/dist/rust-1.62.0-aarch64-pc-windows-msvc.msi.asc">msi.asc</a></td><td><a href="https://static.rust-lang.org/dist/rust-beta-aarch64-pc-windows-msvc.msi">msi</a> <br> <a href="https://static.rust-lang.org/dist/rust-beta-aarch64-pc-windows-msvc.msi.asc">msi.asc</a></td><td><a href="https://static.rust-lang.org/dist/rust-nightly-aarch64-pc-windows-msvc.msi">msi</a> <br> <a href="https://static.rust-lang.org/dist/rust-nightly-aarch64-pc-windows-msvc.msi.asc">msi.asc</a></td></tr>
 <tr><td><code>aarch64-unknown-linux-gnu</code></td><td><a href="https://static.rust-lang.org/dist/rust-1.62.0-aarch64-unknown-linux-gnu.tar.gz">tar.gz</a> <br> <a href="https://static.rust-lang.org/dist/rust-1.62.0-aarch64-unknown-linux-gnu.tar.gz.asc">tar.gz.asc</a></td><td><a href="https://static.rust-lang.org/dist/rust-beta-aarch64-unknown-linux-gnu.tar.gz">tar.gz</a> <br> <a href="https://static.rust-lang.org/dist/rust-beta-aarch64-unknown-linux-gnu.tar.gz.asc">tar.gz.asc</a></td><td><a href="https://static.rust-lang.org/dist/rust-nightly-aarch64-unknown-linux-gnu.tar.gz">tar.gz</a> <br> <a href="https://static.rust-lang.org/dist/rust-nightly-aarch64-unknown-linux-gnu.tar.gz.asc">tar.gz.asc</a></td></tr>
@@ -3066,13 +3069,14 @@ Past releases can be found in [the archives].
 <tr><td><code>x86_64-unknown-linux-musl</code></td><td><a href="https://static.rust-lang.org/dist/rust-1.62.0-x86_64-unknown-linux-musl.tar.gz">tar.gz</a> <br> <a href="https://static.rust-lang.org/dist/rust-1.62.0-x86_64-unknown-linux-musl.tar.gz.asc">tar.gz.asc</a></td><td><a href="https://static.rust-lang.org/dist/rust-beta-x86_64-unknown-linux-musl.tar.gz">tar.gz</a> <br> <a href="https://static.rust-lang.org/dist/rust-beta-x86_64-unknown-linux-musl.tar.gz.asc">tar.gz.asc</a></td><td><a href="https://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-linux-musl.tar.gz">tar.gz</a> <br> <a href="https://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-linux-musl.tar.gz.asc">tar.gz.asc</a></td></tr>
 <tr><td><code>x86_64-unknown-netbsd</code></td><td><a href="https://static.rust-lang.org/dist/rust-1.62.0-x86_64-unknown-netbsd.tar.gz">tar.gz</a> <br> <a href="https://static.rust-lang.org/dist/rust-1.62.0-x86_64-unknown-netbsd.tar.gz.asc">tar.gz.asc</a></td><td><a href="https://static.rust-lang.org/dist/rust-beta-x86_64-unknown-netbsd.tar.gz">tar.gz</a> <br> <a href="https://static.rust-lang.org/dist/rust-beta-x86_64-unknown-netbsd.tar.gz.asc">tar.gz.asc</a></td><td><a href="https://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-netbsd.tar.gz">tar.gz</a> <br> <a href="https://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-netbsd.tar.gz.asc">tar.gz.asc</a></td></tr>
 </tbody></table>
+</div>
 <h2 id="source-code"><a class="header" href="#source-code">Source code</a></h2>
-<table><thead><tr><th>Channel</th><th>Archives + Signatures</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Channel</th><th>Archives + Signatures</th></tr></thead><tbody>
 <tr><td>stable (1.62.0)</td><td><a href="https://static.rust-lang.org/dist/rustc-1.62.0-src.tar.gz">tar.gz</a> <br> <a href="https://static.rust-lang.org/dist/rustc-1.62.0-src.tar.gz.asc">tar.gz.asc</a></td></tr>
 <tr><td>beta</td><td><a href="https://static.rust-lang.org/dist/rustc-beta-src.tar.gz">tar.gz</a> <br> <a href="https://static.rust-lang.org/dist/rustc-beta-src.tar.gz.asc">tar.gz.asc</a></td></tr>
 <tr><td>nightly</td><td><a href="https://static.rust-lang.org/dist/rustc-nightly-src.tar.gz">tar.gz</a> <br> <a href="https://static.rust-lang.org/dist/rustc-nightly-src.tar.gz.asc">tar.gz.asc</a></td></tr>
 </tbody></table>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="the-rust-release-channel-layout"><a class="header" href="#the-rust-release-channel-layout">The Rust Release Channel Layout</a></h1>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="the-rust-release-channel-layout"><a class="header" href="#the-rust-release-channel-layout">The Rust Release Channel Layout</a></h1>
 <p><strong>NOTE</strong> This document should be considered incomplete and descriptive rather
 than normative. Do not rely on anything described herein to be fully correct or
 a definition of how things <em>should</em> be done.</p>
@@ -4817,15 +4821,13 @@ It has details on current project groups, upcoming meetings, and the status of t
 <p>A lot of PRs to the standard library are adding new impls for already stable traits, which can break consumers in many weird and wonderful ways. The following sections gives some examples of breakage from new trait impls that may not be obvious just from the change made to the standard library.</p>
 <h4 id="inference-breaks-when-a-second-generic-impl-is-introduced"><a class="header" href="#inference-breaks-when-a-second-generic-impl-is-introduced">Inference breaks when a second generic impl is introduced</a></h4>
 <p>Rust will use the fact that there's only a single impl for a generic trait during inference. This breaks once a second impl makes the type of that generic ambiguous. Say we have:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// in `std`
 impl From&lt;&amp;str&gt; for Arc&lt;str&gt; { .. }
 <span class="boring">}
 </span></code></pre></pre>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// in an external `lib`
 let b = Arc::from(&quot;a&quot;);
@@ -4836,8 +4838,7 @@ let b = Arc::from(&quot;a&quot;);
 + impl From&lt;&amp;str&gt; for Arc&lt;String&gt; { .. }
 </code></pre>
 <p>then</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let b = Arc::from(&quot;a&quot;);
 <span class="boring">}
@@ -4846,8 +4847,7 @@ let b = Arc::from(&quot;a&quot;);
 <p>This kind of breakage can be ok, but a <a href="https://github.com/rust-lang/crater"><code>crater</code></a> run should estimate the scope.</p>
 <h4 id="deref-coercion-breaks-when-a-new-impl-is-introduced"><a class="header" href="#deref-coercion-breaks-when-a-new-impl-is-introduced">Deref coercion breaks when a new impl is introduced</a></h4>
 <p>Rust will use deref coercion to find a valid trait impl if the arguments don't type check directly. This only seems to occur if there's a single impl so introducing a new one may break consumers relying on deref coercion. Say we have:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// in `std`
 impl Add&lt;&amp;str&gt; for String { .. }
@@ -4855,8 +4855,7 @@ impl Add&lt;&amp;str&gt; for String { .. }
 impl Deref for String { type Target = str; .. }
 <span class="boring">}
 </span></code></pre></pre>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// in an external `lib`
 let a = String::from(&quot;a&quot;);
@@ -4870,8 +4869,7 @@ let c = a + &amp;b;
 + impl Add&lt;char&gt; for String { .. }
 </code></pre>
 <p>then</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let c = a + &amp;b;
 <span class="boring">}
@@ -4892,8 +4890,7 @@ let c = a + &amp;b;
 <p>Specialization is currently unstable. You can track its progress <a href="https://github.com/rust-lang/rust/issues/31844">here</a>.</p>
 <p>We try to avoid leaning on specialization too heavily, limiting its use to optimizing specific implementations. These specialized optimizations use a private trait to find the correct implementation, rather than specializing the public method itself. Any use of specialization that changes how methods are dispatched for external callers should be carefully considered.</p>
 <p>As an example of how to use specialization in the standard library, consider the case of creating an <code>Rc&lt;[T]&gt;</code> from a <code>&amp;[T]</code>:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>impl&lt;T: Clone&gt; From&lt;&amp;[T]&gt; for Rc&lt;[T]&gt; {
     #[inline]
@@ -4904,8 +4901,7 @@ let c = a + &amp;b;
 <span class="boring">}
 </span></code></pre></pre>
 <p>It would be nice to have an optimized implementation for the case where <code>T: Copy</code>:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>impl&lt;T: Copy&gt; From&lt;&amp;[T]&gt; for Rc&lt;[T]&gt; {
     #[inline]
@@ -4916,8 +4912,7 @@ let c = a + &amp;b;
 <span class="boring">}
 </span></code></pre></pre>
 <p>Unfortunately we couldn't have both of these impls normally, because they'd overlap. This is where private specialization can be used to choose the right implementation internally. In this case, we use a trait called <code>RcFromSlice</code> that switches the implementation:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>impl&lt;T: Clone&gt; From&lt;&amp;[T]&gt; for Rc&lt;[T]&gt; {
     #[inline]
@@ -4958,8 +4953,7 @@ impl&lt;T: Copy&gt; RcFromSlice&lt;T&gt; for Rc&lt;[T]&gt; {
 <p>A generic <code>Type&lt;T&gt;</code> that manually implements <code>Drop</code> should consider whether a <code>#[may_dangle]</code> attribute is appropriate on <code>T</code>. The <a href="https://doc.rust-lang.org/nomicon/dropck.html">Nomicon</a> has some details on what <code>#[may_dangle]</code> is all about.</p>
 <p>If a generic <code>Type&lt;T&gt;</code> has a manual drop implementation that may also involve dropping <code>T</code> then dropck needs to know about it. If <code>Type&lt;T&gt;</code>'s ownership of <code>T</code> is expressed through types that don't drop <code>T</code> themselves such as <code>ManuallyDrop&lt;T&gt;</code>, <code>*mut T</code>, or <code>MaybeUninit&lt;T&gt;</code> then <code>Type&lt;T&gt;</code> also <a href="https://github.com/rust-lang/rfcs/blob/master/text/0769-sound-generic-drop.md#phantom-data">needs a <code>PhantomData&lt;T&gt;</code> field</a> to tell dropck that <code>T</code> may be dropped. Types in the standard library that use the internal <code>Unique&lt;T&gt;</code> pointer type don't need a <code>PhantomData&lt;T&gt;</code> marker field. That's taken care of for them by <code>Unique&lt;T&gt;</code>.</p>
 <p>As a real-world example of where this can go wrong, consider an <code>OptionCell&lt;T&gt;</code> that looks something like this:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>struct OptionCell&lt;T&gt; {
     is_init: bool,

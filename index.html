@@ -146,12 +146,13 @@ file an issue or PR on the <a href="https://github.com/rust-lang/rust-forge">Rus
 <p>Want to contribute to Rust, but don't know where to start? Here's a list of
 <code>rust-lang</code> projects that have marked issues that need help and issues that are
 good first issues.</p>
-<table><thead><tr><th>Repository</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Repository</th><th>Description</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/rust-lang/rust/issues?q=is%3Aopen+is%3Aissue+label%3AE-help-wanted+no%3Aassignee">rust</a></td><td>The Rust Language &amp; Compiler</td></tr>
 <tr><td><a href="https://github.com/rust-lang/cargo/issues?q=is%3Aopen+is%3Aissue+label%3AE-help-wanted+no%3Aassignee">cargo</a></td><td>The Rust package manager</td></tr>
 <tr><td><a href="https://github.com/rust-lang/crates.io/issues?q=is%3Aopen+is%3Aissue+label%3AE-help-wanted+no%3Aassignee">crates.io</a></td><td>Source code for <a href="https://crates.io">crates.io</a></td></tr>
 <tr><td><a href="https://github.com/rust-lang/www.rust-lang.org/issues?q=is%3Aopen+label%3A%22good+first+issue%22+no%3Aassignee">www.rust-lang.org</a></td><td>The Rust website</td></tr>
 </tbody></table>
+</div>
 <h3 id="current-release-versions"><a class="header" href="#current-release-versions">Current Release Versions</a></h3>
 <!-- All `<span id="..."></span>` elements are filled at run time when a reader
 visits the website. Please refer to `js/index.js` for how these values
@@ -160,21 +161,23 @@ are generated.
 Avoid changing the "Current Release Versions" without also updating the selector
 in `js/index.js`.
 -->
-<table><thead><tr><th>Channel</th><th>Version</th><th>Will be stable on</th><th>Will branch from master on</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Channel</th><th>Version</th><th>Will be stable on</th><th>Will branch from master on</th></tr></thead><tbody>
 <tr><td>Stable</td><td><span id="stable-version"></span></td><td><span id="stable-release-date"></span></td><td><span id="stable-branch-date"></span></td></tr>
 <tr><td>Beta</td><td><span id="beta-version"></span></td><td><span id="beta-release-date"></span></td><td><span id="beta-branch-date"></span></td></tr>
 <tr><td>Nightly</td><td><span id="nightly-version"></span></td><td><span id="nightly-release-date"></span></td><td><span id="nightly-branch-date"></span></td></tr>
 <tr><td>Nightly +1</td><td><span id="next-version"></span></td><td><span id="next-release-date"></span></td><td><span id="next-branch-date"></span></td></tr>
 </tbody></table>
+</div>
 <p>See the <a href="./release/process.html">release process</a> documentation for details on
 what happens in the days leading up to a release.</p>
 <h3 id="no-tools-breakage-week"><a class="header" href="#no-tools-breakage-week">No Tools Breakage Week</a></h3>
 <p>To ensure the beta release includes all the tools, no <a href="./infra/toolstate.html">tool breakages</a> are
 allowed in the week before the beta cutoff (except for nightly-only tools).</p>
-<table><thead><tr><th>Beta Cut</th><th>No Breakage Week</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Beta Cut</th><th>No Breakage Week</th></tr></thead><tbody>
 <tr><td><span id="nightly-cycle"></span></td><td><span id="nightly-timespan"></span></td></tr>
 <tr><td><span id="next-cycle"></span></td><td><span id="next-timespan"></span></td></tr>
 </tbody></table>
+</div>
 <h3 id="external-links"><a class="header" href="#external-links">External Links</a></h3>
 <ul>
 <li><a href="https://rustc-dev-guide.rust-lang.org/appendix/bibliography.html">Bibliography</a> of research papers and other projects that influenced Rust.</li>
