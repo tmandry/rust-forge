@@ -3325,7 +3325,7 @@ those that span multiple repos are set in <code>_global.json</code></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="handling-of-tools-embedded-in-the-rustc-repo-toolstate"><a class="header" href="#handling-of-tools-embedded-in-the-rustc-repo-toolstate">Handling of tools embedded in the rustc repo (&quot;toolstate&quot;)</a></h1>
 <p>The Rust repository contains several external tools and documents as git
-submodules (e.g. clippy, rls, the <a href="https://doc.rust-lang.org/book/">Book</a>, the <a href="https://doc.rust-lang.org/reference/">Reference</a>). Many of those are
+submodules (e.g. miri, rls, the <a href="https://doc.rust-lang.org/book/">Book</a>, the <a href="https://doc.rust-lang.org/reference/">Reference</a>). Many of those are
 very tightly coupled to the compiler and depend on internal APIs that change all
 the time, but they are not actually essential to get the compiler itself to
 work. To make API changes less painful, these tools are allowed to &quot;break&quot;
@@ -3356,7 +3356,7 @@ cut. (See the <a href="infra/../index.html">Forge index</a> for when the next be
 happening.)</li>
 </ul>
 <p>At the time of writing, the following tools are &quot;nightly only&quot;: rustc-dev-guide,
-miri, embedded-book.</p>
+miri, RLS, embedded-book.</p>
 </li>
 </ul>
 <h2 id="updating-the-toolstate-repository"><a class="header" href="#updating-the-toolstate-repository">Updating the toolstate repository</a></h2>
@@ -3376,9 +3376,11 @@ break.</p>
 <p>Run <code>git submodule update --remote path/to/submodule</code>, add the updates, make
 sure the tests pass, commit, and send a pull request. The path is from the
 root of the rust repository, so for example, the reference is
-<code>src/doc/reference</code> and rustfmt is <code>src/tools/rustfmt</code>.</p>
+<code>src/doc/reference</code> and rls is <code>src/tools/rls</code>.</p>
 <p>While not required, <a href="https://github.com/ehuss/subup">subup</a> may assist you with this.</p>
 <h2 id="adding-a-tool"><a class="header" href="#adding-a-tool">Adding a tool</a></h2>
+<p><strong>NOTE</strong>: We are trying to switch away from submodules and toolstate over time.
+Consider adding a subtree instead of a submodule: <a href="https://github.com/rust-lang/rust/issues/70651">#70651</a></p>
 <p>To add a new tool to be tracked, the following steps must be taken:</p>
 <ol>
 <li>Create a PR to rust-lang/rust that adds the submodule along with any
