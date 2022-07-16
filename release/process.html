@@ -149,38 +149,28 @@ the prior release.</p>
 <p>Both promotions should happen on Monday. You can open both PRs at the same
 time, but make sure the stable promotion lands first.</p>
 <h3 id="beta-to-stable"><a class="header" href="#beta-to-stable">Beta to stable</a></h3>
-<p>Temporarily turn off GitHub branch protection for the <code>stable</code> branch in
-rust-lang/rust repo. In your local Rust repo:</p>
-<pre><code class="language-sh">$ git fetch origin
-$ git push origin origin/beta:stable -f
-# make sure that the release notes file is as fresh as possible
-$ git checkout origin/master -- RELEASES.md
+<p><a href="/infra/docs/aws-access.html#using-the-aws-cli">Obtain AWS CLI credentials</a> and run this command from the <a href="https://github.com/rust-lang/simpleinfra">simpleinfra</a> repository:</p>
+<pre><code>./release-scripts/promote-release.py branches
 </code></pre>
-<p>Re-enable branch protection for the <code>stable</code> branch. Send a PR to rust-lang/rust
-on the stable branch making the following changes:</p>
-<ul>
-<li>Update <code>src/ci/channel</code> to <code>stable</code></li>
-</ul>
-<p>Once the PR is sent, r+ it and give it a high <code>p=1000</code>.</p>
-<p>After the PR is merged you'll need to start a <strong>dev</strong> release. <a href="/infra/docs/aws-access.html#using-the-aws-cli">Obtain AWS CLI
-credentials</a> and run this command from the <a href="https://github.com/rust-lang/simpleinfra">simpleinfra</a> repository:</p>
-<pre><code>./start-release.py dev stable
-</code></pre>
-<p>As soon as this build is done create a blog post on Inside Rust asking for
-testing. The index is
-https://dev-static.rust-lang.org/dist/YYYY-MM-DD/index.html.</p>
-<p>Test rustup with:</p>
-<pre><code class="language-sh">RUSTUP_DIST_SERVER=https://dev-static.rust-lang.org rustup update stable
-</code></pre>
-<h3 id="master-to-beta"><a class="header" href="#master-to-beta">Master to beta</a></h3>
-<p>Run this command in the <a href="https://github.com/rust-lang/simpleinfra">simpleinfra</a> repository, while in a rust-lang/rust
-checkout (branch doesn't matter):</p>
-<pre><code class="language-sh">../simpleinfra/release-scripts/master-to-beta.sh
-</code></pre>
-<p>This script sets up the new rust-lang/cargo branch and force pushes the appropriate
-commit to rust-lang/rust's beta branch.</p>
 <p>Once that's done, send a PR to the freshly created beta branch of rust-lang/rust
 which updates <code>src/ci/channel</code> to <code>beta</code>.</p>
+<p>Also send a PR to rust-lang/rust targeting the new stable branch making the
+following changes:</p>
+<ul>
+<li>Update <code>src/ci/channel</code> to <code>stable</code></li>
+<li>Update release notes to the latest available copy
+<ul>
+<li>e.g., <code>git checkout origin/master -- RELEASES.md</code></li>
+</ul>
+</li>
+</ul>
+<p>Once the PRs are sent, r+ both and give them a high <code>p=1000</code> (for stable) and
+<code>p=10</code> for beta.</p>
+<p>After the PR is merged you'll need to start a <strong>dev</strong> release. <a href="/infra/docs/aws-access.html#using-the-aws-cli">Obtain AWS CLI
+credentials</a> and run this command from the <a href="https://github.com/rust-lang/simpleinfra">simpleinfra</a> repository:</p>
+<pre><code># The date here is of the actual, production, stable release. Used for the blog post.
+./release-scripts/promote-release.py release dev stable --release-date YYYY-MM-DD
+</code></pre>
 <h2 id="master-bootstrap-update-t-2-day-tuesday"><a class="header" href="#master-bootstrap-update-t-2-day-tuesday">Master bootstrap update (T-2 day, Tuesday)</a></h2>
 <p>Send a PR to the master branch to:</p>
 <ul>
@@ -211,21 +201,12 @@ relevant documentation block (or in a new documentation block).</li>
 <li>
 <p><strong>T-50m</strong> - Run the following command in a shell with <a href="/infra/docs/aws-access.html#using-the-aws-cli">AWS
 credentials</a> in the <a href="https://github.com/rust-lang/simpleinfra">simpleinfra</a> repository:</p>
-<pre><code>./start-release.py prod stable
+<pre><code>./release-scripts/promote-release.py release prod stable
 </code></pre>
 <p>That'll, in the background, schedule the <code>promote-release</code> binary to run on
 the production secrets (not the dev secrets). That'll sign everything, upload
 it, update the html index pages, and invalidate the CDN. Note that this takes
-about 30 minutes right now. Logs are in <code>/opt/rcs/logs</code>.</p>
-</li>
-<li>
-<p><strong>T-10m</strong> - Locally, tag the new release and upload it. Use &quot;x.y.z release&quot; as
-the commit message.</p>
-<pre><code class="language-sh">$ git tag -u FA1BE5FE 1.3.0 $COMMIT_SHA
-$ git push rust-lang 1.3.0
-</code></pre>
-<p>After this <a href="https://github.com/rust-lang/thanks/actions/workflows/ci.yml">Update thanks.rust-lang.org</a> by triggering a build
-on GitHub Actions on the master branch.</p>
+about 30 minutes right now. This will also push a signed tag to rust-lang/rust.</p>
 </li>
 <li>
 <p><strong>T-2m</strong> - Merge blog post.</p>
@@ -255,8 +236,10 @@ just released.</p>
 PR on the <code>stable</code> branch of the <a href="https://github.com/rust-lang/rust">rust-lang/rust</a> repository. Once the commit
 is merged, issue the following command in a shell with <a href="/infra/docs/aws-access.html#using-the-aws-cli">AWS
 credentials</a> on the <a href="https://github.com/rust-lang/simpleinfra">simpleinfra</a> repository:</p>
-<pre><code>./start-release.py dev stable --bypass-startup-checks
+<pre><code>./release-scripts/promote-release.py release dev stable --bypass-startup-checks
 </code></pre>
+<p>You'll also want to update the previously published blog post and internals post
+with the new information.</p>
 <h2 id="publishing-a-nightly-based-off-a-try-build"><a class="header" href="#publishing-a-nightly-based-off-a-try-build">Publishing a nightly based off a try build</a></h2>
 <p>Sometimes a PR requires testing how it behaves when downloaded from rustup, for
 example after a manifest change. In those cases it's possible to publish a new
@@ -264,7 +247,7 @@ nightly based off that PR on dev-static.rust-lang.org.</p>
 <p>Once the try build finishes grab the merge commit SHA and run the following
 command in a shell with <a href="/infra/docs/aws-access.html#using-the-aws-cli">AWS credentials</a> on the <a href="https://github.com/rust-lang/simpleinfra">simpleinfra</a>
 repository:</p>
-<pre><code class="language-sh">./start-release.py dev nightly $MERGE_COMMIT_SHA
+<pre><code class="language-sh">./release-scripts/promote-release.py release dev nightly $MERGE_COMMIT_SHA
 </code></pre>
 <p>When the release process end you'll be able to install the new nightly with:</p>
 <pre><code class="language-sh">RUSTUP_DIST_SERVER=https://dev-static.rust-lang.org rustup toolchain install nightly
