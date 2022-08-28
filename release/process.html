@@ -153,7 +153,13 @@ time, but make sure the stable promotion lands first.</p>
 <pre><code>./release-scripts/promote-release.py branches
 </code></pre>
 <p>Once that's done, send a PR to the freshly created beta branch of rust-lang/rust
-which updates <code>src/ci/channel</code> to <code>beta</code>.</p>
+with two commits:</p>
+<ul>
+<li>The changes caused by running <code>./x.py run replace-version-placeholder</code></li>
+<li>An update of <code>src/ci/channel</code> to <code>beta</code></li>
+</ul>
+<p>The version placeholder replacement changes must be in a separate commit so
+that they can be cherry picked to the master branch.</p>
 <p>Also send a PR to rust-lang/rust targeting the new stable branch making the
 following changes:</p>
 <ul>
@@ -174,6 +180,12 @@ credentials</a> and run this command from the <a href="https://github.com/rust-l
 <h2 id="master-bootstrap-update-t-2-day-tuesday"><a class="header" href="#master-bootstrap-update-t-2-day-tuesday">Master bootstrap update (T-2 day, Tuesday)</a></h2>
 <p>Send a PR to the master branch to:</p>
 <ul>
+<li>
+<p>Cherry pick the commit that ran <code>./x.py run replace-version-placeholder</code>
+from the now merged beta branch PR. Do not re-run the tool as there might
+have been other stabilizations on master which were not included in the
+branched beta, so may not be attributed to the current release.</p>
+</li>
 <li>
 <p>Run <code>./x.py run src/tools/bump-stage0</code> to update the bootstrap compiler to
 the beta you created yesterday.</p>

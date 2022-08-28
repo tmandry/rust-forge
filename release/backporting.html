@@ -166,6 +166,9 @@ The process here is:</p>
 It is usually preferred to not include PRs that have not been merged in case there are any last minute changes, or it fails when running the full CI tests.</p>
 </li>
 <li>
+<p>Run <code>./x.py run replace-version-placeholder</code> and if there were any changes, put them into a new commit.</p>
+</li>
+<li>
 <p>(Recommended) Run some tests locally.
 It is not uncommon that the backports may not apply cleanly, or the UI tests need to be re-blessed if there are differences in the output.</p>
 </li>
