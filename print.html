@@ -5502,8 +5502,18 @@ queue has been merged.</p>
 <h2 id="making-a-rollup"><a class="header" href="#making-a-rollup">Making a Rollup</a></h2>
 <ol>
 <li>
-<p>Using the interface on <a href="https://bors.rust-lang.org/queue/rust">Homu queue</a>, select a few pull requests and then use
-&quot;rollup&quot; button to make one. (The text about fairness can be ignored.)</p>
+<p>Using the interface on <a href="https://bors.rust-lang.org/queue/rust">Homu queue</a>, select pull requests and then
+use &quot;rollup&quot; button to make a rollup pull request. (The text about
+fairness can be ignored.)
+<strong>Important note</strong>:  consider for addition PRs marked as
+<code>rollup=always</code>, <code>rollup=maybe</code> and <code>rollup=iffy</code>, based on the
+review policies of <a href="release/../compiler/reviews.html#rollups">the Rollups section</a>.  Be extra careful when
+deciding what to include, in particular on <code>rollup=maybe</code> and
+<code>rollup=iffy</code> PRs. We should try as much as possible to avoid risking
+and hit regressions (bugs or perf).  Also consider that contributors
+often forget to tag things with rollup=never, when they should have
+done so, so when PRs are not explicitly tagged with rollup, be extra
+careful.</p>
 </li>
 <li>
 <p>Run the following command in the pull request thread:</p>
