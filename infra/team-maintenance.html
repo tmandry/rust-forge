@@ -166,12 +166,9 @@ long-term goal is to centralize on the team repo.</p>
 <a href="https://github.com/orgs/rust-lang-nursery/teams">rust-lang-nursery/TEAM</a> teams on github must be updated</li>
 <li>the
 <a href="https://internals.rust-lang.org/admin/groups/custom">internals discussion board has per-team groups</a></li>
-<li>the list of reviewers highfive uses is set in <a href="https://github.com/rust-lang/highfive/tree/master/highfive/configs">rust-lang/highfive</a>
-<ul>
-<li>the configs are set per-repo; some teams are listed in <code>rust.json</code>, whereas
-those that span multiple repos are set in <code>_global.json</code></li>
-</ul>
-</li>
+<li>if the member is going to join the review rotation, they will need to be
+added to the <code>[assign.owners]</code> section of <code>triagebot.toml</code> of the repos
+where they will be reviewing</li>
 </ul>
 <h3 id="team-member-departure"><a class="header" href="#team-member-departure">Team member departure</a></h3>
 <p>Remove the team member from any and all places:</p>
@@ -181,6 +178,7 @@ those that span multiple repos are set in <code>_global.json</code></li>
 <li>The <a href="https://github.com/orgs/rust-lang/teams">GitHub team</a>, <a href="https://github.com/orgs/rust-lang-nursery/teams">GitHub nursery team</a></li>
 <li><a href="https://github.com/rust-lang/team/tree/master/teams">team repo</a></li>
 <li><a href="https://github.com/rust-lang/rust/blob/master/src/tools/publish_toolstate.py">toolstate notifications</a></li>
+<li><code>triagebot.toml</code> files of all repos they were involved in</li>
 </ul>
 
                     </main>

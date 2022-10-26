@@ -176,8 +176,8 @@ careful.</p>
 </code></pre>
 </li>
 <li>
-<p>If the rollup fails, use the logs rust-highfive (really it is
-rust-log-analyzer) provides to bisect the failure to a specific PR and do
+<p>If the rollup fails, use the logs rust-log-analyzer
+provides to bisect the failure to a specific PR and do
 <code>@bors r-</code>. If the PR is running, you need to do <code>@bors r- retry</code>. Otherwise,
 your rollup succeeded. If it did, proceed to the next rollup (every now and
 then let <code>rollup=never</code> and toolstate PRs progress).</p>
@@ -205,7 +205,7 @@ interest of time you can do so sometimes after you've made the rollup PR.</li>
 <h2 id="failed-rollups"><a class="header" href="#failed-rollups">Failed rollups</a></h2>
 <p>If the rollup has failed, run the <code>@bors retry</code> command if the
 failure was spurious (e.g. due to a network problem or a timeout). If it wasn't spurious,
-find the offending PR and throw it out by copying a link to the rust-highfive comment,
+find the offending PR and throw it out by copying a link to the rust-logs-analyzer comment,
 and writing <code>Failed in &lt;link_to_comment&gt;, @bors r-</code>. Hopefully,
 the author or reviewer will give feedback to get the PR fixed or confirm that it's not
 at fault. The failed rollup PR can be closed.</p>

@@ -951,7 +951,7 @@ to the nomination with an explanation and will remove the nomination label.</li>
 <p>Every PR that lands in the compiler and its associated crates must be
 reviewed by at least one person who is knowledgeable with the code in
 question.</p>
-<p>When a PR is opened, you can request a reviewer by including <code>r? @username</code> in the PR description. If you don't do so, the highfive bot
+<p>When a PR is opened, you can request a reviewer by including <code>r? @username</code> in the PR description. If you don't do so, rustbot
 will automatically assign someone.</p>
 <p>It is common to leave a <code>r? @username</code> comment at some later point to
 request review from someone else. This will also reassign the PR.</p>
@@ -1326,7 +1326,7 @@ team as a whole.</li>
 </ul>
 <p>It also implies some obligations (in some cases, optional obligations):</p>
 <ul>
-<li>Contributors will be asked if they wish to be added to highfive rotation.</li>
+<li>Contributors will be asked if they wish to be added to the reviewer rotation.</li>
 <li>Contributors are held to a higher standard than ordinary folk when
 it comes to the <a href="https://www.rust-lang.org/policies/code-of-conduct">Code of Conduct</a>.</li>
 </ul>
@@ -3304,6 +3304,10 @@ your own work, please let the infrastructure team know.</p>
 <p><a href="https://github.com/rust-lang/highfive">Highfive</a> is a bot
 (<a href="https://github.com/rust-highfive">bot user account</a>) which welcomes newcomers
 and assigns reviewers.</p>
+<blockquote>
+<p><strong>Note</strong>: Highfive is currently being replaced by <a href="infra/service-infrastructure.html#rustbot">rustbot</a>. This
+service will be shut down in the future once the migration is complete.</p>
+</blockquote>
 <h2 id="rust-log-analyzer"><a class="header" href="#rust-log-analyzer">Rust Log Analyzer</a></h2>
 <p>The <a href="https://github.com/rust-lang/rust-log-analyzer">Rust Log Analyzer</a>
 analyzes CI build logs to extract error messages and posts them to the pull
@@ -3414,12 +3418,9 @@ long-term goal is to centralize on the team repo.</p>
 <a href="https://github.com/orgs/rust-lang-nursery/teams">rust-lang-nursery/TEAM</a> teams on github must be updated</li>
 <li>the
 <a href="https://internals.rust-lang.org/admin/groups/custom">internals discussion board has per-team groups</a></li>
-<li>the list of reviewers highfive uses is set in <a href="https://github.com/rust-lang/highfive/tree/master/highfive/configs">rust-lang/highfive</a>
-<ul>
-<li>the configs are set per-repo; some teams are listed in <code>rust.json</code>, whereas
-those that span multiple repos are set in <code>_global.json</code></li>
-</ul>
-</li>
+<li>if the member is going to join the review rotation, they will need to be
+added to the <code>[assign.owners]</code> section of <code>triagebot.toml</code> of the repos
+where they will be reviewing</li>
 </ul>
 <h3 id="team-member-departure"><a class="header" href="#team-member-departure">Team member departure</a></h3>
 <p>Remove the team member from any and all places:</p>
@@ -3429,6 +3430,7 @@ those that span multiple repos are set in <code>_global.json</code></li>
 <li>The <a href="https://github.com/orgs/rust-lang/teams">GitHub team</a>, <a href="https://github.com/orgs/rust-lang-nursery/teams">GitHub nursery team</a></li>
 <li><a href="https://github.com/rust-lang/team/tree/master/teams">team repo</a></li>
 <li><a href="https://github.com/rust-lang/rust/blob/master/src/tools/publish_toolstate.py">toolstate notifications</a></li>
+<li><code>triagebot.toml</code> files of all repos they were involved in</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="handling-of-tools-embedded-in-the-rustc-repo-toolstate"><a class="header" href="#handling-of-tools-embedded-in-the-rustc-repo-toolstate">Handling of tools embedded in the rustc repo (&quot;toolstate&quot;)</a></h1>
 <p>The Rust repository contains several external git submodules (e.g. the <a href="https://doc.rust-lang.org/book/">Book</a>,
@@ -4983,9 +4985,9 @@ It has details on current project groups, upcoming meetings, and the status of t
 <li>Final Comment Period (FCP). Coordinated by <a href="https://github.com/rust-lang/rfcbot-rs"><code>rfcbot</code></a> that gives relevant teams a chance to review RFCs and PRs.</li>
 </ul>
 <h2 id="if-youre-ever-unsure"><a class="header" href="#if-youre-ever-unsure">If you’re ever unsure…</a></h2>
-<p>Maintaining the standard library can feel like a daunting responsibility! Through <a href="https://github.com/rust-lang/highfive"><code>highfive</code></a>, the automated reviewer assignment, you’ll find yourself dropped into a lot of new contexts.</p>
+<p>Maintaining the standard library can feel like a daunting responsibility! Through automated reviewer assignment via <a href="https://github.com/rust-lang/triagebot/wiki/Assignment"><code>triagebot</code></a>, you’ll find yourself dropped into a lot of new contexts.</p>
 <p>Ping the <code>@rust-lang/libs</code> team on GitHub anytime. We’re all here to help!</p>
-<p>If you don’t think you’re the best person to review a PR then use <a href="https://github.com/rust-lang/highfive"><code>highfive</code></a> to assign it to somebody else.</p>
+<p>If you don’t think you’re the best person to review a PR then use <a href="https://github.com/rust-lang/triagebot/wiki/Assignment"><code>triagebot</code></a> to assign it to somebody else.</p>
 <h2 id="finding-reviews-waiting-for-your-input"><a class="header" href="#finding-reviews-waiting-for-your-input">Finding reviews waiting for your input</a></h2>
 <p>Please remember to regularly check https://rfcbot.rs/. Click on any occurrence of your nickname to go to a page like https://rfcbot.rs/fcp/SimonSapin that only shows the reviews that are waiting for your input.</p>
 <h2 id="reviewing-prs"><a class="header" href="#reviewing-prs">Reviewing PRs</a></h2>
@@ -5516,8 +5518,8 @@ careful.</p>
 </code></pre>
 </li>
 <li>
-<p>If the rollup fails, use the logs rust-highfive (really it is
-rust-log-analyzer) provides to bisect the failure to a specific PR and do
+<p>If the rollup fails, use the logs rust-log-analyzer
+provides to bisect the failure to a specific PR and do
 <code>@bors r-</code>. If the PR is running, you need to do <code>@bors r- retry</code>. Otherwise,
 your rollup succeeded. If it did, proceed to the next rollup (every now and
 then let <code>rollup=never</code> and toolstate PRs progress).</p>
@@ -5545,7 +5547,7 @@ interest of time you can do so sometimes after you've made the rollup PR.</li>
 <h2 id="failed-rollups"><a class="header" href="#failed-rollups">Failed rollups</a></h2>
 <p>If the rollup has failed, run the <code>@bors retry</code> command if the
 failure was spurious (e.g. due to a network problem or a timeout). If it wasn't spurious,
-find the offending PR and throw it out by copying a link to the rust-highfive comment,
+find the offending PR and throw it out by copying a link to the rust-logs-analyzer comment,
 and writing <code>Failed in &lt;link_to_comment&gt;, @bors r-</code>. Hopefully,
 the author or reviewer will give feedback to get the PR fixed or confirm that it's not
 at fault. The failed rollup PR can be closed.</p>
@@ -5604,7 +5606,7 @@ communicates that the PR is an experiment to test out some changes.</p>
 </li>
 </ul>
 <p>Also: <a href="https://github.com/rust-lang/rust/pulls?q=is%3Apr+is%3Aopen+-label%3AS-waiting-on-author+-label%3AS-waiting-on-review+-label%3AS-waiting-on-team+-label%3AS-waiting-on-bors+-label%3AS-waiting-on-crater+-label%3AS-waiting-on-bikeshed+-label%3AS-waiting-on-perf+-label%3AS-blocked+-label%3AS-inactive+-label%3AS-waiting-on-fcp+-label%3AS-experimental">PRs with no status tags</a>. This is useful to find PRs
-where highfive conked out and didn't assign a reviewer and thus didn't assign
+where rustbot conked out and didn't assign a reviewer and thus didn't assign
 <a href="https://github.com/rust-lang/rust/pulls?q=is%3Aopen+draft%3Afalse+is%3Apr+sort%3Aupdated-asc+label%3AS-waiting-on-review+-label%3AI-nominated+-label%3Aneeds-fcp">S-waiting-on-review</a>. These PRs can get lost otherwise. (Note that you should
 likely <strong>not</strong> triage PRs that have <code>r? @ghost</code> since that means the author does
 not need a review yet.)</p>
