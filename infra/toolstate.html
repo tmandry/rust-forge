@@ -138,20 +138,32 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="handling-of-tools-embedded-in-the-rustc-repo-toolstate"><a class="header" href="#handling-of-tools-embedded-in-the-rustc-repo-toolstate">Handling of tools embedded in the rustc repo (&quot;toolstate&quot;)</a></h1>
-<p>The Rust repository contains several external tools and documents as git
-submodules (e.g. miri, the <a href="https://doc.rust-lang.org/book/">Book</a>, the <a href="https://doc.rust-lang.org/reference/">Reference</a>). Some of those are
-very tightly coupled to the compiler and depend on internal APIs that change all
-the time, but they are not actually essential to get the compiler itself to
-work. To make API changes less painful, these tools are allowed to &quot;break&quot;
-temporarily. PRs can still land and nightlies still get released even when some
-tools are broken. Their current status is managed by the
-<a href="https://rust-lang-nursery.github.io/rust-toolstate/">toolstate system</a>. (Cargo is not subject to the toolstate system and
-instead just has to always work.)</p>
-<p>The three possible states of a &quot;tool&quot; (this includes the documentation managed
-by the toolstate system, where we run doctests) are: <code>test-pass</code>, <code>test-fail</code>,
+<p>The Rust repository contains several external git submodules (e.g. the <a href="https://doc.rust-lang.org/book/">Book</a>,
+the <a href="https://doc.rust-lang.org/reference/">Reference</a>). The <a href="https://rust-lang-nursery.github.io/rust-toolstate/">toolstate system</a> is used to allow these
+submodules to be in a broken state, except for beta releases.</p>
+<p>This is necessary because the documentation is tested both on the
+<code>rust-lang/rust</code> CI, and on the CI of the documentation repo. If there is a
+change to <code>rustc</code> that breaks the documentation, it would not be possible to
+update the documentation since the not-yet-merged version of rustc that breaks
+it doesn't exist, yet. We usually require CI to be in a passing state in both
+repos.</p>
+<p>The toolstate system solves this problem by temporarily allowing the
+documentation to be in a &quot;failing&quot; state on <code>rust-lang/rust</code>. When the tests
+start failing, the maintainers of the submodule will be notified. They will
+then be responsible for getting it fixed.</p>
+<p>The three possible states of a &quot;tool&quot; are: <code>test-pass</code>, <code>test-fail</code>,
 <code>build-fail</code>.</p>
 <p>This page gives a rough overview how the toolstate system works, and what the
 rules are for when which tools are (not) allowed to break.</p>
+<blockquote>
+<p><strong>Note</strong>: Historically, the toolstate system was used for managing tools
+that were closely coupled with the compiler (like rustfmt or miri). However,
+those have since been transitioned to use git subtrees instead, so that
+those tools must always pass their tests, and any failures must be resolved
+within the PR that breaks them.</p>
+<p>This document uses the term &quot;tool&quot;, but as of this writing, the only thing
+tracked is external documentation.</p>
+</blockquote>
 <h2 id="toolstate-rules"><a class="header" href="#toolstate-rules">Toolstate Rules</a></h2>
 <ul>
 <li>
@@ -170,7 +182,7 @@ cut. (See the <a href="../index.html">Forge index</a> for when the next beta cut
 happening.)</li>
 </ul>
 <p>At the time of writing, the following tools are &quot;nightly only&quot;:
-miri, embedded-book.</p>
+embedded-book.</p>
 </li>
 </ul>
 <h2 id="updating-the-toolstate-repository"><a class="header" href="#updating-the-toolstate-repository">Updating the toolstate repository</a></h2>
@@ -190,7 +202,7 @@ break.</p>
 <p>Run <code>git submodule update --remote path/to/submodule</code>, add the updates, make
 sure the tests pass, commit, and send a pull request. The path is from the
 root of the rust repository, so for example, the reference is
-<code>src/doc/reference</code> and miri is <code>src/tools/miri</code>.</p>
+<code>src/doc/reference</code>.</p>
 <p>While not required, <a href="https://github.com/ehuss/subup">subup</a> may assist you with this.</p>
 <h2 id="adding-a-tool"><a class="header" href="#adding-a-tool">Adding a tool</a></h2>
 <p><strong>NOTE</strong>: We are trying to switch away from submodules and toolstate over time.
