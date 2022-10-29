@@ -5360,6 +5360,8 @@ PR.</p>
 <p>Mark it as <code>rollup=never</code>, because if it lands in a rollup as <em>not</em> the first
 PR then other pull requests in that rollup will be incorrectly associated with
 the prior release.</p>
+<p>This is effectively when the beta branch forks -- when beta is promoted, it will
+be based off of the PR that landed just before this version number bump PR.</p>
 <h2 id="promote-branches-t-3-days-monday"><a class="header" href="#promote-branches-t-3-days-monday">Promote branches (T-3 days, Monday)</a></h2>
 <p>Both promotions should happen on Monday. You can open both PRs at the same
 time, but make sure the stable promotion lands first.</p>
