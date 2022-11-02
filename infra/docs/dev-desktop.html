@@ -165,8 +165,11 @@ desktop.</p>
 <p>Users can connect to the dev desktop with SSH. The dev desktops use public key
 authentication, and automatically fetch the user’s public keys from GitHub.</p>
 <p>You can connect to the instance with the following command:</p>
-<pre><code class="language-shell">ssh &lt;your-username&gt;@&lt;instance&gt;
+<pre><code class="language-shell">ssh &lt;your-username&gt;@&lt;name&gt;.infra.rust-lang.org
 </code></pre>
+<p>Replace <code>&lt;name&gt;</code> with the machine name from the table at the top of the page.
+For example, connect to <code>dev-desktop-eu-1</code> using the hostname
+<code>dev-desktop-eu-1.infra.rust-lang.org</code>.</p>
 <p>If you don’t have a public key on GitHub, read the following guides that explain
 how to create an SSH key and add it to your GitHub account. It might take a few
 minutes after the key has been added before the dev desktops get updated.</p>
