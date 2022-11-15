@@ -169,7 +169,7 @@
 <h3 id="is-that-inline-right"><a class="header" href="#is-that-inline-right">Is that <code>#[inline]</code> right?</a></h3>
 <p>Inlining is a trade-off between potential execution speed, compile time and code size. There's some discussion about it in <a href="https://github.com/rust-lang/hashbrown/pull/119">this PR to the <code>hashbrown</code> crate</a>. From the thread:</p>
 <blockquote>
-<p><code>#[inline]</code> is very different than simply just an inline hint. As I mentioned before, there's no equivalent in C++ for what <code>#[inline]</code> does. In debug mode rustc basically ignores <code>#[inline]</code>, pretending you didn't even write it. In release mode the compiler will, by default, codegen an <code>#[inline]</code> function into every single referencing codegen unit, and then it will also add <code>inlinehin</code>t. This means that if you have 16 CGUs and they all reference an item, every single one is getting the entire item's implementation inlined into it.</p>
+<p><code>#[inline]</code> is very different than simply just an inline hint. As I mentioned before, there's no equivalent in C++ for what <code>#[inline]</code> does. In debug mode rustc basically ignores <code>#[inline]</code>, pretending you didn't even write it. In release mode the compiler will, by default, codegen an <code>#[inline]</code> function into every single referencing codegen unit, and then it will also add <code>inlinehint</code>. This means that if you have 16 CGUs and they all reference an item, every single one is getting the entire item's implementation inlined into it.</p>
 </blockquote>
 <p>You can add <code>#[inline]</code>:</p>
 <ul>
